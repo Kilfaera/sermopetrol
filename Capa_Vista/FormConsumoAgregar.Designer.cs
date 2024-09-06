@@ -65,6 +65,7 @@
             this.zona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FormaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -366,7 +367,8 @@
             this.documento,
             this.zona,
             this.consumo,
-            this.fecha});
+            this.fecha,
+            this.FormaRegistro});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -383,6 +385,7 @@
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView.Size = new System.Drawing.Size(495, 759);
             this.dataGridView.TabIndex = 1;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // id
             // 
@@ -431,6 +434,13 @@
             this.fecha.Name = "fecha";
             this.fecha.ReadOnly = true;
             this.fecha.Width = 188;
+            // 
+            // FormaRegistro
+            // 
+            this.FormaRegistro.HeaderText = "Forma de Registro";
+            this.FormaRegistro.Name = "FormaRegistro";
+            this.FormaRegistro.ReadOnly = true;
+            this.FormaRegistro.Width = 189;
             // 
             // FormConsumoAgregar
             // 
@@ -492,5 +502,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn zona;
         private System.Windows.Forms.DataGridViewTextBoxColumn consumo;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FormaRegistro;
     }
 }
