@@ -101,8 +101,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE InsertarConsumo(
     IN IdEmpleado INT,
-    IN TipoConsumo VARCHAR(25)
-    IN Registro VARCHAR(25)
+    IN TipoConsumo VARCHAR(25),
+    IN Registro bit
 )
 BEGIN
     INSERT INTO Consumo (IdEmpleado, TipoConsumo, FechaRegistro, Registro)
@@ -188,3 +188,6 @@ BEGIN
     WHERE IdEmpleado = IdEmpleado;
 END$$
 DELIMITER ;
+call InsertarEmpleado('111','Prueba','Fuonciona',0,1,now());
+call InsertarConsumo(1,'desayuno',1);
+drop procedure InsertarConsumo;
