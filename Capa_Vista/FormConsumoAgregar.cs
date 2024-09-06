@@ -46,6 +46,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         // Agregar la fila al DataGridView
                         dataGridView.Rows.Add(new object[]
                         {
+                            item.IdConsumo,
                     item.NombreEmpleado,
                     item.DocumentoEmpleado,
                     item.ZonaTrabajoEmpleado,
