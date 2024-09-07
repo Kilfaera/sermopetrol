@@ -22,6 +22,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             InitializeComponent();
             ActualizarlistaConsumo();
+            autocompletar();
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -147,6 +148,32 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void FormConsumoAgregar_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             generalItems.closeCam();
+        }
+        void autocompletar()
+        {
+            try
+            {
+                // Crear una colección de cadenas para las coincidencias de autocompletado
+                AutoCompleteStringCollection coincidencias = new AutoCompleteStringCollection();
+
+                // Obtener la lista de consumos
+                List<Consumo> listaConsumo = new ListarConsumo().Listar();
+
+                // Agregar los números de documento de los empleados a las coincidencias
+                foreach (Consumo item in listaConsumo)
+                {
+                    coincidencias.Add(item.DocumentoEmpleado);
+                }
+
+                // Configurar el TextBox para usar autocompletado
+                textBoxCedula.AutoCompleteMode = AutoCompleteMode.SuggestAppend;  // Modo de sugerencia y completar
+                textBoxCedula.AutoCompleteSource = AutoCompleteSource.CustomSource;  // Fuente personalizada
+                textBoxCedula.AutoCompleteCustomSource = coincidencias;  // Asignar las coincidencias
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
+            }
         }
     }
 }
