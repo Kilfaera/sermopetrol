@@ -284,6 +284,7 @@
             this.iconButtonReiniciar.Size = new System.Drawing.Size(50, 43);
             this.iconButtonReiniciar.TabIndex = 1;
             this.iconButtonReiniciar.UseVisualStyleBackColor = true;
+            this.iconButtonReiniciar.Click += new System.EventHandler(this.iconButtonReiniciar_Click);
             // 
             // textBoxCedula
             // 

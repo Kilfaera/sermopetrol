@@ -175,5 +175,66 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
             }
         }
+        bool encontrado = false;
+        bool repeticion = false;
+        public void insertarempleadoconfirmado()
+        {/*
+            try
+            {
+                encontrado = false;
+                QueryConsumo consumo = new QueryConsumo();
+                List<Empleado> ListaEmpleados = new listarEmpleado().Listar();
+                List<Consumo> listaConsumo = new ListaruConsumo().Listar();
+                if (DateTime.Now.Hour < 9) { _tipoConsumo = "Desayuno"; }
+                else if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 15) { _tipoConsumo = "Almuerzo"; }
+                else { _tipoConsumo = "Cena"; }
+                foreach (Consumo item in listaConsumo)
+                {
+                    repeticion = false;
+                    if (item.NumeroDocumento == BusquedaDocumento.Text && item.TipoConsumo == _tipoConsumo && item.FechaRegistro.Date == DateTime.Now.Date && item.NumeroDocumento != "0000")
+                    {
+                        repeticion = true;
+                        break; // Salir del bucle al encontrar una repetición
+                    }
+                }
+
+                if (!repeticion) // Solo proceder si no hay repetición
+                {
+                    foreach (Empleado item in ListaEmpleados)
+                    {
+                        if (item.NumeroDocumento == BusquedaDocumento.Text && item.Estado)
+                        {
+                            QueryEmpleado emm = new QueryEmpleado();
+                            consumo.InsertarConsumo(item.IdEmpleado, _tipoConsumo);
+                            emm.IncrementarConsumo(item.IdEmpleado);
+                            encontrado = true;
+                            TC = _tipoConsumo;
+                            ZT = item.ZonaDeTrabajo;
+                            NC = item.NombreCompleto;
+                            ND = item.NumeroDocumento;
+                            pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
+                            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                            BusquedaDocumento.Text = "";
+                            return; // Salir del bucle al encontrar un empleado válido
+                        }
+                    }
+                }
+
+                if (!encontrado)
+                {
+                    BusquedaDocumento.Text = "";
+                }
+                else
+                {
+                    BusquedaDocumento.Text = "";
+                }
+                BusquedaDocumento.Focus();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR AL INGRESAR EL CONSUMO: " + e);
+            }*/
+        }
     }
 }
