@@ -157,12 +157,12 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 AutoCompleteStringCollection coincidencias = new AutoCompleteStringCollection();
 
                 // Obtener la lista de consumos
-                List<Consumo> listaConsumo = new ListarConsumo().Listar();
+                List<Empleado> listaEmpleado = new ListarEmpleado().Listar();
 
                 // Agregar los números de documento de los empleados a las coincidencias
-                foreach (Consumo item in listaConsumo)
+                foreach (Empleado item in listaEmpleado)
                 {
-                    coincidencias.Add(item.DocumentoEmpleado);
+                    coincidencias.Add(item.NumeroDocumento);
                 }
 
                 // Configurar el TextBox para usar autocompletado

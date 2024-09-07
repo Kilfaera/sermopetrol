@@ -1,9 +1,9 @@
-﻿using Consumos_Sermopetrol.Capa_Control;
-using Consumos_Sermopetrol.Capa_Control.Entidades;
+﻿using Consumos_Sermopetrol.Capa_Control.Entidades;
+using Consumos_Sermopetrol.Capa_Control;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace AppConsumo.Controlador
 {
@@ -12,15 +12,15 @@ namespace AppConsumo.Controlador
         public List<Empleado> Listar()
         {
             List<Empleado> lista = new List<Empleado>();
-            using (SqlConnection oconexion = new SqlConnection(CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
                 try
                 {
-                    string query = "select * from Empleado";
-                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    string query = "SELECT * FROM Empleado";
+                    MySqlCommand cmd = new MySqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
                     oconexion.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -49,10 +49,10 @@ namespace AppConsumo.Controlador
 
         public void InsertarEmpleado(string numeroDocumento, string nombreCompleto, string zonaDeTrabajo, int consumos, bool estado, DateTime hoy)
         {
-            using (SqlConnection oconexion = new SqlConnection(CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
                 oconexion.Open();
-                SqlCommand command = oconexion.CreateCommand();
+                MySqlCommand command = oconexion.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "InsertarEmpleado";
 
@@ -68,9 +68,9 @@ namespace AppConsumo.Controlador
 
         public void ActualizarEmpleado(int idEmpleado, string numeroDocumento, string nombreCompleto, string zonaDeTrabajo)
         {
-            using (SqlConnection oconexion = new SqlConnection(CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
-                using (SqlCommand command = new SqlCommand("ActualizarEmpleado", oconexion))
+                using (MySqlCommand command = new MySqlCommand("ActualizarEmpleado", oconexion))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
@@ -86,9 +86,9 @@ namespace AppConsumo.Controlador
 
         public void IncrementarConsumo(int idEmpleado)
         {
-            using (SqlConnection oconexion = new SqlConnection(CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
-                using (SqlCommand command = new SqlCommand("IncrementarConsumo", oconexion))
+                using (MySqlCommand command = new MySqlCommand("IncrementarConsumo", oconexion))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
@@ -101,11 +101,11 @@ namespace AppConsumo.Controlador
 
         public void CambiarEstadoEmpleado(int idEmpleado, bool nuevoEstado)
         {
-            using (SqlConnection oconexion = new SqlConnection(CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
                 try
                 {
-                    using (SqlCommand command = new SqlCommand("CambiarEstadoEmpleado", oconexion))
+                    using (MySqlCommand command = new MySqlCommand("CambiarEstadoEmpleado", oconexion))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
@@ -119,16 +119,16 @@ namespace AppConsumo.Controlador
                 {
                     // Manejar la excepción aquí
                     Console.WriteLine("Error al cambiar el estado del empleado: " + ex.Message);
-                    throw; // Opcional: relanzar la excepción para que sea manejada en un nivel superior
+                    throw;
                 }
             }
         }
 
         public void ActualizarEmpleadoCS(int idEmpleado, string numeroDocumento, string nombreCompleto, string zonaDeTrabajo, int numeroConsumos, bool estado, DateTime fechaRegistro)
         {
-            using (SqlConnection oconexion = new SqlConnection(CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
-                using (SqlCommand command = new SqlCommand("ActualizarEmpleadoCS", oconexion))
+                using (MySqlCommand command = new MySqlCommand("ActualizarEmpleadoCS", oconexion))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
