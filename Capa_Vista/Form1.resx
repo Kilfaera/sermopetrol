@@ -117,75 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;buttonMinimizeBorderStyle.Name" xml:space="preserve">
-    <value>buttonMinimizeBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;buttonMinimizeBorderStyle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMinimizeBorderStyle.Parent" xml:space="preserve">
-    <value>panelBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;buttonMinimizeBorderStyle.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;buttonCloseBorderStyle.Name" xml:space="preserve">
-    <value>buttonCloseBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;buttonCloseBorderStyle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCloseBorderStyle.Parent" xml:space="preserve">
-    <value>panelBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;buttonCloseBorderStyle.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panelBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelBorderStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="panelBorderStyle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1280, 36</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelBorderStyle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.Name" xml:space="preserve">
-    <value>panelBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="buttonMinimizeBorderStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="buttonMinimizeBorderStyle.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonMinimizeBorderStyle.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS Gothic, 20.25pt, style=Bold</value>
   </data>
@@ -193,11 +132,12 @@
     <value>NoControl</value>
   </data>
   <data name="buttonMinimizeBorderStyle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1140, 0</value>
+    <value>1201, 0</value>
   </data>
   <data name="buttonMinimizeBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 36</value>
+    <value>34, 36</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonMinimizeBorderStyle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -223,16 +163,16 @@
     <value>Flat</value>
   </data>
   <data name="buttonCloseBorderStyle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>MS Gothic, 15.75pt, style=Bold</value>
+    <value>MS Gothic, 14.25pt, style=Bold</value>
   </data>
   <data name="buttonCloseBorderStyle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonCloseBorderStyle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1210, 0</value>
+    <value>1235, 0</value>
   </data>
   <data name="buttonCloseBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 36</value>
+    <value>45, 36</value>
   </data>
   <data name="buttonCloseBorderStyle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -289,6 +229,30 @@
     <value>panelBorderStyle</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panelBorderStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelBorderStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1280, 36</value>
+  </data>
+  <data name="panelBorderStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.Name" xml:space="preserve">
+    <value>panelBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="panelSideMenu.AutoScroll" type="System.Boolean, mscorlib">
@@ -1029,34 +993,25 @@
   <data name="panelChildForm.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="iconPictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="iconPictureBoxMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
-  <data name="iconPictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="iconPictureBoxMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
   </data>
-  <data name="iconPictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 129</value>
+  <data name="iconPictureBoxMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="iconPictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>466, 466</value>
+  <data name="&gt;&gt;iconPictureBoxMenu.Name" xml:space="preserve">
+    <value>iconPictureBoxMenu</value>
   </data>
-  <data name="iconPictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="iconPictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;iconPictureBox1.Name" xml:space="preserve">
-    <value>iconPictureBox1</value>
-  </data>
-  <data name="&gt;&gt;iconPictureBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;iconPictureBoxMenu.Type" xml:space="preserve">
     <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
   </data>
-  <data name="&gt;&gt;iconPictureBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;iconPictureBoxMenu.Parent" xml:space="preserve">
     <value>panelChildForm</value>
   </data>
-  <data name="&gt;&gt;iconPictureBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;iconPictureBoxMenu.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="panelChildForm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">

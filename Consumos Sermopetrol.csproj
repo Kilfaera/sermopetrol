@@ -169,7 +169,6 @@
     <Compile Include="Capa_Control\Entidades\Consumo_CS.cs" />
     <Compile Include="Capa_Control\Entidades\Empleado.cs" />
     <Compile Include="Capa_Negocio\Funciones frecuentes.cs" />
-    <Compile Include="Capa_Negocio\GeneralItems.cs" />
     <Compile Include="Capa_Vista\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

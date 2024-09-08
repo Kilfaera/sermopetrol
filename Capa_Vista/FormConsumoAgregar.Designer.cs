@@ -160,6 +160,7 @@
             this.iconButtonAprobar.Size = new System.Drawing.Size(160, 38);
             this.iconButtonAprobar.TabIndex = 31;
             this.iconButtonAprobar.UseVisualStyleBackColor = false;
+            this.iconButtonAprobar.Click += new System.EventHandler(this.iconButtonAprobar_Click);
             // 
             // iconButtonCancelar
             // 

@@ -1,4 +1,5 @@
-﻿using Consumos_Sermopetrol.Capa_Vista;
+﻿using Consumos_Sermopetrol.Capa_Negocio;
+using Consumos_Sermopetrol.Capa_Vista;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,6 +55,8 @@ namespace Consumos_Sermopetrol
         #region BorderStyle
         private void buttonCloseBorderStyle_Click(object sender, EventArgs e)
         {
+            Funciones_frecuentes generalItems = new Funciones_frecuentes();
+            generalItems.closeCam();
             this.Close();
         }
 
@@ -192,5 +195,23 @@ namespace Consumos_Sermopetrol
 
 
         #endregion
+
+        private void panelBorderStyle_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Funciones_frecuentes generalItems = new Funciones_frecuentes();
+            generalItems.closeCam();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+            Funciones_frecuentes generalItems = new Funciones_frecuentes();
+            generalItems.closeCam();
+        }
     }
 }

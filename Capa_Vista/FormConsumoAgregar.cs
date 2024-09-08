@@ -1,23 +1,18 @@
 ﻿using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
-using Consumos_Sermopetrol.Capa_Control;
+using Consumos_Sermopetrol.Capa_Negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using AppConsumo;
 
 namespace Consumos_Sermopetrol.Capa_Vista
 {
     public partial class FormConsumoAgregar : Form
     {
-        GeneralItems generalItems = new GeneralItems();
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         public FormConsumoAgregar()
         {
             InitializeComponent();
@@ -28,14 +23,14 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             this.Close();
         }
-        
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             generalItems.inicialziar(comboBoxSelectCamara.SelectedIndex, pictureBoxCamara);
         }
 
-       
+
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -43,8 +38,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
         }
         public void ActualizarlistaConsumo()
         {
-            try
-            {
+            try { 
+            
                 comboBoxConsumo.Text = comboBoxConsumo.Items[0].ToString();
                 dataGridView.Rows.Clear();
                 List<Consumo> listaConsumo = new ListarConsumo().Listar();
@@ -121,6 +116,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
             if (panelDiagramas.Visible)
             {
                 panelDiagramas.Visible = false;
+            }
+            else { panelDiagramas.Visible = true; }
         }
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -174,66 +171,16 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
             }
         }
-        bool encontrado = false;
-        bool repeticion = false;
-        public void insertarempleadoconfirmado()
-        {/*
-            try
+        private void iconButtonAprobar_Click(object sender, EventArgs e)
+        {
+            if(comboBoxConsumo.SelectedIndex == 0)
             {
-                encontrado = false;
-                QueryConsumo consumo = new QueryConsumo();
-                List<Empleado> ListaEmpleados = new listarEmpleado().Listar();
-                List<Consumo> listaConsumo = new ListaruConsumo().Listar();
-                if (DateTime.Now.Hour < 9) { _tipoConsumo = "Desayuno"; }
-                else if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 15) { _tipoConsumo = "Almuerzo"; }
-                else { _tipoConsumo = "Cena"; }
-                foreach (Consumo item in listaConsumo)
-                {
-                    repeticion = false;
-                    if (item.NumeroDocumento == BusquedaDocumento.Text && item.TipoConsumo == _tipoConsumo && item.FechaRegistro.Date == DateTime.Now.Date && item.NumeroDocumento != "0000")
-                    {
-                        repeticion = true;
-                        break; // Salir del bucle al encontrar una repetición
-                    }
-                }
-
-                if (!repeticion) // Solo proceder si no hay repetición
-                {
-                    foreach (Empleado item in ListaEmpleados)
-                    {
-                        if (item.NumeroDocumento == BusquedaDocumento.Text && item.Estado)
-                        {
-                            QueryEmpleado emm = new QueryEmpleado();
-                            consumo.InsertarConsumo(item.IdEmpleado, _tipoConsumo);
-                            emm.IncrementarConsumo(item.IdEmpleado);
-                            encontrado = true;
-                            TC = _tipoConsumo;
-                            ZT = item.ZonaDeTrabajo;
-                            NC = item.NombreCompleto;
-                            ND = item.NumeroDocumento;
-                            pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
-                            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-                            BusquedaDocumento.Text = "";
-                            return; // Salir del bucle al encontrar un empleado válido
-                        }
-                    }
-                }
-
-                if (!encontrado)
-                {
-                    BusquedaDocumento.Text = "";
-                }
-                else
-                {
-                    BusquedaDocumento.Text = "";
-                }
-                BusquedaDocumento.Focus();
+                generalItems.Confirmacion(textBoxCedula.Text);
+            }
+            else
+            {
 
             }
-            catch (Exception e)
-            {
-                MessageBox.Show("ERROR AL INGRESAR EL CONSUMO: " + e);
-            }*/
         }
     }
 }
