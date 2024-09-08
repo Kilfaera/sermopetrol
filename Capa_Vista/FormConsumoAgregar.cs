@@ -121,7 +121,6 @@ namespace Consumos_Sermopetrol.Capa_Vista
             if (panelDiagramas.Visible)
             {
                 panelDiagramas.Visible = false;
-            } else { panelDiagramas.Visible = true; }
         }
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
