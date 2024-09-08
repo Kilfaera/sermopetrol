@@ -18,6 +18,7 @@ namespace Consumos_Sermopetrol
             this.WindowState = FormWindowState.Maximized;
             //this.FormBorderStyle = FormBorderStyle.Sizable;
             InitializeComponent();
+            openChildForm(new FormConsumoAgregar());
         }
         private void Form1_Load(object sender, EventArgs e)
         {
