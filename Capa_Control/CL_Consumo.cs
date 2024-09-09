@@ -62,7 +62,7 @@ namespace AppConsumo.Controlador
                     command.CommandText = "InsertarConsumo";
                     command.Parameters.AddWithValue("@IdEmpleado", idempleado);
                     command.Parameters.AddWithValue("@TipoConsumo", tipoConsumo);
-                    command.Parameters.AddWithValue("@Registro", registro ? 1 : 0); // Adaptación para columna BIT en MySQL
+                    command.Parameters.AddWithValue("@Registro", registro); // Adaptación para columna BIT en MySQL
                     command.ExecuteNonQuery();
                 }
                 catch (Exception ex)

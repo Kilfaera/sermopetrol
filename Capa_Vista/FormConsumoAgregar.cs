@@ -18,6 +18,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             InitializeComponent();
             ActualizarlistaConsumo();
             autocompletar();
+            comboBoxConsumo.SelectedIndex = 0;
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -173,13 +174,60 @@ namespace Consumos_Sermopetrol.Capa_Vista
         }
         private void iconButtonAprobar_Click(object sender, EventArgs e)
         {
-            if(comboBoxConsumo.SelectedIndex == 0)
+            if (comboBoxConsumo.SelectedIndex == 0)
             {
                 generalItems.Confirmacion(textBoxCedula.Text);
+                ActualizarlistaConsumo();
             }
             else
             {
+                generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text,dateTimePicker1.Value);
+                ActualizarlistaConsumo();
+            }
+            textBoxCedula.Text = "";
+        }
 
+        private void FormConsumoAgregar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!textBoxCedula.Focused)
+            {
+                textBoxCedula.Focus();
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    // Si no es un número ni una tecla de control, cancelar el evento
+                    e.Handled = true;
+                    return;
+                }
+                textBoxCedula.AppendText(e.KeyChar.ToString());
+            }
+            if (textBoxCedula.Text == "")
+            {
+                return;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                try
+                {
+                    if (comboBoxConsumo.SelectedIndex == 0)
+                    {
+                        generalItems.Confirmacion(textBoxCedula.Text);
+                        ActualizarlistaConsumo();
+                    }
+                    else
+                    {
+                        generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value);
+                        ActualizarlistaConsumo();
+                    }
+
+                    ActualizarlistaConsumo();
+                    textBoxCedula.Text = "";
+                    textBoxCedula.Focus();
+                }
+                catch (Exception a)
+                {
+                    MessageBox.Show("ERROR AL INGRESAR EL CONSUMO DIGITADO: " + a);
+                }
             }
         }
     }

@@ -450,6 +450,7 @@
             this.Text = "FormConsumoAgregar";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormConsumoAgregar_FormClosing_1);
             this.Load += new System.EventHandler(this.FormConsumoAgregar_Load_1);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormConsumoAgregar_KeyPress);
             this.Leave += new System.EventHandler(this.FormConsumoAgregar_Leave);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

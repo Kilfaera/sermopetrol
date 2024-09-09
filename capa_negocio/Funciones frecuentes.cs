@@ -1,18 +1,12 @@
-﻿using AppConsumo.Controlador;
+﻿using Accord.Video;
+using Accord.Video.DirectShow;
+using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Drawing.Printing;
 using System.Windows.Forms;
-using ZXing.Common;
-using ZXing;
-using Accord.Video.DirectShow;
-using Accord.Video;
 
 namespace Consumos_Sermopetrol.Capa_Negocio
 {
@@ -20,7 +14,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
     {
         #region ImpresoraTermica
         private void imprimir(object sender, PrintPageEventArgs e)
-        {  
+        {
             /*
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
             Font cal8 = new Font("Calibri", 8, FontStyle.Bold);
@@ -61,14 +55,15 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             bitmap = writer.Write("Ticket de " + TC + " canjeado en " + DateTime.Now.ToString("yyyy/MMMM/dddd-dd") +
                 " a las " + DateTime.Now.ToString("hh:mm:ss-tt") + " para el empleado " + NC + " C.C." + ND);
             e.Graphics.DrawImage(bitmap, (e.PageBounds.Width - 50) / 3 + 8, 255, 150, 150);
-       */ }
+       */
+        }
         #endregion
 
         #region Camara
         FilterInfoCollection filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         private VideoCaptureDevice CaptureDevice;
         PictureBox picture;
-       
+
         public void inicialziar(int index, PictureBox pictureBox)
         {
             try
@@ -193,22 +188,31 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         {
             List<Consumo> listaConsumo = new ListarConsumo().Listar();
             string _tipoConsumo;
+            bool consumoRepetido = false; // Variable para controlar si el consumo ya existe
+
+            // Determinar el tipo de consumo según la hora actual
             if (DateTime.Now.Hour < 9) { _tipoConsumo = "Desayuno"; }
             else if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 15) { _tipoConsumo = "Almuerzo"; }
             else { _tipoConsumo = "Cena"; }
 
+            // Recorrer la lista de consumos para verificar si ya existe
             foreach (Consumo item in listaConsumo)
             {
                 if (item.DocumentoEmpleado == ND && item.TipoConsumo == _tipoConsumo && item.FechaRegistro.Date == DateTime.Now.Date && item.DocumentoEmpleado != "0000")
                 {
-                    insertarempleadoconfirmado(_tipoConsumo, ND,true);
+                    consumoRepetido = true; // Ya existe el consumo, no se debe agregar
                     break; // Salir del bucle al encontrar una repetición
                 }
             }
 
+            // Si no se encontró un consumo repetido, agregar el nuevo consumo
+            if (!consumoRepetido)
+            {
+                insertarempleadoconfirmado(_tipoConsumo, ND, true); // Inserta el consumo si no está repetido
+            }
         }
         bool encontrado = false;
-        public void insertarempleadoconfirmado(string TC,string ND,Boolean FR)
+        public void insertarempleadoconfirmado(string TC, string ND, bool FR)
         {
             try
             {
@@ -221,7 +225,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                     if (item.NumeroDocumento == ND && item.Estado)
                     {
                         QueryEmpleado emm = new QueryEmpleado();
-                        consumo.InsertarConsumo(item.IdEmpleado,TC,FR);
+                        consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
@@ -230,12 +234,38 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         return; // Salir del bucle al encontrar un empleado válido
                     }
                 }
-            
+
 
             }
             catch (Exception e)
             {
                 MessageBox.Show("ERROR AL INGRESAR EL CONSUMO: " + e);
+            }
+        }
+        public void insertarempleadoconfirmadoM(string ND, string TC, DateTime FR)
+        {
+
+            int Hora;
+            encontrado = false;
+            QueryConsumo consumo = new QueryConsumo();
+            List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+            if (TC == "Desayuno") { Hora = 6; }
+            else if (TC == "Almuerzo") { Hora = 12; }
+            else { Hora = 18; }
+            FR = new DateTime(FR.Year, FR.Month, FR.Day, Hora, FR.Minute, FR.Second);
+            foreach (Empleado item in ListaEmpleados)
+            {
+                if (item.NumeroDocumento == ND && item.Estado)
+                {
+                    QueryEmpleado emm = new QueryEmpleado();
+                    consumo.AgregarConsumoCS(item.IdEmpleado, TC, FR, false);
+                    emm.IncrementarConsumo(item.IdEmpleado);
+                    encontrado = true;
+                    /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                    BusquedaDocumento.Text = ""*/
+                    return; // Salir del bucle al encontrar un empleado válido
+                }
             }
         }
 
