@@ -13,11 +13,17 @@ namespace Consumos_Sermopetrol
 {
     public partial class Form1 : Form
     {
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         public Form1()
         {
             this.WindowState = FormWindowState.Maximized;
             //this.FormBorderStyle = FormBorderStyle.Sizable;
             InitializeComponent();
+<<<<<<< Updated upstream
+=======
+            buttonConsumoSideMenu_Click(this, EventArgs.Empty);
+            buttonAgregarConsumo_Click(this, EventArgs.Empty);
+>>>>>>> Stashed changes
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,7 +59,12 @@ namespace Consumos_Sermopetrol
         #region BorderStyle
         private void buttonCloseBorderStyle_Click(object sender, EventArgs e)
         {
+<<<<<<< Updated upstream
             this.Close();
+=======
+            generalItems.closeCam();
+            Application.Exit();
+>>>>>>> Stashed changes
         }
 
         private void buttonMinimizeBorderStyle_Click(object sender, EventArgs e)
@@ -191,5 +202,13 @@ namespace Consumos_Sermopetrol
 
 
         #endregion
+<<<<<<< Updated upstream
+=======
+
+        private void panelBorderStyle_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+>>>>>>> Stashed changes
     }
 }
