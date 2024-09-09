@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.iconButtonReiniciar = new FontAwesome.Sharp.IconButton();
-            this.iconButtonFiltrar = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dateTimePickerHasta = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerDesde = new System.Windows.Forms.DateTimePicker();
@@ -110,7 +109,6 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.Controls.Add(this.iconButtonReiniciar);
-            this.panel5.Controls.Add(this.iconButtonFiltrar);
             this.panel5.Location = new System.Drawing.Point(14, 429);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(278, 139);
@@ -127,28 +125,12 @@
             this.iconButtonReiniciar.IconColor = System.Drawing.Color.White;
             this.iconButtonReiniciar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButtonReiniciar.IconSize = 30;
-            this.iconButtonReiniciar.Location = new System.Drawing.Point(0, 75);
+            this.iconButtonReiniciar.Location = new System.Drawing.Point(0, 3);
             this.iconButtonReiniciar.Name = "iconButtonReiniciar";
             this.iconButtonReiniciar.Size = new System.Drawing.Size(278, 60);
             this.iconButtonReiniciar.TabIndex = 7;
             this.iconButtonReiniciar.UseVisualStyleBackColor = false;
-            // 
-            // iconButtonFiltrar
-            // 
-            this.iconButtonFiltrar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButtonFiltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.iconButtonFiltrar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.iconButtonFiltrar.FlatAppearance.BorderSize = 2;
-            this.iconButtonFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonFiltrar.IconChar = FontAwesome.Sharp.IconChar.OilWell;
-            this.iconButtonFiltrar.IconColor = System.Drawing.Color.White;
-            this.iconButtonFiltrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButtonFiltrar.IconSize = 30;
-            this.iconButtonFiltrar.Location = new System.Drawing.Point(0, 3);
-            this.iconButtonFiltrar.Name = "iconButtonFiltrar";
-            this.iconButtonFiltrar.Size = new System.Drawing.Size(278, 60);
-            this.iconButtonFiltrar.TabIndex = 8;
-            this.iconButtonFiltrar.UseVisualStyleBackColor = false;
+            this.iconButtonReiniciar.Click += new System.EventHandler(this.iconButtonReiniciar_Click);
             // 
             // panel4
             // 
@@ -321,14 +303,14 @@
             this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -337,14 +319,14 @@
             this.zona,
             this.consumo,
             this.fecha});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
@@ -450,7 +432,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.Panel panel5;
         private FontAwesome.Sharp.IconButton iconButtonReiniciar;
-        private FontAwesome.Sharp.IconButton iconButtonFiltrar;
         private System.Windows.Forms.DateTimePicker dateTimePickerHasta;
         private System.Windows.Forms.DateTimePicker dateTimePickerDesde;
     }
