@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Printing;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -138,11 +137,10 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
                     string tipo = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
                     DateTime fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[0].Value;
-
                     string Registro = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
                     // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
-                    CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deceas hacer con el registro #" 
-                        +valorPrimeraCelda + " de "+ Nombre );
+                    CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deceas hacer con el registro #"
+                        + valorPrimeraCelda + " de " + Nombre);
                     var resultado = customMessageBox.ShowDialog();
 
                     // Evaluar qué botón fue seleccionado

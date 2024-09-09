@@ -234,6 +234,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 QueryConsumo consumo = new QueryConsumo();
                 List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
 
+
                 foreach (Empleado item in ListaEmpleados)
                 {
                     if (item.NumeroDocumento == ND && item.Estado)
@@ -241,6 +242,8 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         QueryEmpleado emm = new QueryEmpleado();
                         consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
+                        doc.BeginPrint += new PrintEventHandler(iniciarImpresion);
+                        doc.PrintPage += (s, ev) => imprimir(s, ev, TC, DateTime.Now, item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo); break;
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                         pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
