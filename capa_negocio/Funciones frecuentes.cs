@@ -7,15 +7,29 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
+using ZXing;
+using ZXing.Common;
+
 
 namespace Consumos_Sermopetrol.Capa_Negocio
 {
     internal class Funciones_frecuentes
     {
         #region ImpresoraTermica
-        private void imprimir(object sender, PrintPageEventArgs e)
+        BarcodeReader barcodeReader = new BarcodeReader(); //Variable que permite leer codigos QR
+        Result result;
+        public PrintDocument doc = new PrintDocument();
+        private PrintPreviewDialog preview = new PrintPreviewDialog();
+        public void iniciarImpresion(object sender, PrintEventArgs e)
         {
-            /*
+            PageSettings pageSettings = new PageSettings();
+            pageSettings.PaperSize = new PaperSize("Custom", 250, 410);
+            doc.DefaultPageSettings = pageSettings;
+        }
+        Bitmap bitmap = null;
+        public void imprimir(object sender, PrintPageEventArgs e, string TC, DateTime FR,string NC,string ND,string ZT)
+        {
+            
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
             Font cal8 = new Font("Calibri", 8, FontStyle.Bold);
             Font cal10 = new Font("Calibri", 10, FontStyle.Bold);
@@ -52,10 +66,10 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                     Margin = 1,
                 }
             };
-            bitmap = writer.Write("Ticket de " + TC + " canjeado en " + DateTime.Now.ToString("yyyy/MMMM/dddd-dd") +
-                " a las " + DateTime.Now.ToString("hh:mm:ss-tt") + " para el empleado " + NC + " C.C." + ND);
+            bitmap = writer.Write("Ticket de " + TC + " canjeado en " + FR.ToString("yyyy/MMMM/dddd-dd") +
+                " a las " + FR.ToString("hh:mm:ss-tt") + " para el empleado " + NC + " C.C." + ND);
             e.Graphics.DrawImage(bitmap, (e.PageBounds.Width - 50) / 3 + 8, 255, 150, 150);
-       */
+       
         }
         #endregion
 

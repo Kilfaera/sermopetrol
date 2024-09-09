@@ -229,6 +229,12 @@
     <Compile Include="Capa_Vista\FormExportarQr.Designer.cs">
       <DependentUpon>FormExportarQr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Capa_Vista\MicroForms\CustomMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa_Vista\MicroForms\CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Resources\contenedor-de-basura.png" />
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Capa_Vista\FormExportarQr.resx">
       <DependentUpon>FormExportarQr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Capa_Vista\MicroForms\CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

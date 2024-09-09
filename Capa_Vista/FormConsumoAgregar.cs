@@ -1,10 +1,13 @@
 ﻿using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
+using Consumos_Sermopetrol.Capa_Vista.MicroForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -125,6 +128,47 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            {
+                if (e.RowIndex >= 0)
+                {
+                    // Capturar el valor de la primera celda (columna 0)
+                    string valorPrimeraCelda = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string Nombre = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string Documento = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    string tipo = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    DateTime fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[0].Value;
+
+                    string Registro = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
+                    CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deceas hacer con el registro #" 
+                        +valorPrimeraCelda + " de "+ Nombre );
+                    var resultado = customMessageBox.ShowDialog();
+
+                    // Evaluar qué botón fue seleccionado
+                    if (resultado == DialogResult.OK)
+                    {
+                        switch (customMessageBox.Resultado)
+                        {
+                            case CustomMessageBox.Result.Imprimir:
+                                // Lógica para imprimir
+                                MessageBox.Show("Imprimiendo el consumo #" + valorPrimeraCelda);
+                                generalItems.doc.BeginPrint += new PrintEventHandler(generalItems.iniciarImpresion);
+                                generalItems.doc.PrintPage += (s, ev) => generalItems.imprimir(s, ev, tipo, fecha, Nombre, Documento, Zona); break;
+
+                            case CustomMessageBox.Result.Eliminar:
+                                // Lógica para eliminar
+                                MessageBox.Show("Eliminando el valor: " + valorPrimeraCelda);
+                                break;
+
+                            case CustomMessageBox.Result.Cancelar:
+                                // Lógica si seleccionan cancelar
+                                MessageBox.Show("Operación cancelada.");
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
