@@ -39,8 +39,9 @@ namespace Consumos_Sermopetrol.Capa_Vista
         }
         public void ActualizarlistaConsumo()
         {
-            try { 
-            
+            try
+            {
+
                 comboBoxConsumo.Text = comboBoxConsumo.Items[0].ToString();
                 dataGridView.Rows.Clear();
                 List<Consumo> listaConsumo = new ListarConsumo().Listar();
@@ -181,7 +182,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             else
             {
-                generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text,dateTimePicker1.Value);
+                generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value);
                 ActualizarlistaConsumo();
             }
             textBoxCedula.Text = "";
