@@ -237,6 +237,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Recursos\logo1_sf.png" />
+    <Content Include="Recursos\logo2-1.jpg" />
     <None Include="Resources\contenedor-de-basura.png" />
     <None Include="Resources\documento.png" />
     <EmbeddedResource Include="Capa_Vista\Form1.es-CO.resx">

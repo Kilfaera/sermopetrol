@@ -188,13 +188,6 @@ namespace Consumos_Sermopetrol
         {
             removeAllButtonBackColor();
         }
-
-
-
-
-
-
-
         #endregion
 
         private void panelBorderStyle_Paint(object sender, PaintEventArgs e)

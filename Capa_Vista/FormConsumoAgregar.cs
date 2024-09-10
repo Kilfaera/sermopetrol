@@ -270,6 +270,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 catch (Exception a)
                 {
                     MessageBox.Show("ERROR AL INGRESAR EL CONSUMO DIGITADO: " + a);
+                    generalItems.sonido(false);
                 }
             }
         }

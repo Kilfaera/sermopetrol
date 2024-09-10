@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Media;
 using System.Windows.Forms;
 using ZXing;
 using ZXing.Common;
@@ -15,6 +16,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
 {
     internal class Funciones_frecuentes
     {
+        SoundPlayer player;
         #region ImpresoraTermica
         BarcodeReader barcodeReader = new BarcodeReader(); //Variable que permite leer codigos QR
         Result result;
@@ -286,6 +288,27 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
         }
 
+        #endregion
+        #region Sonido
+        public void sonido(bool select) //Función para reproducir sonido
+        {
+            try
+            {
+                if (select)
+                {
+                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Resources/alert.wav"); //Variable que permite reproducir el audio proporcionado
+                }
+                else
+                {
+                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Resources/error.wav"); //Variable que permite reproducir el audio proporcionado
+                }
+                player.Play(); //Reproduce el audio
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR AL REPRODUCIR EL SONIDO: " + e);
+            }
+        }
         #endregion
     }
 }
