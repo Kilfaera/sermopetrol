@@ -237,6 +237,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Recursos\alert.wav" />
+    <Content Include="Recursos\error.wav" />
     <Content Include="Recursos\logo1_sf.png" />
     <Content Include="Recursos\logo2-1.jpg" />
     <None Include="Resources\contenedor-de-basura.png" />

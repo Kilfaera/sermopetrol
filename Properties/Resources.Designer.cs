@@ -10,8 +10,9 @@
 
 namespace Consumos_Sermopetrol.Properties {
     using System;
-    
-    
+    using System.Media;
+
+
     /// <summary>
     ///   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
     /// </summary>
