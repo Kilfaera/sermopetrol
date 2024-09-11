@@ -136,9 +136,9 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     string Nombre = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
                     string Documento = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
                     string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string tipo = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    DateTime fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[0].Value;
-                    string Registro = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string tipo = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    DateTime fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[5].Value;
+                    string Registro = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
                     // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
                     CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deceas hacer con el registro #"
                         + valorPrimeraCelda + " de " + Nombre);
