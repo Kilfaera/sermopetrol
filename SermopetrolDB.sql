@@ -190,4 +190,3 @@ END$$
 DELIMITER ;
 call InsertarEmpleado('111','Prueba','Fuonciona',0,1,now());
 call InsertarConsumo(1,'desayuno',1);
-drop procedure InsertarConsumo;
