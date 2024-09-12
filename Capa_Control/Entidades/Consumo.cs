@@ -14,6 +14,6 @@ namespace Consumos_Sermopetrol.Capa_Control.Entidades
         public string ZonaTrabajoEmpleado { get; set; }
         public string TipoConsumo { get; set; }
         public DateTime FechaRegistro { get; set; }
-        public Boolean FormaRegistro { get; set; }
+        public bool FormaRegistro { get; set; }
     }
 }

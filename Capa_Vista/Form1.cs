@@ -1,4 +1,5 @@
-﻿using Consumos_Sermopetrol.Capa_Vista;
+﻿using Consumos_Sermopetrol.Capa_Negocio;
+using Consumos_Sermopetrol.Capa_Vista;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,14 @@ namespace Consumos_Sermopetrol
 {
     public partial class Form1 : Form
     {
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         public Form1()
         {
             this.WindowState = FormWindowState.Maximized;
             //this.FormBorderStyle = FormBorderStyle.Sizable;
             InitializeComponent();
+            buttonConsumoSideMenu_Click(this, EventArgs.Empty);
+            buttonAgregarConsumo_Click(this, EventArgs.Empty);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,7 +57,8 @@ namespace Consumos_Sermopetrol
         #region BorderStyle
         private void buttonCloseBorderStyle_Click(object sender, EventArgs e)
         {
-            this.Close();
+            generalItems.closeCam();
+            Application.Exit();
         }
 
         private void buttonMinimizeBorderStyle_Click(object sender, EventArgs e)
@@ -183,13 +188,11 @@ namespace Consumos_Sermopetrol
         {
             removeAllButtonBackColor();
         }
-
-
-
-
-
-
-
         #endregion
+
+        private void panelBorderStyle_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

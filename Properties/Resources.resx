@@ -121,7 +121,13 @@
   <data name="logo-ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Recursos\logo-ico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="documento" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\documento.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sin imagen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Recursos\sin imagen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="contenedor-de-basura" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\contenedor-de-basura.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

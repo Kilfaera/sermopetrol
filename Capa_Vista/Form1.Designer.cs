@@ -75,6 +75,7 @@
             this.panelBorderStyle.Controls.Add(this.label1);
             resources.ApplyResources(this.panelBorderStyle, "panelBorderStyle");
             this.panelBorderStyle.Name = "panelBorderStyle";
+            this.panelBorderStyle.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBorderStyle_Paint);
             // 
             // buttonMinimizeBorderStyle
             // 
@@ -315,13 +316,13 @@
             // 
             // iconPictureBoxMenu
             // 
-            resources.ApplyResources(this.iconPictureBoxMenu, "iconPictureBoxMenu");
             this.iconPictureBoxMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(15)))), ((int)(((byte)(34)))));
             this.iconPictureBoxMenu.ForeColor = System.Drawing.SystemColors.Control;
             this.iconPictureBoxMenu.IconChar = FontAwesome.Sharp.IconChar.OilWell;
             this.iconPictureBoxMenu.IconColor = System.Drawing.SystemColors.Control;
             this.iconPictureBoxMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBoxMenu.IconSize = 500;
+            resources.ApplyResources(this.iconPictureBoxMenu, "iconPictureBoxMenu");
             this.iconPictureBoxMenu.Name = "iconPictureBoxMenu";
             this.iconPictureBoxMenu.TabStop = false;
             // 
