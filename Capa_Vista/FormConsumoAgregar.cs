@@ -136,8 +136,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     string Nombre = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
                     string Documento = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
                     string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string tipo = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    DateTime fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[5].Value;
+                    string Tipo = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    DateTime Fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[5].Value;
                     string Registro = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
                     // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
                     CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deceas hacer con el registro #"
@@ -152,8 +152,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
                             case CustomMessageBox.Result.Imprimir:
                                 // Lógica para imprimir
                                 MessageBox.Show("Imprimiendo el consumo #" + valorPrimeraCelda);
-                                generalItems.doc.BeginPrint += new PrintEventHandler(generalItems.iniciarImpresion);
-                                generalItems.doc.PrintPage += (s, ev) => generalItems.imprimir(s, ev, tipo, fecha, Nombre, Documento, Zona); break;
+                                generalItems.imprimirSeleccion(Tipo, Nombre, Documento, Zona, Fecha);
+                                break;
 
                             case CustomMessageBox.Result.Eliminar:
                                 // Lógica para eliminar

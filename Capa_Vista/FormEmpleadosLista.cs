@@ -14,9 +14,12 @@ namespace Consumos_Sermopetrol.Capa_Vista
 {
     public partial class FormEmpleadosLista : Form
     {
-        public FormEmpleadosLista()
+        Configuraciones configuraciones = new Configuraciones();
+        private Form1 mainForm;
+        public FormEmpleadosLista(Form1 parentForm)
         {
             InitializeComponent();
+            mainForm = parentForm; //Asignar el formulario principal
             ActualizarDataWriteView();
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
@@ -33,7 +36,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 {
                     if (item.Estado)
                     {
-                        dataGridView.Rows.Add(new object[] { Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo, item.NumeroConsumos, item.Estado, item.FechaRegistro });
+                        dataGridView.Rows.Add(new object[] { Text = item.IdEmpleado.ToString(), configuraciones.UbicacionPDF, item.NumeroDocumento, item.ZonaDeTrabajo, item.NumeroConsumos, item.Estado, item.FechaRegistro });
 
                     }
                 }
@@ -46,6 +49,12 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonReiniciar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void iconButtonExportar_Click(object sender, EventArgs e)
+        {
+            mainForm.buttonExportarSideMenu_Click(sender, e);
+            mainForm.buttonQrExportar_Click(sender, e);
         }
     }
 }

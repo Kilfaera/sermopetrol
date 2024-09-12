@@ -2,6 +2,7 @@
 using Accord.Video.DirectShow;
 using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using Org.BouncyCastle.Asn1.BC;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,6 +17,8 @@ namespace Consumos_Sermopetrol.Capa_Negocio
 {
     internal class Funciones_frecuentes
     {
+        string TC, NC, ND, ZT;
+        public DateTime FR;
         SoundPlayer player;
         #region ImpresoraTermica
         BarcodeReader barcodeReader = new BarcodeReader(); //Variable que permite leer codigos QR
@@ -29,9 +32,8 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             doc.DefaultPageSettings = pageSettings;
         }
         Bitmap bitmap = null;
-        public void imprimir(object sender, PrintPageEventArgs e, string TC, DateTime FR,string NC,string ND,string ZT)
+        public void imprimir(object sender, PrintPageEventArgs e)
         {
-            
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
             Font cal8 = new Font("Calibri", 8, FontStyle.Bold);
             Font cal10 = new Font("Calibri", 10, FontStyle.Bold);
@@ -51,8 +53,8 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             e.Graphics.DrawImage(logo, (e.PageBounds.Width - 50) / 3 + 8, 5, 150, 150);
 
             e.Graphics.DrawString("TICKET DE " + TC, cal10, Brushes.Black, centermargin + 20, 155, center);
-            e.Graphics.DrawString(DateTime.Now.ToString("yyyy/MMMM/dddd-dd"), cal10, Brushes.Black, centermargin + 20, 170, center);
-            e.Graphics.DrawString(DateTime.Now.ToString("hh:mm:ss tt"), cal10, Brushes.Black, centermargin + 20, 185, center);
+            e.Graphics.DrawString(FR.ToString("yyyy/MMMM/dddd-dd"), cal10, Brushes.Black, centermargin + 20, 170, center);
+            e.Graphics.DrawString(FR.ToString("hh:mm:ss tt"), cal10, Brushes.Black, centermargin + 20, 185, center);
 
             e.Graphics.DrawString(NC, cal8, Brushes.Black, centermargin + 20, 210, center);
             e.Graphics.DrawString(ND, cal8, Brushes.Black, centermargin + 20, 225, center);
@@ -71,7 +73,18 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             bitmap = writer.Write("Ticket de " + TC + " canjeado en " + FR.ToString("yyyy/MMMM/dddd-dd") +
                 " a las " + FR.ToString("hh:mm:ss-tt") + " para el empleado " + NC + " C.C." + ND);
             e.Graphics.DrawImage(bitmap, (e.PageBounds.Width - 50) / 3 + 8, 255, 150, 150);
-       
+            ///////////////////
+            
+        }
+        public void imprimirSeleccion(string TC, string NC, string ND, string ZT, DateTime FR)
+        {
+            this.TC = TC;
+            this.NC = NC;
+            this.ND = ND;
+            this.ZT = ZT;
+            this.FR = FR;
+            doc.BeginPrint += new PrintEventHandler(iniciarImpresion);
+            doc.PrintPage += new PrintPageEventHandler(imprimir);
         }
         #endregion
 
@@ -230,12 +243,13 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         bool encontrado = false;
         public void insertarempleadoconfirmado(string TC, string ND, bool FR)
         {
+            this.TC = TC;
+            this.ND = ND;
             try
             {
                 encontrado = false;
                 QueryConsumo consumo = new QueryConsumo();
                 List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
-
 
                 foreach (Empleado item in ListaEmpleados)
                 {
@@ -244,8 +258,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         QueryEmpleado emm = new QueryEmpleado();
                         consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
-                        doc.BeginPrint += new PrintEventHandler(iniciarImpresion);
-                        doc.PrintPage += (s, ev) => imprimir(s, ev, TC, DateTime.Now, item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo); break;
+                        imprimirSeleccion(TC, NC, ND, ZT, DateTime.Now);
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                         pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;

@@ -110,7 +110,7 @@ namespace Consumos_Sermopetrol
         }
         private void buttonListaEmpleados_Click(object sender, EventArgs e)
         {
-            openChildForm(new FormEmpleadosLista());
+            openChildForm(new FormEmpleadosLista(this));
             buttonListaEmpleados.BackColor = Color.White;
         }
         private void buttonAgregarEmpleados_Click(object sender, EventArgs e)
@@ -120,7 +120,7 @@ namespace Consumos_Sermopetrol
         }
         #endregion
         #region Exportar
-        private void buttonExportarSideMenu_Click(object sender, EventArgs e)
+        public void buttonExportarSideMenu_Click(object sender, EventArgs e)
         {
             if (panelSubmenuExportar.Visible)
             {
@@ -137,7 +137,7 @@ namespace Consumos_Sermopetrol
             openChildForm(new FormExportarExcel());
             buttonExcelExportar.BackColor = Color.White;
         }
-        private void buttonQrExportar_Click(object sender, EventArgs e)
+        public void buttonQrExportar_Click(object sender, EventArgs e)
         {
             openChildForm(new FormExportarQr());
             buttonQrExportar.BackColor = Color.White;
@@ -169,7 +169,7 @@ namespace Consumos_Sermopetrol
         #endregion
         #region ChildForm
         private Form activeForm = null;
-        private void openChildForm(Form childForm)
+        public void openChildForm(Form childForm)
         {
             if (activeForm != null)
             {
