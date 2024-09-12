@@ -7,12 +7,13 @@ using System.IO;
 using System.Windows.Forms;
 using ZXing;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using AppConsumo.Controlador;
 
 namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
 {
     public partial class ExportarPDFs : Form
     {
-        Configuraciones configuracion = new Configuraciones();
+        QueryConfiguracion query = new QueryConfiguracion();
         List<Bitmap> bitmapQR = new List<Bitmap>();
         List<string> textQR = new List<string>();
         List<iTextSharp.text.Image> paginas = new List<iTextSharp.text.Image>(); //Para añadir las imagenes al documento
@@ -166,30 +167,38 @@ namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
 
         private void ExportarPDFs_Load(object sender, EventArgs e)
         {
-            guardarImagenes(); //Genera y guarda las imagenes del panel que organiza los QR
-            limpiarImages();
-            this.WindowState = FormWindowState.Minimized;
-            saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
-            saveFileDialog.FileName = "QRdocument" + DateTime.Now.ToString("-HH_mm-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-");
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.FileName = configuracion.UbicacionPDF + saveFileDialog.FileName;
-            if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
+            try
             {
-                File.Delete(saveFileDialog.FileName);
-            }
-            if (!Directory.Exists(configuracion.UbicacionPDF))
+                Configuraciones configuracion = query.ObtenerConfiguracion();
+                guardarImagenes(); //Genera y guarda las imagenes del panel que organiza los QR
+                limpiarImages();
+                this.WindowState = FormWindowState.Minimized;
+                saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
+                saveFileDialog.FileName = "QRdocument" + DateTime.Now.ToString("-HH_mm-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-");
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.FileName = configuracion.UbicacionPDF + saveFileDialog.FileName;
+                if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
+                {
+                    File.Delete(saveFileDialog.FileName);
+                }
+                if (!Directory.Exists(configuracion.UbicacionPDF))
+                {
+                    Directory.CreateDirectory(configuracion.UbicacionPDF);
+                }
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(saveFileDialog.FileName, FileMode.Create)); //Crea el docuento
+                doc.Open();
+                foreach (iTextSharp.text.Image imagen in paginas) //Modifica su contenido añadiendo las cada imagen en una pagina
+                {
+                    imagen.ScaleToFit(580, 950);
+                    doc.NewPage();
+                    doc.Add(imagen);
+                }
+                doc.Close();
+
+            }catch(Exception ex)
             {
-                Directory.CreateDirectory(configuracion.UbicacionPDF);
+                MessageBox.Show("ERROR: " + ex);
             }
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(saveFileDialog.FileName, FileMode.Create)); //Crea el docuento
-            doc.Open();
-            foreach (iTextSharp.text.Image imagen in paginas) //Modifica su contenido añadiendo las cada imagen en una pagina
-            {
-                imagen.ScaleToFit(580, 950);
-                doc.NewPage();
-                doc.Add(imagen);
-            }
-            doc.Close();
         }
     }
 }
