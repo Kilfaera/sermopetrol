@@ -56,12 +56,12 @@ namespace AppConsumo.Controlador
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "InsertarEmpleado";
 
-                command.Parameters.AddWithValue("@NumeroDocumento", numeroDocumento);
-                command.Parameters.AddWithValue("@NombreCompleto", nombreCompleto);
-                command.Parameters.AddWithValue("@ZonaDeTrabajo", zonaDeTrabajo);
-                command.Parameters.AddWithValue("@NumeroConsumos", consumos);
-                command.Parameters.AddWithValue("@Estado", estado);
-                command.Parameters.AddWithValue("@FechaRegistro", hoy);
+                command.Parameters.AddWithValue("@p_NumeroDocumento", numeroDocumento);
+                command.Parameters.AddWithValue("@p_NombreCompleto", nombreCompleto);
+                command.Parameters.AddWithValue("@p_ZonaDeTrabajo", zonaDeTrabajo);
+                command.Parameters.AddWithValue("@p_NumeroConsumos", consumos);
+                command.Parameters.AddWithValue("@p_Estado", estado);
+                command.Parameters.AddWithValue("@p_FechaRegistro", hoy);
                 command.ExecuteNonQuery();
             }
         }
@@ -91,7 +91,7 @@ namespace AppConsumo.Controlador
                 using (MySqlCommand command = new MySqlCommand("IncrementarConsumo", oconexion))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
+                    command.Parameters.AddWithValue("@p_IdEmpleado", idEmpleado);
 
                     oconexion.Open();
                     command.ExecuteNonQuery();
@@ -108,8 +108,8 @@ namespace AppConsumo.Controlador
                     using (MySqlCommand command = new MySqlCommand("CambiarEstadoEmpleado", oconexion))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
-                        command.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
+                        command.Parameters.AddWithValue("@p_IdEmpleado", idEmpleado);
+                        command.Parameters.AddWithValue("@p_NuevoEstado", nuevoEstado);
 
                         oconexion.Open();
                         command.ExecuteNonQuery();

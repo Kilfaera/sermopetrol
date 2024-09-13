@@ -168,26 +168,44 @@ DELIMITER ;
 -- Procedimiento almacenado: IncrementarConsumo
 DELIMITER $$
 CREATE PROCEDURE IncrementarConsumo(
-    IN IdEmpleado INT
+    IN p_IdEmpleado INT
 )
 BEGIN
     UPDATE Empleado
     SET NumeroConsumos = NumeroConsumos + 1
-    WHERE IdEmpleado = IdEmpleado;
+    WHERE IdEmpleado = p_IdEmpleado;
 END$$
 DELIMITER ;
 
 -- Procedimiento almacenado: CambiarEstadoEmpleado
 DELIMITER $$
 CREATE PROCEDURE CambiarEstadoEmpleado(
-    IN IdEmpleado INT,
-    IN NuevoEstado BOOLEAN
+    IN p_IdEmpleado INT,
+    IN p_NuevoEstado BOOLEAN
 )
 BEGIN
     UPDATE Empleado
-    SET Estado = NuevoEstado
-    WHERE IdEmpleado = IdEmpleado;
+    SET Estado = p_NuevoEstado
+    WHERE IdEmpleado = p_IdEmpleado;
 END$$
 DELIMITER ;
 call InsertarEmpleado('000','sUsuario','Privilegiado',0,1,now());
 call InsertarConsumo(1,'desayuno',1);
+INSERT INTO Configuraciones (
+    UbicacionImagenes, 
+    UbicacionPDF, 
+    UbicacionPlantilla, 
+    UbicacionExcel, 
+    PermisoEliminacionRegistros, 
+    UbicacionCopiasSeguridad, 
+    FechaModificacion
+) 
+VALUES (
+    'C:/Program Files/STL AppConsumo/Images/',         -- Ubicación de las imágenes
+    'C:/Program Files/STL AppConsumo/PDFs/',           -- Ubicación de los archivos PDF
+    'C:/Program Files/STL AppConsumo/Templates/',      -- Ubicación de las plantillas
+    'C:/Program Files/STL AppConsumo/Excels/',         -- Ubicación de los archivos Excel
+    TRUE,                                              -- Permiso para eliminación de registros (TRUE/FALSE)
+    'D:/Backups/STL AppConsumo/',                      -- Ubicación de las copias de seguridad
+    NOW()                                              -- Fecha de modificación actual
+);
