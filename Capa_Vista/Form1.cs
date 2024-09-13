@@ -103,7 +103,7 @@ namespace Consumos_Sermopetrol
                 showSubMenu(panelSubmenuEmpleados);
             }
         }
-        private void buttonModificarEmpleados_Click(object sender, EventArgs e)
+        public void buttonModificarEmpleados_Click(object sender, EventArgs e)
         {
             openChildForm(new FormEmpleadosModificar());
             buttonModificarEmpleados.BackColor = Color.White;
@@ -113,7 +113,7 @@ namespace Consumos_Sermopetrol
             openChildForm(new FormEmpleadosLista(this));
             buttonListaEmpleados.BackColor = Color.White;
         }
-        private void buttonAgregarEmpleados_Click(object sender, EventArgs e)
+        public void buttonAgregarEmpleados_Click(object sender, EventArgs e)
         {
             openChildForm(new FormEmpleadosAgregar());
             buttonAgregarEmpleados.BackColor= Color.White;

@@ -180,14 +180,32 @@ DELIMITER ;
 -- Procedimiento almacenado: CambiarEstadoEmpleado
 DELIMITER $$
 CREATE PROCEDURE CambiarEstadoEmpleado(
-    IN IdEmpleado INT,
+    IN p_IdEmpleado INT,
     IN NuevoEstado BOOLEAN
 )
 BEGIN
     UPDATE Empleado
     SET Estado = NuevoEstado
-    WHERE IdEmpleado = IdEmpleado;
+    WHERE IdEmpleado = p_IdEmpleado;
 END$$
 DELIMITER ;
+INSERT INTO Configuraciones (
+    UbicacionImagenes, 
+    UbicacionPDF, 
+    UbicacionPlantilla, 
+    UbicacionExcel, 
+    PermisoEliminacionRegistros, 
+    UbicacionCopiasSeguridad, 
+    FechaModificacion
+) 
+VALUES (
+    'C:/',         -- Ubicación de las imágenes
+    'C:/',           -- Ubicación de los archivos PDF
+    'C:/',      -- Ubicación de las plantillas
+    'C:/',         -- Ubicación de los archivos Excel
+    FALSE,                                              -- Permiso para eliminación de registros (TRUE/FALSE)
+    'C:/',                      -- Ubicación de las copias de seguridad
+    NOW()                                              -- Fecha de modificación actual
+);
 call InsertarEmpleado('000','sUsuario','Privilegiado',0,1,now());
 call InsertarConsumo(1,'desayuno',1);

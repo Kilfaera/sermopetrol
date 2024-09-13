@@ -191,8 +191,8 @@
             // panelSubmenuEmpleados
             // 
             this.panelSubmenuEmpleados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
-            this.panelSubmenuEmpleados.Controls.Add(this.buttonModificarEmpleados);
             this.panelSubmenuEmpleados.Controls.Add(this.buttonAgregarEmpleados);
+            this.panelSubmenuEmpleados.Controls.Add(this.buttonModificarEmpleados);
             this.panelSubmenuEmpleados.Controls.Add(this.buttonListaEmpleados);
             resources.ApplyResources(this.panelSubmenuEmpleados, "panelSubmenuEmpleados");
             this.panelSubmenuEmpleados.Name = "panelSubmenuEmpleados";

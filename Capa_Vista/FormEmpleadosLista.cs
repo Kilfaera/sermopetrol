@@ -92,5 +92,15 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
 
         }
+
+        private void iconButtonEditar_Click(object sender, EventArgs e)
+        {
+            mainForm.buttonModificarEmpleados_Click(sender, e);
+        }
+
+        private void iconButtonAgregar_Click(object sender, EventArgs e)
+        {
+            mainForm.buttonAgregarEmpleados_Click(sender, e);
+        }
     }
 }

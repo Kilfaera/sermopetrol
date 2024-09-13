@@ -91,7 +91,7 @@ namespace AppConsumo.Controlador
                 using (MySqlCommand command = new MySqlCommand("IncrementarConsumo", oconexion))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
+                    command.Parameters.AddWithValue("@p_IdEmpleado", idEmpleado);
 
                     oconexion.Open();
                     command.ExecuteNonQuery();
@@ -108,7 +108,7 @@ namespace AppConsumo.Controlador
                     using (MySqlCommand command = new MySqlCommand("CambiarEstadoEmpleado", oconexion))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
+                        command.Parameters.AddWithValue("@p_IdEmpleado", idEmpleado);
                         command.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
 
                         oconexion.Open();
