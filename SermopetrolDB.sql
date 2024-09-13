@@ -155,13 +155,13 @@ CREATE PROCEDURE ActualizarEmpleadoCS(
 )
 BEGIN
     UPDATE Empleado
-    SET NumeroDocumento = NumeroDocumento,
-        NombreCompleto = NombreCompleto,
-        ZonaDeTrabajo = ZonaDeTrabajo,
-        NumeroConsumos = NumeroConsumos,
-        Estado = Estado,
-        FechaRegistro = FechaRegistro
-    WHERE IdEmpleado = IdEmpleado;
+    SET NumeroDocumento = p_NumeroDocumento,
+        NombreCompleto = p_NombreCompleto,
+        ZonaDeTrabajo = p_ZonaDeTrabajo,
+        NumeroConsumos = p_NumeroConsumos,
+        Estado = p_Estado,
+        FechaRegistro = p_FechaRegistro
+    WHERE IdEmpleado = p_IdEmpleado;
 END$$
 DELIMITER ;
 

@@ -131,13 +131,13 @@ namespace AppConsumo.Controlador
                 using (MySqlCommand command = new MySqlCommand("ActualizarEmpleadoCS", oconexion))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
-                    command.Parameters.AddWithValue("@NumeroDocumento", numeroDocumento);
-                    command.Parameters.AddWithValue("@NombreCompleto", nombreCompleto);
-                    command.Parameters.AddWithValue("@ZonaDeTrabajo", zonaDeTrabajo);
-                    command.Parameters.AddWithValue("@NumeroConsumos", numeroConsumos);
-                    command.Parameters.AddWithValue("@Estado", estado);
-                    command.Parameters.AddWithValue("@FechaRegistro", fechaRegistro);
+                    command.Parameters.AddWithValue("@p_IdEmpleado", idEmpleado);
+                    command.Parameters.AddWithValue("@p_NumeroDocumento", numeroDocumento);
+                    command.Parameters.AddWithValue("@p_NombreCompleto", nombreCompleto);
+                    command.Parameters.AddWithValue("@p_ZonaDeTrabajo", zonaDeTrabajo);
+                    command.Parameters.AddWithValue("@p_NumeroConsumos", numeroConsumos);
+                    command.Parameters.AddWithValue("@p_Estado", estado);
+                    command.Parameters.AddWithValue("@p_FechaRegistro", fechaRegistro);
 
                     oconexion.Open();
                     command.ExecuteNonQuery();
