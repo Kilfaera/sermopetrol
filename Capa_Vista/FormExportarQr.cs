@@ -8,8 +8,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using ZXing.Common;
 using ZXing;
-using System.IO;
-using System.Media;
 
 namespace Consumos_Sermopetrol.Capa_Vista
 {
@@ -109,6 +107,48 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 dataGridView.ClearSelection();
                 iconButtonExportar.Visible = false;
             }
+        }
+
+        private void BusquedaDocumento_TextChanged(object sender, EventArgs e)
+        {
+            Flitrado();
+        }
+        private void Flitrado()
+        {
+
+
+            try
+            {
+
+                dataGridView.Rows.Clear();
+                List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+                foreach (Empleado item in ListaEmpleados)
+                {
+                    if (item.NumeroDocumento.Contains(BusquedaDocumento.Text) || item.ZonaDeTrabajo.Contains(BusquedaDocumento.Text) || item.NombreCompleto.Contains(BusquedaDocumento.Text) && item.Estado != false)
+                    {
+                        dataGridView.Rows.Add(new object[] {
+                    item.IdEmpleado,
+                    item.NombreCompleto,
+                    item.NumeroDocumento,
+                    item.ZonaDeTrabajo,
+                    item.NumeroConsumos,
+                    item.Estado,
+                    item.FechaRegistro
+                    });
+                    }
+                }
+            }
+            catch (Exception a)
+            {
+                generalItems.sonido(false);
+                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + a);
+            }
+
+        }
+
+        private void iconButtonReiniciar_Click(object sender, EventArgs e)
+        {
+            ActualizarDataWriteView();
         }
     }
 }
