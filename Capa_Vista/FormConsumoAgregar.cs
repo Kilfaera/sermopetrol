@@ -165,18 +165,28 @@ namespace Consumos_Sermopetrol.Capa_Vista
                             if (confirmacion == DialogResult.Yes)
                             {
                                 QueryConsumo query = new QueryConsumo();
-                                bool eliminado = query.EliminarConsumo(idConsumo);
+                                Configuraciones ruta = new Configuraciones();
 
-                                if (eliminado)
+                                if (ruta.PermisoEliminacionRegistros)
                                 {
-                                    MessageBox.Show("El consumo ha sido eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    // Lógica para refrescar la tabla si es necesario
-                                    dataGridView.Rows.RemoveAt(e.RowIndex);
+                                    bool eliminado = query.EliminarConsumo(idConsumo);
+
+                                    if (eliminado)
+                                    {
+                                        MessageBox.Show("El consumo ha sido eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        // Lógica para refrescar la tabla si es necesario
+                                        dataGridView.Rows.RemoveAt(e.RowIndex);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Hubo un problema al eliminar el consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Hubo un problema al eliminar el consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("No tiene los permisos habilitados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
+                                
                             }
                             ActualizarlistaConsumo();
                             break;
