@@ -142,5 +142,11 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             generalItems.closeCam();
         }
+
+        private void iconButtonEliminar_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Text != "") {generalItems.eliminarempleado(textBox1.Text); }
+            
+        }
     }
 }

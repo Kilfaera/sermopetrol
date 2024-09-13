@@ -2,6 +2,7 @@
 using Accord.Video.DirectShow;
 using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using DocumentFormat.OpenXml.Bibliography;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -503,6 +504,25 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
 
             return password;
+        }
+
+        internal void eliminarempleado(string text)
+        {
+            QueryEmpleado em = new QueryEmpleado();
+            List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+            foreach (Empleado empleado in ListaEmpleados)
+            {
+                if (empleado.NumeroDocumento == text)
+                {
+                    DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar al empleado?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        em.CambiarEstadoEmpleado(int.Parse(text), false); // Cambiar el estado del empleado a inactivo
+
+                    }
+                    break;
+                }
+            }
         }
         #endregion
     }
