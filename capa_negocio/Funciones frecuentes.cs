@@ -388,6 +388,59 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             return $"{rutaImagen}\\{numeroDocumento}.png"; // Devolver la ruta completa de la imagen
         }
 
+        public void actualizarempleado(string ND, string NC, string ZT, Bitmap bitmap)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(ND) || string.IsNullOrEmpty(NC) || string.IsNullOrEmpty(ZT))
+                {
+                    MessageBox.Show("Hay campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener la configuración para la ruta de la imagen
+                Configuraciones configuracion = query.ObtenerConfiguracion();
+                string rutaImagen = configuracion.UbicacionImagenes; // Ruta donde se almacenarán las imágenes
+
+                QueryEmpleado em = new QueryEmpleado();
+                List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+                
+                foreach(Empleado empleado in ListaEmpleados)
+                {
+                    if (empleado.NumeroDocumento == ND)
+                    {
+                        em.ActualizarEmpleado(empleado.IdEmpleado, ND, NC, ZT);
+                        break;
+                    }
+                }
+                // Insertar o actualizar la información del empleado
+              
+
+                // Guardar la imagen solo si el bitmap no es null
+                if (bitmap != null)
+                {
+
+                    // Crear el nombre completo de la imagen con el número de documento
+                    string nombreImagen = $"{rutaImagen}\\{ND}.png";
+                    if (System.IO.File.Exists(nombreImagen))
+                    {
+                        // Eliminar la imagen existente
+                        System.IO.File.Delete(nombreImagen);
+                    }
+                    using (Bitmap newBitmap = new Bitmap(bitmap))
+                    {
+                     
+                            // Guardar la imagen como nueva
+                            newBitmap.Save(nombreImagen, System.Drawing.Imaging.ImageFormat.Png);
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR AL REGISTRAR: " + ex.Message);
+            }
+        }
 
 
         #endregion

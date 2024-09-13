@@ -2,12 +2,6 @@
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Consumos_Sermopetrol.Capa_Vista
@@ -35,8 +29,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 {
                     if (item.Estado)
                     {
-                        dataGridView.Rows.Add(new object[] { 
-                            Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo, 
+                        dataGridView.Rows.Add(new object[] {
+                            Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo,
                             item.NumeroConsumos, item.Estado, item.FechaRegistro });
 
                     }
@@ -49,13 +43,50 @@ namespace Consumos_Sermopetrol.Capa_Vista
         }
         private void iconButtonReiniciar_Click(object sender, EventArgs e)
         {
-
+            ActualizarDataWriteView();
         }
 
         private void iconButtonExportar_Click(object sender, EventArgs e)
         {
             mainForm.buttonExportarSideMenu_Click(sender, e);
             mainForm.buttonQrExportar_Click(sender, e);
+        }
+
+        private void textBoxCedula_TextChanged(object sender, EventArgs e)
+        {
+            Flitrado();
+        }
+
+        private void Flitrado()
+        {
+
+
+            try
+            {
+
+                dataGridView.Rows.Clear();
+                List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+                foreach (Empleado item in ListaEmpleados)
+                {
+                    if (item.NumeroDocumento.Contains(textBoxCedula.Text) || item.ZonaDeTrabajo.Contains(textBoxCedula.Text) || item.NombreCompleto.Contains(textBoxCedula.Text) && item.Estado != false)
+                    {
+                        dataGridView.Rows.Add(new object[] {
+                    item.IdEmpleado,
+                    item.NombreCompleto,
+                    item.NumeroDocumento,
+                    item.ZonaDeTrabajo,
+                    item.NumeroConsumos,
+                    item.Estado,
+                    item.FechaRegistro
+                    });
+                    }
+                }
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + a);
+            }
+
         }
     }
 }

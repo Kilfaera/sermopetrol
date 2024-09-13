@@ -287,6 +287,7 @@
             this.textBoxCedula.Name = "textBoxCedula";
             this.textBoxCedula.Size = new System.Drawing.Size(220, 31);
             this.textBoxCedula.TabIndex = 0;
+            this.textBoxCedula.TextChanged += new System.EventHandler(this.textBoxCedula_TextChanged);
             // 
             // FormEmpleadosLista
             // 

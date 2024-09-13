@@ -127,18 +127,19 @@ DELIMITER ;
 -- Procedimiento almacenado: ActualizarEmpleado (sin Imagen)
 DELIMITER $$
 CREATE PROCEDURE ActualizarEmpleado(
-    IN IdEmpleado INT,
-    IN NumeroDocumento VARCHAR(25),
-    IN NombreCompleto VARCHAR(30),
-    IN ZonaDeTrabajo VARCHAR(20)
+    IN p_IdEmpleado INT,
+    IN p_NumeroDocumento VARCHAR(25),
+    IN p_NombreCompleto VARCHAR(30),
+    IN p_ZonaDeTrabajo VARCHAR(20)
 )
 BEGIN
     UPDATE Empleado
-    SET NumeroDocumento = NumeroDocumento,
-        NombreCompleto = NombreCompleto,
-        ZonaDeTrabajo = ZonaDeTrabajo
-    WHERE IdEmpleado = IdEmpleado;
+    SET NumeroDocumento = p_NumeroDocumento,
+        NombreCompleto = p_NombreCompleto,
+        ZonaDeTrabajo = p_ZonaDeTrabajo
+    WHERE IdEmpleado = p_IdEmpleado;
 END$$
+
 DELIMITER ;
 
 -- Procedimiento almacenado: ActualizarEmpleadoCS (sin Imagen)

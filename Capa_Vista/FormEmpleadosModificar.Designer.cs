@@ -32,6 +32,8 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.iconButtonReiniciar = new FontAwesome.Sharp.IconButton();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -43,7 +45,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.comboBoxSelectCamera = new System.Windows.Forms.ComboBox();
             this.iconButtonCamera = new FontAwesome.Sharp.IconButton();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -94,7 +95,6 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.textBox4);
             this.panel4.Controls.Add(this.textBox3);
             this.panel4.Controls.Add(this.textBox2);
             this.panel4.Controls.Add(this.textBox1);
@@ -104,6 +104,34 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(768, 759);
             this.panel4.TabIndex = 2;
+            // 
+            // iconButtonReiniciar
+            // 
+            this.iconButtonReiniciar.FlatAppearance.BorderSize = 0;
+            this.iconButtonReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButtonReiniciar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.iconButtonReiniciar.IconColor = System.Drawing.Color.White;
+            this.iconButtonReiniciar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButtonReiniciar.IconSize = 40;
+            this.iconButtonReiniciar.Location = new System.Drawing.Point(212, 18);
+            this.iconButtonReiniciar.Name = "iconButtonReiniciar";
+            this.iconButtonReiniciar.Size = new System.Drawing.Size(50, 34);
+            this.iconButtonReiniciar.TabIndex = 5;
+            this.iconButtonReiniciar.UseVisualStyleBackColor = true;
+            this.iconButtonReiniciar.Click += new System.EventHandler(this.iconButtonReiniciar_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.ForeColor = System.Drawing.Color.White;
+            this.textBox4.Location = new System.Drawing.Point(16, 21);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(188, 31);
+            this.textBox4.TabIndex = 4;
             // 
             // textBox3
             // 
@@ -207,11 +235,14 @@
             this.iconButtonGuardar.TabIndex = 4;
             this.iconButtonGuardar.Text = "Guardar Cambios";
             this.iconButtonGuardar.UseVisualStyleBackColor = false;
+            this.iconButtonGuardar.Click += new System.EventHandler(this.iconButtonGuardar_Click);
             // 
             // panel5
             // 
             this.panel5.AutoScroll = true;
+            this.panel5.Controls.Add(this.iconButtonReiniciar);
             this.panel5.Controls.Add(this.comboBoxSelectCamera);
+            this.panel5.Controls.Add(this.textBox4);
             this.panel5.Controls.Add(this.iconButtonCamera);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
@@ -229,6 +260,7 @@
             this.comboBoxSelectCamera.Name = "comboBoxSelectCamera";
             this.comboBoxSelectCamera.Size = new System.Drawing.Size(187, 21);
             this.comboBoxSelectCamera.TabIndex = 3;
+            this.comboBoxSelectCamera.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectCamera_SelectedIndexChanged);
             // 
             // iconButtonCamera
             // 
@@ -247,17 +279,7 @@
             this.iconButtonCamera.TabIndex = 2;
             this.iconButtonCamera.Text = "Encender Cámara";
             this.iconButtonCamera.UseVisualStyleBackColor = false;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.White;
-            this.textBox4.Location = new System.Drawing.Point(12, 36);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(225, 31);
-            this.textBox4.TabIndex = 4;
+            this.iconButtonCamera.Click += new System.EventHandler(this.iconButtonCamera_Click);
             // 
             // FormEmpleadosModificar
             // 
@@ -270,6 +292,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormEmpleadosModificar";
             this.Text = "FormEmpleadosModificar";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEmpleadosModificar_FormClosing);
+            this.Load += new System.EventHandler(this.FormEmpleadosModificar_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -278,6 +302,7 @@
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -300,5 +325,6 @@
         private System.Windows.Forms.ComboBox comboBoxSelectCamera;
         private FontAwesome.Sharp.IconButton iconButtonCamera;
         private System.Windows.Forms.TextBox textBox4;
+        private FontAwesome.Sharp.IconButton iconButtonReiniciar;
     }
 }
