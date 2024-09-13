@@ -11,7 +11,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 {
     public partial class FormConsumoEstadisticas : Form
     {
-        Configuraciones configuracion = new Configuraciones();
+        QueryConfiguracion query = new QueryConfiguracion();
         Funciones_frecuentes generalItems = new Funciones_frecuentes();
         public FormConsumoEstadisticas()
         {
@@ -28,6 +28,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             try
             {
+                Configuraciones configuracion = query.ObtenerConfiguracion();
                 if (dataGridView.Columns.Count != 0 && dataGridView.Rows.Count > 0) //Si hay contenido en el datagridview
                 {
                     saveFileDialog.Filter = "XLSX (*.xlsx)|*.xlsx";
@@ -46,7 +47,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                             worksheet.Cell(i + 2, j + 1).Value = dataGridView.Rows[i].Cells[j].Value?.ToString(); //Agrega el contenido
                         }
                     }
-                    saveFileDialog.FileName = configuracion.UbicacionExcel + saveFileDialog.FileName;
+                    saveFileDialog.FileName = configuracion.UbicacionExcel + saveFileDialog.FileName + ".xlsx";
                     if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
                     {
                         File.Delete(saveFileDialog.FileName);
