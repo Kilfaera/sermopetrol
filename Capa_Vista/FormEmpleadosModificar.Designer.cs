@@ -37,19 +37,20 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.comboBoxSelectCamera = new System.Windows.Forms.ComboBox();
-            this.iconButtonCamera = new FontAwesome.Sharp.IconButton();
             this.panel6 = new System.Windows.Forms.Panel();
             this.iconButtonEliminar = new FontAwesome.Sharp.IconButton();
             this.iconButtonGuardar = new FontAwesome.Sharp.IconButton();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.comboBoxSelectCamera = new System.Windows.Forms.ComboBox();
+            this.iconButtonCamera = new FontAwesome.Sharp.IconButton();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,11 +89,12 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1030, 825);
+            this.panel2.Size = new System.Drawing.Size(1030, 759);
             this.panel2.TabIndex = 2;
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.textBox4);
             this.panel4.Controls.Add(this.textBox3);
             this.panel4.Controls.Add(this.textBox2);
             this.panel4.Controls.Add(this.textBox1);
@@ -100,7 +102,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(768, 825);
+            this.panel4.Size = new System.Drawing.Size(768, 759);
             this.panel4.TabIndex = 2;
             // 
             // textBox3
@@ -109,7 +111,7 @@
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(84, 615);
+            this.textBox3.Location = new System.Drawing.Point(84, 582);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(585, 31);
             this.textBox3.TabIndex = 3;
@@ -120,7 +122,7 @@
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(84, 572);
+            this.textBox2.Location = new System.Drawing.Point(84, 539);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(585, 31);
             this.textBox2.TabIndex = 2;
@@ -131,7 +133,7 @@
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(84, 528);
+            this.textBox1.Location = new System.Drawing.Point(84, 495);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(585, 31);
             this.textBox1.TabIndex = 1;
@@ -139,7 +141,7 @@
             // pictureBox
             // 
             this.pictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox.Location = new System.Drawing.Point(84, 154);
+            this.pictureBox.Location = new System.Drawing.Point(84, 121);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(585, 347);
             this.pictureBox.TabIndex = 0;
@@ -154,48 +156,8 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(768, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(262, 825);
+            this.panel3.Size = new System.Drawing.Size(262, 759);
             this.panel3.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.AutoScroll = true;
-            this.panel5.Controls.Add(this.comboBoxSelectCamera);
-            this.panel5.Controls.Add(this.iconButtonCamera);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(262, 332);
-            this.panel5.TabIndex = 4;
-            // 
-            // comboBoxSelectCamera
-            // 
-            this.comboBoxSelectCamera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.comboBoxSelectCamera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxSelectCamera.ForeColor = System.Drawing.Color.White;
-            this.comboBoxSelectCamera.FormattingEnabled = true;
-            this.comboBoxSelectCamera.Location = new System.Drawing.Point(41, 240);
-            this.comboBoxSelectCamera.Name = "comboBoxSelectCamera";
-            this.comboBoxSelectCamera.Size = new System.Drawing.Size(187, 21);
-            this.comboBoxSelectCamera.TabIndex = 3;
-            // 
-            // iconButtonCamera
-            // 
-            this.iconButtonCamera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.iconButtonCamera.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.iconButtonCamera.FlatAppearance.BorderSize = 2;
-            this.iconButtonCamera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButtonCamera.ForeColor = System.Drawing.Color.White;
-            this.iconButtonCamera.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButtonCamera.IconColor = System.Drawing.Color.Black;
-            this.iconButtonCamera.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButtonCamera.Location = new System.Drawing.Point(41, 154);
-            this.iconButtonCamera.Name = "iconButtonCamera";
-            this.iconButtonCamera.Size = new System.Drawing.Size(187, 80);
-            this.iconButtonCamera.TabIndex = 2;
-            this.iconButtonCamera.Text = "Encender Cámara";
-            this.iconButtonCamera.UseVisualStyleBackColor = false;
             // 
             // panel6
             // 
@@ -246,12 +208,63 @@
             this.iconButtonGuardar.Text = "Guardar Cambios";
             this.iconButtonGuardar.UseVisualStyleBackColor = false;
             // 
+            // panel5
+            // 
+            this.panel5.AutoScroll = true;
+            this.panel5.Controls.Add(this.comboBoxSelectCamera);
+            this.panel5.Controls.Add(this.iconButtonCamera);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(262, 332);
+            this.panel5.TabIndex = 4;
+            // 
+            // comboBoxSelectCamera
+            // 
+            this.comboBoxSelectCamera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.comboBoxSelectCamera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxSelectCamera.ForeColor = System.Drawing.Color.White;
+            this.comboBoxSelectCamera.FormattingEnabled = true;
+            this.comboBoxSelectCamera.Location = new System.Drawing.Point(41, 240);
+            this.comboBoxSelectCamera.Name = "comboBoxSelectCamera";
+            this.comboBoxSelectCamera.Size = new System.Drawing.Size(187, 21);
+            this.comboBoxSelectCamera.TabIndex = 3;
+            // 
+            // iconButtonCamera
+            // 
+            this.iconButtonCamera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.iconButtonCamera.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.iconButtonCamera.FlatAppearance.BorderSize = 2;
+            this.iconButtonCamera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButtonCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButtonCamera.ForeColor = System.Drawing.Color.White;
+            this.iconButtonCamera.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconButtonCamera.IconColor = System.Drawing.Color.Black;
+            this.iconButtonCamera.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButtonCamera.Location = new System.Drawing.Point(41, 154);
+            this.iconButtonCamera.Name = "iconButtonCamera";
+            this.iconButtonCamera.Size = new System.Drawing.Size(187, 80);
+            this.iconButtonCamera.TabIndex = 2;
+            this.iconButtonCamera.Text = "Encender Cámara";
+            this.iconButtonCamera.UseVisualStyleBackColor = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.ForeColor = System.Drawing.Color.White;
+            this.textBox4.Location = new System.Drawing.Point(12, 36);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(225, 31);
+            this.textBox4.TabIndex = 4;
+            // 
             // FormEmpleadosModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(15)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1030, 854);
+            this.ClientSize = new System.Drawing.Size(1030, 788);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -263,8 +276,8 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -286,5 +299,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ComboBox comboBoxSelectCamera;
         private FontAwesome.Sharp.IconButton iconButtonCamera;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

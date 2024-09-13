@@ -187,6 +187,7 @@
             this.iconButtonCancelar.TabIndex = 5;
             this.iconButtonCancelar.Text = "Cancelar";
             this.iconButtonCancelar.UseVisualStyleBackColor = false;
+            this.iconButtonCancelar.Click += new System.EventHandler(this.iconButtonCancelar_Click);
             // 
             // iconButtonAgregar
             // 

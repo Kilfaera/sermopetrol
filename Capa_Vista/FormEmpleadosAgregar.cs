@@ -88,6 +88,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonAgregar_Click(object sender, EventArgs e)
         {
             generalItems.insertarempleado(textBox1.Text, textBox2.Text, textBox3.Text, fotoCapturada);
+            Limpiar();
         }
 
         private void FormEmpleadosAgregar_Load(object sender, EventArgs e)
@@ -104,6 +105,20 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void FormEmpleadosAgregar_FormClosing(object sender, FormClosingEventArgs e)
         {
             generalItems.closeCam();
+        }
+        private void Limpiar()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            pictureBox.Image = null;
+            fotoCapturada = null;
+            fotoTomada = false;
+        }
+
+        private void iconButtonCancelar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }

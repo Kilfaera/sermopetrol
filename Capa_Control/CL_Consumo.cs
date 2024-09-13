@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;  // Usar la librería de MySQL
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows;
 
 namespace AppConsumo.Controlador
 {
@@ -52,7 +53,7 @@ namespace AppConsumo.Controlador
 
         public void InsertarConsumo(int idempleado, string tipoConsumo, bool registro)
         {
-            using (MySqlConnection oconexion = new MySqlConnection( CL_Conexion.cadena))
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
             {
                 try
                 {
@@ -141,6 +142,33 @@ namespace AppConsumo.Controlador
                 }
             }
         }
+
+        public bool EliminarConsumo(int idConsumo)
+        {
+            try
+            {
+                using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
+                {
+                    oconexion.Open();
+                    string query = "DELETE FROM Consumo WHERE IdConsumo = @id";
+                    using (MySqlCommand comando = new MySqlCommand(query, oconexion))
+                    {
+                        comando.Parameters.AddWithValue("@id", idConsumo);
+                        int filasAfectadas = comando.ExecuteNonQuery();
+
+                        // Si se eliminó al menos una fila, retorna verdadero
+                        return filasAfectadas > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el consumo: " + ex.Message);
+                return false;
+            }
+        }
+
+
     }
 
     class ListarConsumoCS

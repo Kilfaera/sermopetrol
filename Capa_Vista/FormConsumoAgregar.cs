@@ -5,7 +5,7 @@ using Consumos_Sermopetrol.Capa_Vista.MicroForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing.Printing;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -19,8 +19,9 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             InitializeComponent();
             ActualizarlistaConsumo();
-            autocompletar();
             comboBoxConsumo.SelectedIndex = 0;
+            this.KeyPreview = true;
+            this.KeyPress += new KeyPressEventHandler(FormConsumoAgregar_KeyPress);
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -108,7 +109,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         });
                     }
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -127,48 +128,68 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex >= 0)
             {
-                if (e.RowIndex >= 0)
+                // Capturar el valor de la primera celda (que representa el ID del consumo)
+                string valorPrimeraCelda = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                int idConsumo = int.Parse(valorPrimeraCelda); // Convertir el valor a entero
+
+                string Nombre = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string Documento = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+                string Tipo = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                DateTime Fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[5].Value;
+                string Registro = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+                // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
+                CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deseas hacer con el registro #"
+                    + valorPrimeraCelda + " de " + Nombre);
+                var resultado = customMessageBox.ShowDialog();
+
+                // Evaluar qué botón fue seleccionado
+                if (resultado == DialogResult.OK)
                 {
-                    // Capturar el valor de la primera celda (columna 0)
-                    string valorPrimeraCelda = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    string Nombre = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    string Documento = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string Tipo = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    DateTime Fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[5].Value;
-                    string Registro = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
-                    // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
-                    CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deceas hacer con el registro #"
-                        + valorPrimeraCelda + " de " + Nombre);
-                    var resultado = customMessageBox.ShowDialog();
-
-                    // Evaluar qué botón fue seleccionado
-                    if (resultado == DialogResult.OK)
+                    switch (customMessageBox.Resultado)
                     {
-                        switch (customMessageBox.Resultado)
-                        {
-                            case CustomMessageBox.Result.Imprimir:
-                                // Lógica para imprimir
-                                MessageBox.Show("Imprimiendo el consumo #" + valorPrimeraCelda);
-                                generalItems.imprimirSeleccion(Tipo, Nombre, Documento, Zona, Fecha);
-                                break;
+                        case CustomMessageBox.Result.Imprimir:
+                            // Lógica para imprimir
+                            MessageBox.Show("Imprimiendo el consumo #" + valorPrimeraCelda);
+                            generalItems.imprimirSeleccion(Tipo, Nombre, Documento, Zona, Fecha);
+                            break;
 
-                            case CustomMessageBox.Result.Eliminar:
-                                // Lógica para eliminar
-                                MessageBox.Show("Eliminando el valor: " + valorPrimeraCelda);
-                                break;
+                        case CustomMessageBox.Result.Eliminar:
+                            // Lógica para eliminar
+                            DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que deseas eliminar el consumo #" + valorPrimeraCelda + "?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                            case CustomMessageBox.Result.Cancelar:
-                                // Lógica si seleccionan cancelar
-                                MessageBox.Show("Operación cancelada.");
-                                break;
-                        }
+                            if (confirmacion == DialogResult.Yes)
+                            {
+                                QueryConsumo query = new QueryConsumo();
+                                bool eliminado = query.EliminarConsumo(idConsumo);
+
+                                if (eliminado)
+                                {
+                                    MessageBox.Show("El consumo ha sido eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    // Lógica para refrescar la tabla si es necesario
+                                    dataGridView.Rows.RemoveAt(e.RowIndex);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Hubo un problema al eliminar el consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            ActualizarlistaConsumo();
+                            break;
+
+                        case CustomMessageBox.Result.Cancelar:
+                            // Lógica si seleccionan cancelar
+                            MessageBox.Show("Operación cancelada.");
+                            break;
                     }
                 }
             }
         }
+
+
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -190,34 +211,22 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             generalItems.closeCam();
         }
-        void autocompletar()
-        {
-            try
-            {
-                // Crear una colección de cadenas para las coincidencias de autocompletado
-                AutoCompleteStringCollection coincidencias = new AutoCompleteStringCollection();
-
-                // Obtener la lista de consumos
-                List<Empleado> listaEmpleado = new ListarEmpleado().Listar();
-
-                // Agregar los números de documento de los empleados a las coincidencias
-                foreach (Empleado item in listaEmpleado)
-                {
-                    coincidencias.Add(item.NumeroDocumento);
-                }
-
-                // Configurar el TextBox para usar autocompletado
-                textBoxCedula.AutoCompleteMode = AutoCompleteMode.SuggestAppend;  // Modo de sugerencia y completar
-                textBoxCedula.AutoCompleteSource = AutoCompleteSource.CustomSource;  // Fuente personalizada
-                textBoxCedula.AutoCompleteCustomSource = coincidencias;  // Asignar las coincidencias
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
-            }
-        }
+        
         private void iconButtonAprobar_Click(object sender, EventArgs e)
         {
+            string documentoEmpleado = textBoxCedula.Text; // Obtener el número de documento
+            string rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado); // Obtener la ruta de la imagen
+
+            if (System.IO.File.Exists(rutaImagen)) // Verificar si la imagen existe
+            {
+                pictureBoxFoto.Image = Image.FromFile(rutaImagen); // Cargar la imagen en el PictureBox
+            }
+            else
+            {
+                pictureBoxFoto.Image = Properties.Resources.sin_imagen; // Restablecer a la imagen original
+            }
+
+            // Código existente para el proceso de consumo
             if (comboBoxConsumo.SelectedIndex == 0)
             {
                 generalItems.Confirmacion(textBoxCedula.Text);
@@ -234,46 +243,48 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void FormConsumoAgregar_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-            if (!textBoxCedula.Focused)
+            textBoxCedula.Focus();
+            if (e.KeyChar == (char)Keys.Enter && !string.IsNullOrEmpty(textBoxCedula.Text))
             {
-                textBoxCedula.Focus();
-                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                {
-                    // Si no es un número ni una tecla de control, cancelar el evento
-                    e.Handled = true;
-                    return;
-                }
-                textBoxCedula.AppendText(e.KeyChar.ToString());
-            }
-            if (textBoxCedula.Text == "")
-            {
-                return;
-            }
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                try
-                {
-                    if (comboBoxConsumo.SelectedIndex == 0)
-                    {
-                        generalItems.Confirmacion(textBoxCedula.Text);
-                        ActualizarlistaConsumo();
-                    }
-                    else
-                    {
-                        generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value);
-                        ActualizarlistaConsumo();
-                    }
+                string documentoEmpleado = textBoxCedula.Text; // Obtener el número de documento
+                string rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado); // Obtener la ruta de la imagen
 
-                    ActualizarlistaConsumo();
-                    textBoxCedula.Text = "";
-                    textBoxCedula.Focus();
-                }
-                catch (Exception a)
+                if (System.IO.File.Exists(rutaImagen)) // Verificar si la imagen existe
                 {
-                    MessageBox.Show("ERROR AL INGRESAR EL CONSUMO DIGITADO: " + a);
-                    generalItems.sonido(false);
+                    pictureBoxFoto.Image = Image.FromFile(rutaImagen); // Cargar la imagen en el PictureBox
                 }
+                else
+                {
+                    MessageBox.Show("No se encontró la imagen del empleado.");
+                    pictureBoxFoto.Image = Properties.Resources.sin_imagen; // Restablecer a la imagen original
+                }
+
+                ProcesarConsumo(); // Llamar al método de procesamiento de consumo
+            }
+        }
+        private void ProcesarConsumo()
+        {
+            try
+            {
+                if (comboBoxConsumo.SelectedIndex == 0)
+                {
+                    generalItems.Confirmacion(textBoxCedula.Text);
+                }
+                else
+                {
+                    generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value);
+                }
+
+                ActualizarlistaConsumo();
+                textBoxCedula.Clear();
+                textBoxCedula.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR AL INGRESAR EL CONSUMO DIGITADO: " + ex.Message);
+                generalItems.sonido(false);
             }
         }
     }
 }
+

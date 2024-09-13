@@ -381,6 +381,14 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 MessageBox.Show("ERROR AL REGISTRAR: " + ex.Message);
             }
         }
+        public string ObtenerRutaImagen(string numeroDocumento)
+        {
+            Configuraciones configuracion = query.ObtenerConfiguracion(); // Obtener la ruta configurada
+            string rutaImagen = configuracion.UbicacionImagenes; // Ruta donde se almacenan las imágenes
+            return $"{rutaImagen}\\{numeroDocumento}.png"; // Devolver la ruta completa de la imagen
+        }
+
+
 
         #endregion
     }
