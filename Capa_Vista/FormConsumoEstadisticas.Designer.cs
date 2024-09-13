@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.iconButtonReiniciar = new FontAwesome.Sharp.IconButton();
-            this.iconButtonFiltrar = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dateTimePickerHasta = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerDesde = new System.Windows.Forms.DateTimePicker();
@@ -57,6 +56,7 @@
             this.zona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FormaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -110,7 +110,6 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.Controls.Add(this.iconButtonReiniciar);
-            this.panel5.Controls.Add(this.iconButtonFiltrar);
             this.panel5.Location = new System.Drawing.Point(14, 429);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(278, 139);
@@ -127,28 +126,12 @@
             this.iconButtonReiniciar.IconColor = System.Drawing.Color.White;
             this.iconButtonReiniciar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButtonReiniciar.IconSize = 30;
-            this.iconButtonReiniciar.Location = new System.Drawing.Point(0, 75);
+            this.iconButtonReiniciar.Location = new System.Drawing.Point(-1, 3);
             this.iconButtonReiniciar.Name = "iconButtonReiniciar";
             this.iconButtonReiniciar.Size = new System.Drawing.Size(278, 60);
             this.iconButtonReiniciar.TabIndex = 7;
             this.iconButtonReiniciar.UseVisualStyleBackColor = false;
-            // 
-            // iconButtonFiltrar
-            // 
-            this.iconButtonFiltrar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButtonFiltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.iconButtonFiltrar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.iconButtonFiltrar.FlatAppearance.BorderSize = 2;
-            this.iconButtonFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonFiltrar.IconChar = FontAwesome.Sharp.IconChar.OilWell;
-            this.iconButtonFiltrar.IconColor = System.Drawing.Color.White;
-            this.iconButtonFiltrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButtonFiltrar.IconSize = 30;
-            this.iconButtonFiltrar.Location = new System.Drawing.Point(0, 3);
-            this.iconButtonFiltrar.Name = "iconButtonFiltrar";
-            this.iconButtonFiltrar.Size = new System.Drawing.Size(278, 60);
-            this.iconButtonFiltrar.TabIndex = 8;
-            this.iconButtonFiltrar.UseVisualStyleBackColor = false;
+            this.iconButtonReiniciar.Click += new System.EventHandler(this.iconButtonReiniciar_Click);
             // 
             // panel4
             // 
@@ -176,6 +159,7 @@
             this.dateTimePickerHasta.Name = "dateTimePickerHasta";
             this.dateTimePickerHasta.Size = new System.Drawing.Size(278, 20);
             this.dateTimePickerHasta.TabIndex = 28;
+            this.dateTimePickerHasta.ValueChanged += new System.EventHandler(this.dateTimePickerHasta_ValueChanged);
             // 
             // dateTimePickerDesde
             // 
@@ -184,6 +168,7 @@
             this.dateTimePickerDesde.Name = "dateTimePickerDesde";
             this.dateTimePickerDesde.Size = new System.Drawing.Size(278, 20);
             this.dateTimePickerDesde.TabIndex = 27;
+            this.dateTimePickerDesde.ValueChanged += new System.EventHandler(this.dateTimePickerDesde_ValueChanged);
             // 
             // labelHasta
             // 
@@ -213,10 +198,16 @@
             this.comboBoxConsumo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxConsumo.ForeColor = System.Drawing.Color.White;
             this.comboBoxConsumo.FormattingEnabled = true;
+            this.comboBoxConsumo.Items.AddRange(new object[] {
+            "Todo",
+            "Desayuno",
+            "Almuerzo",
+            "Cena"});
             this.comboBoxConsumo.Location = new System.Drawing.Point(14, 273);
             this.comboBoxConsumo.Name = "comboBoxConsumo";
             this.comboBoxConsumo.Size = new System.Drawing.Size(278, 21);
             this.comboBoxConsumo.TabIndex = 22;
+            this.comboBoxConsumo.SelectedIndexChanged += new System.EventHandler(this.comboBoxConsumo_SelectedIndexChanged);
             // 
             // labelConsumo
             // 
@@ -231,12 +222,15 @@
             // 
             // textBoxZona
             // 
+            this.textBoxZona.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxZona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxZona.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxZona.ForeColor = System.Drawing.Color.White;
             this.textBoxZona.Location = new System.Drawing.Point(14, 210);
             this.textBoxZona.Name = "textBoxZona";
             this.textBoxZona.Size = new System.Drawing.Size(278, 20);
             this.textBoxZona.TabIndex = 20;
+            this.textBoxZona.TextChanged += new System.EventHandler(this.textBoxZona_TextChanged);
             // 
             // labelZona
             // 
@@ -251,12 +245,15 @@
             // 
             // textBoxNombre
             // 
+            this.textBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxNombre.ForeColor = System.Drawing.Color.White;
             this.textBoxNombre.Location = new System.Drawing.Point(14, 148);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(278, 20);
             this.textBoxNombre.TabIndex = 18;
+            this.textBoxNombre.TextChanged += new System.EventHandler(this.textBoxNombre_TextChanged);
             // 
             // labelNombre
             // 
@@ -265,9 +262,9 @@
             this.labelNombre.ForeColor = System.Drawing.SystemColors.Control;
             this.labelNombre.Location = new System.Drawing.Point(11, 129);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(62, 16);
+            this.labelNombre.Size = new System.Drawing.Size(116, 16);
             this.labelNombre.TabIndex = 17;
-            this.labelNombre.Text = "Nombre";
+            this.labelNombre.Text = "Nombre/Cedula";
             // 
             // labelFiltros
             // 
@@ -322,14 +319,14 @@
             this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -337,15 +334,16 @@
             this.documento,
             this.zona,
             this.consumo,
-            this.fecha});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fecha,
+            this.FormaRegistro});
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
@@ -402,6 +400,13 @@
             this.fecha.ReadOnly = true;
             this.fecha.Width = 188;
             // 
+            // FormaRegistro
+            // 
+            this.FormaRegistro.HeaderText = "Forma de registro";
+            this.FormaRegistro.Name = "FormaRegistro";
+            this.FormaRegistro.ReadOnly = true;
+            this.FormaRegistro.Width = 183;
+            // 
             // FormConsumoEstadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,6 +419,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormConsumoEstadisticas";
             this.Text = "FormConsumoEstadisticas";
+            this.Load += new System.EventHandler(this.FormConsumoEstadisticas_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -451,8 +457,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.Panel panel5;
         private FontAwesome.Sharp.IconButton iconButtonReiniciar;
-        private FontAwesome.Sharp.IconButton iconButtonFiltrar;
         private System.Windows.Forms.DateTimePicker dateTimePickerHasta;
         private System.Windows.Forms.DateTimePicker dateTimePickerDesde;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FormaRegistro;
     }
 }

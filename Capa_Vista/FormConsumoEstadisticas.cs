@@ -1,16 +1,10 @@
-﻿using ClosedXML.Excel;
+﻿using AppConsumo.Controlador;
+using ClosedXML.Excel;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Consumos_Sermopetrol.Capa_Vista
@@ -22,6 +16,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
         public FormConsumoEstadisticas()
         {
             InitializeComponent();
+            autocompletar();
+            ActualizarlistaConsumo();
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -60,7 +56,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         Directory.CreateDirectory(configuracion.UbicacionExcel);
                     }
                     workbook.SaveAs(saveFileDialog.FileName); //Guarda el nuevo archivo
-                    
+
                     //generalItems.sonido(true);
                 }
             }
@@ -68,6 +64,167 @@ namespace Consumos_Sermopetrol.Capa_Vista
             {
                 MessageBox.Show("ERROR AL EXPORTAR EL ARCHIVO XLSX: " + a);
             }
+        }
+
+        private void FormConsumoEstadisticas_Load(object sender, EventArgs e)
+        {
+
+        }
+        void autocompletar()
+        {
+            try
+            {
+                // Crear una colección de cadenas para las coincidencias de autocompletado de nombres/documentos
+                AutoCompleteStringCollection coincidenciasNombre = new AutoCompleteStringCollection();
+
+                // Crear una colección de cadenas para las coincidencias de autocompletado de zonas de trabajo
+                AutoCompleteStringCollection coincidenciasZona = new AutoCompleteStringCollection();
+
+                // Crear un HashSet para evitar duplicados en las zonas
+                HashSet<string> zonasUnicas = new HashSet<string>();
+
+                // Obtener la lista de empleados
+                List<Empleado> listaEmpleado = new ListarEmpleado().Listar();
+
+                // Agregar los números de documento, nombres y zonas de los empleados a las coincidencias
+                foreach (Empleado item in listaEmpleado)
+                {
+                    coincidenciasNombre.Add(item.NumeroDocumento);
+                    coincidenciasNombre.Add(item.NombreCompleto);
+
+                    // Verificar si la zona ya está en el HashSet y agregarla si no
+                    if (!zonasUnicas.Contains(item.ZonaDeTrabajo))
+                    {
+                        coincidenciasZona.Add(item.ZonaDeTrabajo);
+                        zonasUnicas.Add(item.ZonaDeTrabajo); // Agregar al HashSet para evitar duplicados
+                    }
+                }
+
+                // Configurar el TextBox para nombres/documentos
+                textBoxNombre.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                textBoxNombre.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                textBoxNombre.AutoCompleteCustomSource = coincidenciasNombre;
+
+                // Configurar el TextBox para zonas de trabajo
+                textBoxZona.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                textBoxZona.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                textBoxZona.AutoCompleteCustomSource = coincidenciasZona;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
+            }
+        }
+
+        private void textBoxNombre_TextChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+
+        private void Filtrar()
+        {
+
+            try
+            {
+                string documentoynombre = textBoxNombre.Text;
+                string zona = textBoxZona.Text;
+                string tipoConsumo;
+                DateTime desdeDate = dateTimePickerDesde.Value.Date,
+                hastaDate = dateTimePickerHasta.Value.Date;
+
+                if (comboBoxConsumo.SelectedIndex == 0)
+                {
+                    tipoConsumo = "";
+                }
+                else
+                {
+                    tipoConsumo = comboBoxConsumo.Text;
+                }
+
+
+
+
+                List<Consumo> listaConsumo = new ListarConsumo().Listar();
+
+                dataGridView.Rows.Clear();
+
+                foreach (Consumo item in listaConsumo)
+                {
+                    if ((documentoynombre == "" || item.DocumentoEmpleado == documentoynombre || item.NombreEmpleado.Contains(documentoynombre)) &&
+                        (zona == "" || item.ZonaTrabajoEmpleado == zona) &&
+                        (tipoConsumo == "" || item.TipoConsumo == tipoConsumo) &&
+                        (item.FechaRegistro.Date >= desdeDate) &&
+                        (item.FechaRegistro.Date <= hastaDate))
+                    {
+                        dataGridView.Rows.Add(new object[] { item.IdConsumo, item.NombreEmpleado, item.DocumentoEmpleado, item.ZonaTrabajoEmpleado, item.TipoConsumo, item.FechaRegistro, item.FormaRegistro });
+                    }
+
+                }
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + a);
+            }
+        }
+
+        private void textBoxZona_TextChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+
+        private void comboBoxConsumo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+
+        private void dateTimePickerDesde_ValueChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+
+        private void dateTimePickerHasta_ValueChanged(object sender, EventArgs e)
+        {
+            Filtrar();
+        }
+        public void ActualizarlistaConsumo()
+        {
+            try
+            {
+
+                comboBoxConsumo.Text = comboBoxConsumo.Items[0].ToString();
+                dataGridView.Rows.Clear();
+                List<Consumo> listaConsumo = new ListarConsumo().Listar();
+                foreach (Consumo item in listaConsumo)
+                {
+
+                    // Verificar si FormaRegistro es 0 o 1 para mostrar el texto adecuado
+                    string formaRegistro = item.FormaRegistro == false ? "Manual" : "Automático";
+
+
+                    // Agregar la fila al DataGridView
+                    dataGridView.Rows.Add(new object[]
+                    {
+                            item.IdConsumo,
+                    item.NombreEmpleado,
+                    item.DocumentoEmpleado,
+                    item.ZonaTrabajoEmpleado,
+                    item.TipoConsumo,
+                    item.FechaRegistro,
+                    formaRegistro
+                    });
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR AL ACTUALIZAR EL CONSUMO: " + e.Message);
+            }
+        }
+
+        private void iconButtonReiniciar_Click(object sender, EventArgs e)
+        {
+            ActualizarlistaConsumo();
         }
     }
 }

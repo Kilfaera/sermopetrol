@@ -9,6 +9,6 @@ namespace Consumos_Sermopetrol.Capa_Control
     internal class CL_Conexion
     {
         public static string cadena =
-            "server=127.0.0.1;database=consumoempleado;uid=root;password=DhL05.21MsqL#;";
+            "server=127.0.0.1;database=consumoempleado;uid=root;password=123456789;";
     }
 }
