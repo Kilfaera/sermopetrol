@@ -446,6 +446,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         
                     }
                 }
+                MessageBox.Show("EMPLEADO MODIFICADO CON ÉXITO");
             }
             catch (Exception ex)
             {
@@ -517,8 +518,8 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                     DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar al empleado?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        em.CambiarEstadoEmpleado(int.Parse(text), false); // Cambiar el estado del empleado a inactivo
-
+                        em.CambiarEstadoEmpleado(empleado.IdEmpleado, false); // Cambiar el estado del empleado a inactivo
+                        MessageBox.Show("EMPLEADO ELIMINADO CON ÉXITO.");
                     }
                     break;
                 }

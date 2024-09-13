@@ -109,7 +109,7 @@ namespace AppConsumo.Controlador
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@p_IdEmpleado", idEmpleado);
-                        command.Parameters.AddWithValue("@p_NuevoEstado", nuevoEstado);
+                        command.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
 
                         oconexion.Open();
                         command.ExecuteNonQuery();

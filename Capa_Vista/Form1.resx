@@ -522,48 +522,6 @@
   <data name="&gt;&gt;buttonExportarSideMenu.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="buttonModificarEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="buttonModificarEmpleados.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonModificarEmpleados.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
-  </data>
-  <data name="buttonModificarEmpleados.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonModificarEmpleados.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 80</value>
-  </data>
-  <data name="buttonModificarEmpleados.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>40, 0, 0, 0</value>
-  </data>
-  <data name="buttonModificarEmpleados.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 40</value>
-  </data>
-  <data name="buttonModificarEmpleados.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="buttonModificarEmpleados.Text" xml:space="preserve">
-    <value>Modificar</value>
-  </data>
-  <data name="buttonModificarEmpleados.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;buttonModificarEmpleados.Name" xml:space="preserve">
-    <value>buttonModificarEmpleados</value>
-  </data>
-  <data name="&gt;&gt;buttonModificarEmpleados.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonModificarEmpleados.Parent" xml:space="preserve">
-    <value>panelSubmenuEmpleados</value>
-  </data>
-  <data name="&gt;&gt;buttonModificarEmpleados.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="buttonAgregarEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -577,7 +535,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonAgregarEmpleados.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 40</value>
+    <value>0, 80</value>
   </data>
   <data name="buttonAgregarEmpleados.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>40, 0, 0, 0</value>
@@ -589,7 +547,7 @@
     <value>1</value>
   </data>
   <data name="buttonAgregarEmpleados.Text" xml:space="preserve">
-    <value>Agregar</value>
+    <value>Añadir</value>
   </data>
   <data name="buttonAgregarEmpleados.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -604,6 +562,48 @@
     <value>panelSubmenuEmpleados</value>
   </data>
   <data name="&gt;&gt;buttonAgregarEmpleados.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonModificarEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonModificarEmpleados.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonModificarEmpleados.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="buttonModificarEmpleados.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonModificarEmpleados.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 40</value>
+  </data>
+  <data name="buttonModificarEmpleados.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>40, 0, 0, 0</value>
+  </data>
+  <data name="buttonModificarEmpleados.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 40</value>
+  </data>
+  <data name="buttonModificarEmpleados.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonModificarEmpleados.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="buttonModificarEmpleados.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.Name" xml:space="preserve">
+    <value>buttonModificarEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.Parent" xml:space="preserve">
+    <value>panelSubmenuEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="buttonListaEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">

@@ -105,7 +105,6 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonCamera_Click(object sender, EventArgs e)
         {
             fotoCapturada = new Bitmap(585, 347);
-
             if (!fotoTomada)  // Si no se ha tomado la foto
             {
                 // Tomar el frame actual que se está mostrando en el PictureBox
@@ -140,6 +139,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonGuardar_Click(object sender, EventArgs e)
         {
             generalItems.actualizarempleado(textBox1.Text, textBox2.Text, textBox3.Text, fotoCapturada);
+            Limpiar();
         }
 
         private void FormEmpleadosModificar_FormClosing(object sender, FormClosingEventArgs e)
@@ -150,7 +150,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonEliminar_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "") { generalItems.eliminarempleado(textBox1.Text); }
-
+            Limpiar();
         }
     }
 }
