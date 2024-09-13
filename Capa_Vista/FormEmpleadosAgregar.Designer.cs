@@ -106,6 +106,8 @@
             // textBox3
             // 
             this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(54)))), ((int)(((byte)(76)))));
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.White;
@@ -204,6 +206,7 @@
             this.iconButtonAgregar.TabIndex = 4;
             this.iconButtonAgregar.Text = "Agregar";
             this.iconButtonAgregar.UseVisualStyleBackColor = false;
+            this.iconButtonAgregar.Click += new System.EventHandler(this.iconButtonAgregar_Click);
             // 
             // panel5
             // 
@@ -226,6 +229,7 @@
             this.comboBoxSelectCamera.Name = "comboBoxSelectCamera";
             this.comboBoxSelectCamera.Size = new System.Drawing.Size(187, 21);
             this.comboBoxSelectCamera.TabIndex = 3;
+            this.comboBoxSelectCamera.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectCamera_SelectedIndexChanged);
             // 
             // iconButtonCamera
             // 
@@ -257,6 +261,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormEmpleadosAgregar";
             this.Text = "FormEmpleadosAgregar";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEmpleadosAgregar_FormClosing);
+            this.Load += new System.EventHandler(this.FormEmpleadosAgregar_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
