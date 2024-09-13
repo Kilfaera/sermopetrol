@@ -1,4 +1,5 @@
-﻿using AppConsumo.Controlador;
+﻿using Accord.Video;
+using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
 using System;
@@ -30,16 +31,17 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void iconButtonCamera_Click(object sender, EventArgs e)
         {
+            fotoCapturada = new Bitmap(585, 347);
+
             if (!fotoTomada)  // Si no se ha tomado la foto
             {
                 // Tomar el frame actual que se está mostrando en el PictureBox
                 if (pictureBox.Image != null)
                 {
-                    // Clonar la imagen mostrada en el PictureBox
-                    fotoCapturada = (Bitmap)pictureBox.Image.Clone();
-
-                    // Mostrar la foto capturada en el PictureBox
-                    pictureBox.Image = fotoCapturada;
+                    pictureBox.Image = pictureBox.Image;
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox.DrawToBitmap(fotoCapturada, new Rectangle(0, 0, 585, 347));
+                    generalItems.closeCam();
                     iconButtonCamera.Text = "Volver a tomar";
                     fotoTomada = true;  // Cambiar el estado
                 }
@@ -53,6 +55,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 generalItems.inicialziar(comboBoxSelectCamera.SelectedIndex, pictureBox);  // Reiniciar la cámara
                 iconButtonCamera.Text = "Tomar Foto";  // Cambiar el texto del botón
                 fotoTomada = false;  // Cambiar el estado
+                fotoCapturada = null;  // Limpiar la foto capturada
             }
         }
         void autocompletar()
@@ -84,7 +87,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void iconButtonAgregar_Click(object sender, EventArgs e)
         {
-
+            generalItems.insertarempleado(textBox1.Text, textBox2.Text, textBox3.Text, fotoCapturada);
         }
 
         private void FormEmpleadosAgregar_Load(object sender, EventArgs e)

@@ -17,6 +17,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
 {
     internal class Funciones_frecuentes
     {
+        QueryConfiguracion query = new QueryConfiguracion();
         string TC, NC, ND, ZT;
         public DateTime FR;
         SoundPlayer player;
@@ -328,47 +329,59 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         {
             try
             {
-                if (ND == "" || NC == "" || ZT == "" )
+                if (string.IsNullOrEmpty(ND) || string.IsNullOrEmpty(NC) || string.IsNullOrEmpty(ZT))
                 {
-                    MessageBox.Show("Hay compos vacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Hay campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                else
+
+                // Obtener la configuración para la ruta de la imagen
+                Configuraciones configuracion = query.ObtenerConfiguracion();
+                string rutaImagen = configuracion.UbicacionImagenes; // Ruta donde se almacenarán las imágenes
+
+                QueryEmpleado em = new QueryEmpleado();
+                List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+                Empleado empleadoExistente = ListaEmpleados.FirstOrDefault(emp => emp.NumeroDocumento == ND);
+
+                if (empleadoExistente != null)
                 {
-                    QueryEmpleado em = new QueryEmpleado();
-                    // Verificar si el empleado ya existe
-                    List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
-                    Empleado empleadoExistente = ListaEmpleados.FirstOrDefault(emp => emp.NumeroDocumento == ND);
-                    if (empleadoExistente != null)
+                    if (empleadoExistente.Estado)
                     {
-                        // Si el empleado existe y su estado es true, mostrar mensaje y salir
-                        if (empleadoExistente.Estado)
-                        {
-                            MessageBox.Show("El empleado ya existe y está activo.", "Empleado Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-                        // Si el empleado existe pero su estado es false, preguntar al usuario si desea reactivarlo
-                        DialogResult result = MessageBox.Show("El empleado ya existe pero está inactivo. ¿Desea reactivarlo?", "Reactivar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.Yes)
-                        {
-                            em.CambiarEstadoEmpleado(empleadoExistente.IdEmpleado, true); // Reactivar al empleado
-                        }
-                        else
-                        {
-                            return; // No hacer nada si el usuario no desea reactivarlo
-                        }
+                        MessageBox.Show("El empleado ya existe y está activo.", "Empleado Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    DialogResult result = MessageBox.Show("El empleado ya existe pero está inactivo. ¿Desea reactivarlo?", "Reactivar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        em.CambiarEstadoEmpleado(empleadoExistente.IdEmpleado, true); // Reactivar al empleado
                     }
                     else
                     {
-                        em.InsertarEmpleado(ND,NC, ZT, 0, true, DateTime.Now);
+                        return;
                     }
                 }
+                else
+                {
+                    em.InsertarEmpleado(ND, NC, ZT, 0, true, DateTime.Now);
+                }
+
+                // Guardar la imagen solo si el bitmap no es null
+                if (bitmap != null)
+                {
+                    // Crear el nombre completo de la imagen con el número de documento
+                    string nombreImagen = $"{rutaImagen}\\{ND}.png";
+
+                    // Guardar la imagen en la ruta especificada
+                    bitmap.Save(nombreImagen, System.Drawing.Imaging.ImageFormat.Png);
+                }
             }
-            catch (Exception b)
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR AL REGISTRAR: " + b);
+                MessageBox.Show("ERROR AL REGISTRAR: " + ex.Message);
             }
         }
+
         #endregion
     }
 }
