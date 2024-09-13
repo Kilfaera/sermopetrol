@@ -81,6 +81,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception ex)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
             }
         }

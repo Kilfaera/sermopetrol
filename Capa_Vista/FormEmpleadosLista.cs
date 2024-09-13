@@ -1,5 +1,6 @@
 ﻿using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using Consumos_Sermopetrol.Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 {
     public partial class FormEmpleadosLista : Form
     {
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         private Form1 mainForm;
         public FormEmpleadosLista(Form1 parentForm)
         {
@@ -38,6 +40,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception e)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL ACTUALIZAR LA TABLA: " + e);
             }
         }
@@ -84,6 +87,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception a)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + a);
             }
 

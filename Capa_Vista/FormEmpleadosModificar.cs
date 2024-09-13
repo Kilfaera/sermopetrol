@@ -49,6 +49,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception ex)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
             }
         }
@@ -119,6 +120,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 }
                 else
                 {
+                    generalItems.sonido(false);
                     MessageBox.Show("No se puede capturar una imagen, asegúrate de que la cámara esté transmitiendo.");
                 }
             }

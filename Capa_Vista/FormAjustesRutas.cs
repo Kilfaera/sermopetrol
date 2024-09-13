@@ -1,5 +1,6 @@
 ﻿using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using Consumos_Sermopetrol.Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         QueryConfiguracion query = new QueryConfiguracion();
         Configuraciones ruta = new Configuraciones();
         FolderBrowserDialog save = new FolderBrowserDialog();
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         public FormAjustesRutas()
         {
             InitializeComponent();
@@ -46,29 +48,34 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, textBoxRutaXlsx.Text, true, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
+            generalItems.sonido(true);
         }
 
         private void buttonCsv_Click(object sender, EventArgs e)
         {
             query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, textBoxRutaCsv.Text);
             obtenerRutas();
+            generalItems.sonido(true);
         }
 
         private void buttonPdf_Click(object sender, EventArgs e)
         {
             query.ActualizarConfiguracion(ruta.UbicacionImagenes, textBoxRutaPdf.Text, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
+            generalItems.sonido(true);
         }
         private void buttonPlantilla_Click(object sender, EventArgs e)
         {
             query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, textBoxRutaPlantilla.Text, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
+            generalItems.sonido(true);
         }
 
         private void buttonPng_Click(object sender, EventArgs e)
         {
             query.ActualizarConfiguracion(textBoxRutaPng.Text, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
+            generalItems.sonido(true);
         }
 
         private void textBoxRutaXlsx_TextChanged(object sender, EventArgs e)

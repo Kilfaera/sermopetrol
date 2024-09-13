@@ -10,9 +10,8 @@
 
 namespace Consumos_Sermopetrol.Properties {
     using System;
-    using System.Media;
-
-
+    
+    
     /// <summary>
     ///   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
     /// </summary>
@@ -62,6 +61,15 @@ namespace Consumos_Sermopetrol.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream alert {
+            get {
+                return ResourceManager.GetStream("alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap contenedor_de_basura {
@@ -82,6 +90,15 @@ namespace Consumos_Sermopetrol.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream error {
+            get {
+                return ResourceManager.GetStream("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap logo_ico {
@@ -90,37 +107,25 @@ namespace Consumos_Sermopetrol.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_sf
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("logo-sf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sin_imagen {
             get {
                 object obj = ResourceManager.GetObject("sin imagen", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo1_sf
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("logo1_sf", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo2_1
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("logo2-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

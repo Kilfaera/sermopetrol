@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using ZXing;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using AppConsumo.Controlador;
+using Consumos_Sermopetrol.Capa_Negocio;
 
 namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
 {
@@ -17,6 +18,7 @@ namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
         List<Bitmap> bitmapQR = new List<Bitmap>();
         List<string> textQR = new List<string>();
         List<iTextSharp.text.Image> paginas = new List<iTextSharp.text.Image>(); //Para añadir las imagenes al documento
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         Zen.Barcode.Code128BarcodeDraw barcodeDraw = Zen.Barcode.BarcodeDrawFactory.Code128WithChecksum;
         int cantHojas;
         int loopCount = 1;
@@ -177,13 +179,13 @@ namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
                 saveFileDialog.FileName = "QRdocument" + DateTime.Now.ToString("-HH_mm-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-") + "";
                 saveFileDialog.AddExtension = true;
                 saveFileDialog.FileName = configuracion.UbicacionPDF + saveFileDialog.FileName + ".pdf";
-                if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
-                {
-                    File.Delete(saveFileDialog.FileName);
-                }
                 if (!Directory.Exists(configuracion.UbicacionPDF))
                 {
                     Directory.CreateDirectory(configuracion.UbicacionPDF);
+                }
+                if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
+                {
+                    File.Delete(saveFileDialog.FileName);
                 }
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(saveFileDialog.FileName, FileMode.Create)); //Crea el docuento
                 doc.Open();
@@ -194,9 +196,13 @@ namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
                     doc.Add(imagen);
                 }
                 doc.Close();
+                generalItems.sonido(true);
+                MessageBox.Show("SE HA EXPORTADO CORRECTAMENTE.");
 
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR: " + ex);
             }
         }

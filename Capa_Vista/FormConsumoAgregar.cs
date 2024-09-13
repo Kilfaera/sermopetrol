@@ -113,6 +113,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception e)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL ACTUALIZAR EL CONSUMO: " + e.Message);
             }
         }
@@ -281,6 +282,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception ex)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL INGRESAR EL CONSUMO DIGITADO: " + ex.Message);
                 generalItems.sonido(false);
             }

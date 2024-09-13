@@ -40,7 +40,6 @@
             this.buttonRutasAjustes = new System.Windows.Forms.Button();
             this.panelSubmenuExportar = new System.Windows.Forms.Panel();
             this.buttonQrExportar = new System.Windows.Forms.Button();
-            this.buttonExcelExportar = new System.Windows.Forms.Button();
             this.buttonExportarSideMenu = new System.Windows.Forms.Button();
             this.panelSubmenuEmpleados = new System.Windows.Forms.Panel();
             this.buttonModificarEmpleados = new System.Windows.Forms.Button();
@@ -165,7 +164,6 @@
             // 
             this.panelSubmenuExportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
             this.panelSubmenuExportar.Controls.Add(this.buttonQrExportar);
-            this.panelSubmenuExportar.Controls.Add(this.buttonExcelExportar);
             resources.ApplyResources(this.panelSubmenuExportar, "panelSubmenuExportar");
             this.panelSubmenuExportar.Name = "panelSubmenuExportar";
             // 
@@ -179,17 +177,6 @@
             this.buttonQrExportar.Name = "buttonQrExportar";
             this.buttonQrExportar.UseVisualStyleBackColor = false;
             this.buttonQrExportar.Click += new System.EventHandler(this.buttonQrExportar_Click);
-            // 
-            // buttonExcelExportar
-            // 
-            this.buttonExcelExportar.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.buttonExcelExportar, "buttonExcelExportar");
-            this.buttonExcelExportar.FlatAppearance.BorderSize = 0;
-            this.buttonExcelExportar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(62)))), ((int)(((byte)(54)))));
-            this.buttonExcelExportar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(227)))), ((int)(((byte)(255)))));
-            this.buttonExcelExportar.Name = "buttonExcelExportar";
-            this.buttonExcelExportar.UseVisualStyleBackColor = false;
-            this.buttonExcelExportar.Click += new System.EventHandler(this.buttonExcelExportar_Click);
             // 
             // buttonExportarSideMenu
             // 
@@ -369,7 +356,6 @@
         private System.Windows.Forms.Button buttonEmpleadosSideMenu;
         private System.Windows.Forms.Panel panelSubmenuExportar;
         private System.Windows.Forms.Button buttonQrExportar;
-        private System.Windows.Forms.Button buttonExcelExportar;
         private System.Windows.Forms.Button buttonExportarSideMenu;
         private System.Windows.Forms.Button buttonModificarEmpleados;
         private System.Windows.Forms.Button buttonAjustesSideMenu;

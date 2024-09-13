@@ -13,6 +13,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
     {
         QueryConfiguracion query = new QueryConfiguracion();
         Funciones_frecuentes generalItems = new Funciones_frecuentes();
+        private Form1 mainForm;
         public FormConsumoEstadisticas()
         {
             InitializeComponent();
@@ -48,21 +49,22 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         }
                     }
                     saveFileDialog.FileName = configuracion.UbicacionExcel + saveFileDialog.FileName + ".xlsx";
-                    if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
-                    {
-                        File.Delete(saveFileDialog.FileName);
-                    }
                     if (!Directory.Exists(configuracion.UbicacionExcel))
                     {
                         Directory.CreateDirectory(configuracion.UbicacionExcel);
                     }
+                    if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
+                    {
+                        File.Delete(saveFileDialog.FileName);
+                    }
                     workbook.SaveAs(saveFileDialog.FileName); //Guarda el nuevo archivo
-
-                    //generalItems.sonido(true);
+                    generalItems.sonido(true);
+                    MessageBox.Show("SE HA EXPORTADO CORRECTAMENTE.");
                 }
             }
             catch (Exception a)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL EXPORTAR EL ARCHIVO XLSX: " + a);
             }
         }
@@ -113,6 +115,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception ex)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
             }
         }
@@ -164,6 +167,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception a)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + a);
             }
         }
@@ -219,6 +223,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception e)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL ACTUALIZAR EL CONSUMO: " + e.Message);
             }
         }

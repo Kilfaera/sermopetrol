@@ -271,7 +271,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonAjustesSideMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 660</value>
+    <value>0, 620</value>
   </data>
   <data name="buttonAjustesSideMenu.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
@@ -388,7 +388,7 @@
     <value>Bottom</value>
   </data>
   <data name="panelSubmenuAjustes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 710</value>
+    <value>0, 670</value>
   </data>
   <data name="panelSubmenuAjustes.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 90</value>
@@ -424,7 +424,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonQrExportar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 40</value>
+    <value>0, 0</value>
   </data>
   <data name="buttonQrExportar.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>40, 0, 0, 0</value>
@@ -453,48 +453,6 @@
   <data name="&gt;&gt;buttonQrExportar.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonExcelExportar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="buttonExcelExportar.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonExcelExportar.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
-  </data>
-  <data name="buttonExcelExportar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonExcelExportar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="buttonExcelExportar.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>40, 0, 0, 0</value>
-  </data>
-  <data name="buttonExcelExportar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 40</value>
-  </data>
-  <data name="buttonExcelExportar.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="buttonExcelExportar.Text" xml:space="preserve">
-    <value>Excel</value>
-  </data>
-  <data name="buttonExcelExportar.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;buttonExcelExportar.Name" xml:space="preserve">
-    <value>buttonExcelExportar</value>
-  </data>
-  <data name="&gt;&gt;buttonExcelExportar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonExcelExportar.Parent" xml:space="preserve">
-    <value>panelSubmenuExportar</value>
-  </data>
-  <data name="&gt;&gt;buttonExcelExportar.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="panelSubmenuExportar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -502,7 +460,7 @@
     <value>0, 570</value>
   </data>
   <data name="panelSubmenuExportar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 90</value>
+    <value>250, 50</value>
   </data>
   <data name="panelSubmenuExportar.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>

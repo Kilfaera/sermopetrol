@@ -38,6 +38,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception e)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL ACTUALIZAR LA TABLA: " + e);
             }
         }
@@ -55,10 +56,10 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 ExportarPDFs pdf = new ExportarPDFs(bitmaps, textoQR);
                 pdf.Show();
                 pdf.Close();
-                //generalItems.sonido(true);
             }
             catch (Exception a)
             {
+                generalItems.sonido(false);
                 MessageBox.Show("ERROR AL GENERAR EL PDF: " + a);
             }
         }
@@ -104,6 +105,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception)
             {
+                generalItems.sonido(false);
                 dataGridView.ClearSelection();
                 iconButtonExportar.Visible = false;
             }

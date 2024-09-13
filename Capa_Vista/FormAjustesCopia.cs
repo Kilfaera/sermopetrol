@@ -1,5 +1,6 @@
 ﻿using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using Consumos_Sermopetrol.Capa_Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
     public partial class FormAjustesCopia : Form
     {
         QueryConfiguracion query = new QueryConfiguracion();
+        Funciones_frecuentes generalItems = new Funciones_frecuentes();
         public FormAjustesCopia()
         {
             InitializeComponent();
@@ -71,11 +73,12 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         sw.WriteLine($"{consumo.IdConsumo},{consumo.IdEmpleado},{consumo.TipoConsumo},{consumo.FechaRegistro},{consumo.FormaRegistro}");
                     }
                 }
-
+                generalItems.sonido(true);
                 MessageBox.Show("Registros de consumo exportados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception a)
             {
+                generalItems.sonido(false);
                 MessageBox.Show($"Error al Exportar las Copias de Seguridad: {a.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -115,6 +118,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     }
                     else
                     {
+                        generalItems.sonido(false);
                         MessageBox.Show("Por favor seleccione un archivo de empleados y uno de consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -125,7 +129,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (Exception a)
             {
-
+                generalItems.sonido(false);
             }
         }
         private void ProcesarArchivos(string empleadoFilePath, string consumoFilePath)
@@ -183,6 +187,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         }
                         catch
                         {
+                            generalItems.sonido(false);
                             // Manejo de errores al procesar cada línea de empleado
                         }
                     }
@@ -216,15 +221,17 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         }
                         catch
                         {
+                            generalItems.sonido(false);
                             // Manejo de errores al procesar cada línea de consumo
                         }
                     }
                 }
-
+                generalItems.sonido(true);
                 MessageBox.Show("Archivos procesados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                generalItems.sonido(false);
                 MessageBox.Show($"Error al procesar archivos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

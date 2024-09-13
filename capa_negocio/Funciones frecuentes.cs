@@ -50,7 +50,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
 
             string line = "***************************************************************************************";
 
-            System.Drawing.Image logo = Properties.Resources.logo1_sf;
+            System.Drawing.Image logo = Properties.Resources.logo_ico;
             e.Graphics.DrawImage(logo, (e.PageBounds.Width - 50) / 3 + 8, 5, 150, 150);
 
             e.Graphics.DrawString("TICKET DE " + TC, cal10, Brushes.Black, centermargin + 20, 155, center);
@@ -86,6 +86,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             this.FR = FR;
             doc.BeginPrint += new PrintEventHandler(iniciarImpresion);
             doc.PrintPage += new PrintPageEventHandler(imprimir);
+            sonido(true);
         }
         #endregion
 
@@ -107,6 +108,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception)
             {
+                sonido(false);
                 MessageBox.Show("ERROR FATAL AL INICIAR LA CAMARA. REINICIE EL PROGRAMA.");
             }
         }
@@ -140,6 +142,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception)
             {
+                sonido(false);
                 MessageBox.Show("ERROR. REINICIE EL PROGRAMA.");
             }
         }
@@ -157,6 +160,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception)
             {
+                sonido(false);
                 MessageBox.Show("ERROR. REINICIE EL PROGRAMA.");
             }
             return null;
@@ -173,6 +177,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception)
             {
+                sonido(false);
                 MessageBox.Show("ERROR FATAL AL INICIAR LA CAMARA. REINICIE EL PROGRAMA.");
             }
         }
@@ -188,6 +193,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception)
             {
+                sonido(false);
                 MessageBox.Show("ERROR. REINICIE EL PROGRAMA.");
             }
         }
@@ -204,6 +210,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception)
             {
+                sonido(false);
                 MessageBox.Show("ERROR. NO SE DETECTARON CÁMARAS.");
             }
             return null;
@@ -272,6 +279,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception e)
             {
+                sonido(false);
                 MessageBox.Show("ERROR AL INGRESAR EL CONSUMO: " + e);
             }
         }
@@ -310,11 +318,11 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             {
                 if (select)
                 {
-                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Resources/alert.wav"); //Variable que permite reproducir el audio proporcionado
+                    player = new SoundPlayer("E:/Proyectos/Programación/Sermopetrol/Programa/sermopetrol/Recursos/alert.wav"); //Variable que permite reproducir el audio proporcionado
                 }
                 else
                 {
-                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Resources/error.wav"); //Variable que permite reproducir el audio proporcionado
+                    player = new SoundPlayer("E:/Proyectos/Programación/Sermopetrol/Programa/sermopetrol/Recursos/error.wav"); //Variable que permite reproducir el audio proporcionado
                 }
                 player.Play(); //Reproduce el audio
             }
@@ -331,6 +339,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             {
                 if (string.IsNullOrEmpty(ND) || string.IsNullOrEmpty(NC) || string.IsNullOrEmpty(ZT))
                 {
+                    sonido(false);
                     MessageBox.Show("Hay campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -378,6 +387,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception ex)
             {
+                sonido(false);
                 MessageBox.Show("ERROR AL REGISTRAR: " + ex.Message);
             }
         }
@@ -438,6 +448,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
             catch (Exception ex)
             {
+                sonido(false);
                 MessageBox.Show("ERROR AL REGISTRAR: " + ex.Message);
             }
         }
