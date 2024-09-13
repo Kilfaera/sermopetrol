@@ -16,6 +16,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
     public partial class FormEmpleadosAgregar : Form
     {
         Funciones_frecuentes generalItems = new Funciones_frecuentes();
+        private Bitmap fotoCapturada = null;  // Bitmap para almacenar la foto tomada
+        private bool fotoTomada = false;
         public FormEmpleadosAgregar()
         {
             InitializeComponent();
@@ -28,7 +30,30 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void iconButtonCamera_Click(object sender, EventArgs e)
         {
-            
+            if (!fotoTomada)  // Si no se ha tomado la foto
+            {
+                // Tomar el frame actual que se está mostrando en el PictureBox
+                if (pictureBox.Image != null)
+                {
+                    // Clonar la imagen mostrada en el PictureBox
+                    fotoCapturada = (Bitmap)pictureBox.Image.Clone();
+
+                    // Mostrar la foto capturada en el PictureBox
+                    pictureBox.Image = fotoCapturada;
+                    iconButtonCamera.Text = "Volver a tomar";
+                    fotoTomada = true;  // Cambiar el estado
+                }
+                else
+                {
+                    MessageBox.Show("No se puede capturar una imagen, asegúrate de que la cámara esté transmitiendo.");
+                }
+            }
+            else  // Si ya se tomó la foto, volver a activar la cámara
+            {
+                generalItems.inicialziar(comboBoxSelectCamera.SelectedIndex, pictureBox);  // Reiniciar la cámara
+                iconButtonCamera.Text = "Tomar Foto";  // Cambiar el texto del botón
+                fotoTomada = false;  // Cambiar el estado
+            }
         }
         void autocompletar()
         {
