@@ -2,13 +2,6 @@
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Consumos_Sermopetrol.Capa_Vista
@@ -19,6 +12,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         Configuraciones ruta = new Configuraciones();
         FolderBrowserDialog save = new FolderBrowserDialog();
         Funciones_frecuentes generalItems = new Funciones_frecuentes();
+        bool permiso;
         public FormAjustesRutas()
         {
             InitializeComponent();
@@ -31,12 +25,19 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void obtenerRutas()
         {
             ruta = query.ObtenerConfiguracion();
+            permiso = ruta.PermisoEliminacionRegistros;
             textBoxRutaXlsx.Text = ruta.UbicacionExcel;
             textBoxRutaCsv.Text = ruta.UbicacionCopiasSeguridad;
             textBoxRutaPdf.Text = ruta.UbicacionPDF;
             textBoxRutaPng.Text = ruta.UbicacionImagenes;
             textBoxRutaPlantilla.Text = ruta.UbicacionPlantilla;
             buttonPng.Visible = buttonPlantilla.Visible = buttonXlsx.Visible = buttonCsv.Visible = buttonPdf.Visible = false;
+            ActualizarTextoBotonPermiso();
+        }
+
+        private void ActualizarTextoBotonPermiso()
+        {
+            Cambiarperminso.Text = permiso ? "Deshabilitar" : "Habilitar";
         }
 
         private void FormAjustesRutas_Load(object sender, EventArgs e)
@@ -177,5 +178,39 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 textBoxRutaPdf.Text = save.SelectedPath + "/";
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string inputPassword = generalItems.SolicitarContraseña(); // Usar el nuevo método para pedir la contraseña
+
+            if (inputPassword == null)
+            {
+                MessageBox.Show("Operación cancelada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Verificar la contraseña (aquí deberías agregar la validación real de la contraseña)
+            string contraseñaCorrecta = "miContraseña"; // Contraseña de ejemplo
+
+            if (inputPassword == contraseñaCorrecta)
+            {
+                // Cambiar el estado del permiso
+                permiso = !permiso;
+
+                // Actualizar la configuración en la base de datos
+
+                query.ActualizarConfiguracion(textBoxRutaPng.Text, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
+
+                // Actualizar el texto del botón
+                ActualizarTextoBotonPermiso();
+
+                MessageBox.Show("Permiso actualizado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Contraseña incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
+
 }

@@ -51,6 +51,8 @@
             this.textBoxRutaPlantilla = new System.Windows.Forms.TextBox();
             this.textBoxRutaPng = new System.Windows.Forms.TextBox();
             this.textBoxRutaXlsx = new System.Windows.Forms.TextBox();
+            this.Cambiarperminso = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +88,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.Cambiarperminso);
             this.panel2.Controls.Add(this.labelPdf);
             this.panel2.Controls.Add(this.labelCsv);
             this.panel2.Controls.Add(this.labelPlantilla);
@@ -412,6 +416,36 @@
             this.textBoxRutaXlsx.TabIndex = 0;
             this.textBoxRutaXlsx.TextChanged += new System.EventHandler(this.textBoxRutaXlsx_TextChanged);
             // 
+            // Cambiarperminso
+            // 
+            this.Cambiarperminso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Cambiarperminso.AutoSize = true;
+            this.Cambiarperminso.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cambiarperminso.ForeColor = System.Drawing.Color.White;
+            this.Cambiarperminso.Location = new System.Drawing.Point(29, 39);
+            this.Cambiarperminso.Name = "Cambiarperminso";
+            this.Cambiarperminso.Size = new System.Drawing.Size(314, 31);
+            this.Cambiarperminso.TabIndex = 3;
+            this.Cambiarperminso.Text = "Permiso de eliminacion";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(35, 73);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 29);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Guardar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormAjustesRutas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,5 +490,7 @@
         private System.Windows.Forms.Button buttonModificarXlsx;
         private System.Windows.Forms.Button buttonModificarPlantilla;
         private System.Windows.Forms.Button buttonModificarPng;
+        private System.Windows.Forms.Label Cambiarperminso;
+        private System.Windows.Forms.Button button1;
     }
 }
