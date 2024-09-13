@@ -20,5 +20,10 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             this.Close();
         }
+
+        private void iconButtonCamera_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

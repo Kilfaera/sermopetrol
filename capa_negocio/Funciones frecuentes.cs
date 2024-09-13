@@ -2,11 +2,11 @@
 using Accord.Video.DirectShow;
 using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
-using Org.BouncyCastle.Asn1.BC;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using ZXing;
@@ -74,7 +74,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 " a las " + FR.ToString("hh:mm:ss-tt") + " para el empleado " + NC + " C.C." + ND);
             e.Graphics.DrawImage(bitmap, (e.PageBounds.Width - 50) / 3 + 8, 255, 150, 150);
             ///////////////////
-            
+
         }
         public void imprimirSeleccion(string TC, string NC, string ND, string ZT, DateTime FR)
         {
@@ -323,5 +323,53 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
         }
         #endregion
+        #region Empleados
+        public void insertarempleado(string ND, string NC, string ZT, Bitmap bitmap)
+        {
+            try
+            {
+                if (ND == "" || NC == "" || ZT == "" )
+                {
+                    MessageBox.Show("Hay compos vacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else
+                {
+                    QueryEmpleado em = new QueryEmpleado();
+                    // Verificar si el empleado ya existe
+                    List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
+                    Empleado empleadoExistente = ListaEmpleados.FirstOrDefault(emp => emp.NumeroDocumento == ND);
+                    if (empleadoExistente != null)
+                    {
+                        // Si el empleado existe y su estado es true, mostrar mensaje y salir
+                        if (empleadoExistente.Estado)
+                        {
+                            MessageBox.Show("El empleado ya existe y está activo.", "Empleado Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        // Si el empleado existe pero su estado es false, preguntar al usuario si desea reactivarlo
+                        DialogResult result = MessageBox.Show("El empleado ya existe pero está inactivo. ¿Desea reactivarlo?", "Reactivar Empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            em.CambiarEstadoEmpleado(empleadoExistente.IdEmpleado, true); // Reactivar al empleado
+                        }
+                        else
+                        {
+                            return; // No hacer nada si el usuario no desea reactivarlo
+                        }
+                    }
+                    else
+                    {
+                        em.InsertarEmpleado(ND,NC, ZT, 0, true, DateTime.Now);
+                    }
+                }
+            }
+            catch (Exception b)
+            {
+                MessageBox.Show("ERROR AL REGISTRAR: " + b);
+            }
+        }
+        #endregion
     }
 }
+

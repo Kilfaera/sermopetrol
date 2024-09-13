@@ -73,7 +73,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 29);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1030, 825);
+            this.panel4.Size = new System.Drawing.Size(1030, 759);
             this.panel4.TabIndex = 4;
             // 
             // iconButtonImportar
@@ -88,7 +88,7 @@
             this.iconButtonImportar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButtonImportar.IconColor = System.Drawing.Color.Black;
             this.iconButtonImportar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButtonImportar.Location = new System.Drawing.Point(534, 323);
+            this.iconButtonImportar.Location = new System.Drawing.Point(534, 290);
             this.iconButtonImportar.Name = "iconButtonImportar";
             this.iconButtonImportar.Size = new System.Drawing.Size(282, 173);
             this.iconButtonImportar.TabIndex = 1;
@@ -107,7 +107,7 @@
             this.iconButtonExportar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButtonExportar.IconColor = System.Drawing.Color.Black;
             this.iconButtonExportar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButtonExportar.Location = new System.Drawing.Point(221, 323);
+            this.iconButtonExportar.Location = new System.Drawing.Point(221, 290);
             this.iconButtonExportar.Name = "iconButtonExportar";
             this.iconButtonExportar.Size = new System.Drawing.Size(282, 173);
             this.iconButtonExportar.TabIndex = 0;
@@ -119,7 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(160)))), ((int)(((byte)(187)))));
-            this.ClientSize = new System.Drawing.Size(1030, 854);
+            this.ClientSize = new System.Drawing.Size(1030, 788);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
