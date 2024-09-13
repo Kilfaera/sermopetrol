@@ -130,6 +130,13 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 iconButtonCamera.Text = "Tomar Foto";  // Cambiar el texto del botón
                 fotoTomada = false;  // Cambiar el estado
                 fotoCapturada = null;  // Limpiar la foto capturada
+                QueryConfiguracion query = new QueryConfiguracion();
+
+                Configuraciones configuracion = query.ObtenerConfiguracion(); // Obtener la ruta configurada
+                string rutaImagen = configuracion.UbicacionImagenes; // Ruta donde se almacenarán las imágenes
+                string nombreImagen = $"{rutaImagen}\\{textBox1.Text}.png";
+                QueryEmpleado em = new QueryEmpleado();
+                List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
             }
         }
 
@@ -145,8 +152,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void iconButtonEliminar_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text != "") {generalItems.eliminarempleado(textBox1.Text); }
-            
+            if (textBox1.Text != "") { generalItems.eliminarempleado(textBox1.Text); }
+
         }
     }
 }
