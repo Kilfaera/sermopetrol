@@ -131,12 +131,9 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 fotoTomada = false;  // Cambiar el estado
                 fotoCapturada = null;  // Limpiar la foto capturada
                 QueryConfiguracion query = new QueryConfiguracion();
-
                 Configuraciones configuracion = query.ObtenerConfiguracion(); // Obtener la ruta configurada
                 string rutaImagen = configuracion.UbicacionImagenes; // Ruta donde se almacenarán las imágenes
                 string nombreImagen = $"{rutaImagen}\\{textBox1.Text}.png";
-                QueryEmpleado em = new QueryEmpleado();
-                List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
             }
         }
 
