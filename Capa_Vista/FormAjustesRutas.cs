@@ -16,6 +16,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         public FormAjustesRutas()
         {
             InitializeComponent();
+            ActualizarTextoBotonPermiso();
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -37,7 +38,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void ActualizarTextoBotonPermiso()
         {
-            Cambiarperminso.Text = permiso ? "Deshabilitar" : "Habilitar";
+            buttonEliminacion.Text = permiso ? "Deshabilitar" : "Habilitar";
         }
 
         private void FormAjustesRutas_Load(object sender, EventArgs e)
@@ -190,7 +191,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
 
             // Verificar la contraseña (aquí deberías agregar la validación real de la contraseña)
-            string contraseñaCorrecta = "miContraseña"; // Contraseña de ejemplo
+            string contraseñaCorrecta = "srmpetrol2024admin"; // Contraseña de ejemplo
 
             if (inputPassword == contraseñaCorrecta)
             {
@@ -199,7 +200,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
                 // Actualizar la configuración en la base de datos
 
-                query.ActualizarConfiguracion(textBoxRutaPng.Text, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
+                query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, permiso, ruta.UbicacionCopiasSeguridad);
 
                 // Actualizar el texto del botón
                 ActualizarTextoBotonPermiso();
