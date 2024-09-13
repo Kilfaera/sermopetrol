@@ -15,6 +15,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
     public partial class FormConsumoAgregar : Form
     {
         Funciones_frecuentes generalItems = new Funciones_frecuentes();
+        QueryConfiguracion query = new QueryConfiguracion();
         public FormConsumoAgregar()
         {
             InitializeComponent();
@@ -161,8 +162,8 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         case CustomMessageBox.Result.Eliminar:
                             // Lógica para eliminar
                             DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que deseas eliminar el consumo #" + valorPrimeraCelda + "?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                            if (confirmacion == DialogResult.Yes)
+                            Configuraciones configuracion = query.ObtenerConfiguracion();
+                            if (configuracion.PermisoEliminacionRegistros)
                             {
                                 QueryConsumo query = new QueryConsumo();
                                 bool eliminado = query.EliminarConsumo(idConsumo);
@@ -177,6 +178,11 @@ namespace Consumos_Sermopetrol.Capa_Vista
                                 {
                                     MessageBox.Show("Hubo un problema al eliminar el consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
+                            }
+                            else
+                            {
+                                generalItems.sonido(false);
+                                MessageBox.Show("NO TIENE PERMISOS DE ELIMINACIÓN.");
                             }
                             ActualizarlistaConsumo();
                             break;

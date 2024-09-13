@@ -461,7 +461,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             TextBox textBox = new TextBox();
             Button buttonOk = new Button();
             Button buttonCancel = new Button();
-            string password = null;
+            string password = "srmpetrol2024admin";
 
             form.Text = "Contraseña";
             label.Text = "Ingrese la contraseña:";
@@ -496,6 +496,10 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             if (form.ShowDialog() == DialogResult.OK)
             {
                 password = textBox.Text;
+            }
+            else
+            {
+                return"";
             }
 
             return password;
