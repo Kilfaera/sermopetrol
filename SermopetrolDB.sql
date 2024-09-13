@@ -188,5 +188,5 @@ BEGIN
     WHERE IdEmpleado = IdEmpleado;
 END$$
 DELIMITER ;
-call InsertarEmpleado('111','Prueba','Funciona',0,1,now());
+call InsertarEmpleado('000','sUsuario','Privilegiado',0,1,now());
 call InsertarConsumo(1,'desayuno',1);

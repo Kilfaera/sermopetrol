@@ -94,6 +94,7 @@
             this.iconButtonImportar.TabIndex = 1;
             this.iconButtonImportar.Text = "Importar";
             this.iconButtonImportar.UseVisualStyleBackColor = false;
+            this.iconButtonImportar.Click += new System.EventHandler(this.iconButtonImportar_Click);
             // 
             // iconButtonExportar
             // 
@@ -113,6 +114,7 @@
             this.iconButtonExportar.TabIndex = 0;
             this.iconButtonExportar.Text = "Exportar";
             this.iconButtonExportar.UseVisualStyleBackColor = false;
+            this.iconButtonExportar.Click += new System.EventHandler(this.iconButtonExportar_Click);
             // 
             // FormAjustesCopia
             // 

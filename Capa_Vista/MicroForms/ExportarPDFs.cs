@@ -174,9 +174,9 @@ namespace Consumos_Sermopetrol.Capa_Vista.MicroForms
                 limpiarImages();
                 this.WindowState = FormWindowState.Minimized;
                 saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
-                saveFileDialog.FileName = "QRdocument" + DateTime.Now.ToString("-HH_mm-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-");
+                saveFileDialog.FileName = "QRdocument" + DateTime.Now.ToString("-HH_mm-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-") + "";
                 saveFileDialog.AddExtension = true;
-                saveFileDialog.FileName = configuracion.UbicacionPDF + saveFileDialog.FileName;
+                saveFileDialog.FileName = configuracion.UbicacionPDF + saveFileDialog.FileName + ".pdf";
                 if (File.Exists(saveFileDialog.FileName)) //Elimina el archivo si existe
                 {
                     File.Delete(saveFileDialog.FileName);

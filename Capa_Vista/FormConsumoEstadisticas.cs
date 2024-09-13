@@ -35,10 +35,10 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 if (dataGridView.Columns.Count != 0 && dataGridView.Rows.Count > 0) //Si hay contenido en el datagridview
                 {
                     saveFileDialog.Filter = "XLSX (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = "excel" + DateTime.Now.ToString("-HH_mm_ss-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-");
+                    saveFileDialog.FileName = "consumos" + DateTime.Now.ToString("-HH_mm_ss-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-") + ".xlsx";
                     saveFileDialog.AddExtension = true;
                     var workbook = new XLWorkbook(); //Variable que simula el archivo excel
-                    var worksheet = workbook.AddWorksheet("Hoja1"); //Variable que crea hojas dentro del archivo excel
+                    var worksheet = workbook.AddWorksheet("Consumos"); //Variable que crea hojas dentro del archivo excel
                     for (int i = 1; i <= dataGridView.Columns.Count; i++) //Recorre las columnas
                     {
                         worksheet.Cell(1, i).Value = dataGridView.Columns[i - 1].HeaderText; //Agrega el contenido
