@@ -165,28 +165,18 @@ namespace Consumos_Sermopetrol.Capa_Vista
                             if (confirmacion == DialogResult.Yes)
                             {
                                 QueryConsumo query = new QueryConsumo();
-                                Configuraciones ruta = new Configuraciones();
+                                bool eliminado = query.EliminarConsumo(idConsumo);
 
-                                if (ruta.PermisoEliminacionRegistros)
+                                if (eliminado)
                                 {
-                                    bool eliminado = query.EliminarConsumo(idConsumo);
-
-                                    if (eliminado)
-                                    {
-                                        MessageBox.Show("El consumo ha sido eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        // Lógica para refrescar la tabla si es necesario
-                                        dataGridView.Rows.RemoveAt(e.RowIndex);
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Hubo un problema al eliminar el consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
+                                    MessageBox.Show("El consumo ha sido eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    // Lógica para refrescar la tabla si es necesario
+                                    dataGridView.Rows.RemoveAt(e.RowIndex);
                                 }
                                 else
                                 {
-                                    MessageBox.Show("No tiene los permisos habilitados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Hubo un problema al eliminar el consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
-                                
                             }
                             ActualizarlistaConsumo();
                             break;
