@@ -102,5 +102,10 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             mainForm.buttonAgregarEmpleados_Click(sender, e);
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

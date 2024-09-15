@@ -84,16 +84,16 @@ DELIMITER ;
 -- Procedimiento almacenado: InsertarEmpleado (sin Imagen)
 DELIMITER $$
 CREATE PROCEDURE InsertarEmpleado(
-    IN NumeroDocumento VARCHAR(25),
-    IN NombreCompleto VARCHAR(30),
-    IN ZonaDeTrabajo VARCHAR(20),
-    IN NumeroConsumos INT,
-    IN Estado BOOLEAN,
-    IN FechaRegistro DATETIME
+      IN p_NumeroDocumento VARCHAR(25),
+    IN p_NombreCompleto VARCHAR(30),
+    IN p_ZonaDeTrabajo VARCHAR(20),
+    IN p_NumeroConsumos INT,
+    IN p_Estado BOOLEAN,
+    IN p_FechaRegistro DATETIME
 )
 BEGIN
     INSERT INTO Empleado (NumeroDocumento, NombreCompleto, ZonaDeTrabajo, NumeroConsumos, Estado, FechaRegistro)
-    VALUES (NumeroDocumento, NombreCompleto, ZonaDeTrabajo, NumeroConsumos, Estado, FechaRegistro);
+    VALUES (p_NumeroDocumento, p_NombreCompleto, p_ZonaDeTrabajo, p_NumeroConsumos, p_Estado, p_FechaRegistro);
 END$$
 DELIMITER ;
 
@@ -189,8 +189,6 @@ BEGIN
     WHERE IdEmpleado = p_IdEmpleado;
 END$$
 DELIMITER ;
-call InsertarEmpleado('000','sUsuario','Privilegiado',0,1,now());
-call InsertarConsumo(1,'desayuno',1);
 INSERT INTO Configuraciones (
     UbicacionImagenes, 
     UbicacionPDF, 
@@ -201,11 +199,11 @@ INSERT INTO Configuraciones (
     FechaModificacion
 ) 
 VALUES (
-    'C:/Program Files/STL AppConsumo/Images/',         -- Ubicación de las imágenes
-    'C:/Program Files/STL AppConsumo/PDFs/',           -- Ubicación de los archivos PDF
-    'C:/Program Files/STL AppConsumo/Templates/',      -- Ubicación de las plantillas
-    'C:/Program Files/STL AppConsumo/Excels/',         -- Ubicación de los archivos Excel
-    TRUE,                                              -- Permiso para eliminación de registros (TRUE/FALSE)
-    'D:/Backups/STL AppConsumo/',                      -- Ubicación de las copias de seguridad
+    'C:/',         -- Ubicación de las imágenes
+    'C:/',           -- Ubicación de los archivos PDF
+    'C:/',      -- Ubicación de las plantillas
+    'C:/',         -- Ubicación de los archivos Excel
+    FALSE,                                              -- Permiso para eliminación de registros (TRUE/FALSE)
+    'C:/',                      -- Ubicación de las copias de seguridad
     NOW()                                              -- Fecha de modificación actual
 );
