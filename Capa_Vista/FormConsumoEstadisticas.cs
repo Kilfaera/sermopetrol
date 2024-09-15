@@ -201,22 +201,24 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 List<Consumo> listaConsumo = new ListarConsumo().Listar();
                 foreach (Consumo item in listaConsumo)
                 {
+                    if (item.FechaRegistro.Date == DateTime.Now.Date)
+                    {// Verificar si FormaRegistro es 0 o 1 para mostrar el texto adecuado
+                        string formaRegistro = item.FormaRegistro == false ? "Manual" : "Automático";
 
-                    // Verificar si FormaRegistro es 0 o 1 para mostrar el texto adecuado
-                    string formaRegistro = item.FormaRegistro == false ? "Manual" : "Automático";
 
+                        // Agregar la fila al DataGridView
+                        dataGridView.Rows.Add(new object[]
+                        {
+                        item.IdConsumo,
+                        item.NombreEmpleado,
+                        item.DocumentoEmpleado,
+                        item.ZonaTrabajoEmpleado,
+                        item.TipoConsumo,
+                        item.FechaRegistro,
+                        formaRegistro
+                        });
+                    }
 
-                    // Agregar la fila al DataGridView
-                    dataGridView.Rows.Add(new object[]
-                    {
-                            item.IdConsumo,
-                    item.NombreEmpleado,
-                    item.DocumentoEmpleado,
-                    item.ZonaTrabajoEmpleado,
-                    item.TipoConsumo,
-                    item.FechaRegistro,
-                    formaRegistro
-                    });
                 }
 
 

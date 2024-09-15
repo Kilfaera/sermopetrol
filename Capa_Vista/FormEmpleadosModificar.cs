@@ -39,6 +39,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     coincidenciasEmpleado.Add(item.NumeroDocumento);
                     coincidenciasEmpleado.Add(item.NombreCompleto);
                 }
+
                 textBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;  // Modo de sugerencia y completar
                 textBox4.AutoCompleteSource = AutoCompleteSource.CustomSource;  // Fuente personalizada
                 textBox4.AutoCompleteCustomSource = coincidenciasEmpleado;

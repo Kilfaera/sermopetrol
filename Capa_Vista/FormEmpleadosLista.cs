@@ -16,10 +16,40 @@ namespace Consumos_Sermopetrol.Capa_Vista
             InitializeComponent();
             mainForm = parentForm; //Asignar el formulario principal
             ActualizarDataWriteView();
+            autocompletar();
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+        void autocompletar()
+        {
+            try
+            {
+                // Crear una colección de cadenas para las coincidencias de autocompletado
+                AutoCompleteStringCollection coincidencias = new AutoCompleteStringCollection();
+                AutoCompleteStringCollection coincidenciasEmpleado = new AutoCompleteStringCollection();
+                // Obtener la lista de consumos
+                List<Empleado> listaEmpleado = new ListarEmpleado().Listar();
+
+                // Agregar los números de documento de los empleados a las coincidencias
+                foreach (Empleado item in listaEmpleado)
+                {
+                    coincidenciasEmpleado.Add(item.ZonaDeTrabajo);
+                    coincidenciasEmpleado.Add(item.NumeroDocumento);
+                    coincidenciasEmpleado.Add(item.NombreCompleto);
+                }
+
+                textBoxCedula.AutoCompleteMode = AutoCompleteMode.SuggestAppend;  // Modo de sugerencia y completar
+                textBoxCedula.AutoCompleteSource = AutoCompleteSource.CustomSource;  // Fuente personalizada
+                textBoxCedula.AutoCompleteCustomSource = coincidenciasEmpleado;
+                
+            }
+            catch (Exception ex)
+            {
+                generalItems.sonido(false);
+                MessageBox.Show("Error al configurar el autocompletado: " + ex.Message);
+            }
         }
         private void ActualizarDataWriteView()
         {
@@ -29,13 +59,13 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
                 foreach (Empleado item in ListaEmpleados)
                 {
-                    if (item.Estado)
-                    {
-                        dataGridView.Rows.Add(new object[] {
-                            Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo,
-                            item.NumeroConsumos, item.Estado, item.FechaRegistro });
 
-                    }
+                    string Estado = item.Estado == false ? "Activo" : "Inactivo";
+                    dataGridView.Rows.Add(new object[] {
+                    Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo,
+                    item.NumeroConsumos, item.Estado, item.FechaRegistro });
+
+
                 }
             }
             catch (Exception e)

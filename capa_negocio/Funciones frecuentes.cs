@@ -88,6 +88,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             doc.BeginPrint += new PrintEventHandler(iniciarImpresion);
             doc.PrintPage += new PrintPageEventHandler(imprimir);
             sonido(true);
+            doc.Print();
         }
         #endregion
 
