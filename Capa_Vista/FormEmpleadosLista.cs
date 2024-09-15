@@ -103,13 +103,14 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 {
                     if (item.NumeroDocumento.Contains(textBoxCedula.Text) || item.ZonaDeTrabajo.Contains(textBoxCedula.Text) || item.NombreCompleto.Contains(textBoxCedula.Text) && item.Estado != false)
                     {
+                        string Estado = item.Estado == false ? "Activo" : "Inactivo";
                         dataGridView.Rows.Add(new object[] {
                     item.IdEmpleado,
                     item.NombreCompleto,
                     item.NumeroDocumento,
                     item.ZonaDeTrabajo,
                     item.NumeroConsumos,
-                    item.Estado,
+                    Estado,
                     item.FechaRegistro
                     });
                     }

@@ -48,38 +48,37 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void buttonXlsx_Click(object sender, EventArgs e)
         {
-            query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, textBoxRutaXlsx.Text, true, ruta.UbicacionCopiasSeguridad);
+            query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, textBoxRutaXlsx.Text, ruta.PermisoEliminacionRegistros, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
             generalItems.sonido(true);
         }
 
         private void buttonCsv_Click(object sender, EventArgs e)
         {
-            query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, textBoxRutaCsv.Text);
+            query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, ruta.PermisoEliminacionRegistros, textBoxRutaCsv.Text);
             obtenerRutas();
             generalItems.sonido(true);
         }
 
         private void buttonPdf_Click(object sender, EventArgs e)
         {
-            query.ActualizarConfiguracion(ruta.UbicacionImagenes, textBoxRutaPdf.Text, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
+            query.ActualizarConfiguracion(ruta.UbicacionImagenes, textBoxRutaPdf.Text, ruta.UbicacionPlantilla, ruta.UbicacionExcel, ruta.PermisoEliminacionRegistros, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
             generalItems.sonido(true);
         }
         private void buttonPlantilla_Click(object sender, EventArgs e)
         {
-            query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, textBoxRutaPlantilla.Text, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
+            query.ActualizarConfiguracion(ruta.UbicacionImagenes, ruta.UbicacionPDF, textBoxRutaPlantilla.Text, ruta.UbicacionExcel, ruta.PermisoEliminacionRegistros, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
             generalItems.sonido(true);
         }
 
         private void buttonPng_Click(object sender, EventArgs e)
         {
-            query.ActualizarConfiguracion(textBoxRutaPng.Text, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, true, ruta.UbicacionCopiasSeguridad);
+            query.ActualizarConfiguracion(textBoxRutaPng.Text, ruta.UbicacionPDF, ruta.UbicacionPlantilla, ruta.UbicacionExcel, ruta.PermisoEliminacionRegistros, ruta.UbicacionCopiasSeguridad);
             obtenerRutas();
             generalItems.sonido(true);
         }
-
         private void textBoxRutaXlsx_TextChanged(object sender, EventArgs e)
         {
             if (textBoxRutaXlsx.Text != ruta.UbicacionExcel)

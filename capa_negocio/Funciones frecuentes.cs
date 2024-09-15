@@ -2,7 +2,6 @@
 using Accord.Video.DirectShow;
 using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
-using DocumentFormat.OpenXml.Bibliography;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -255,6 +254,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         {
             this.TC = TC;
             this.ND = ND;
+            
             try
             {
                 encontrado = false;
@@ -268,7 +268,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         QueryEmpleado emm = new QueryEmpleado();
                         consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
-                        imprimirSeleccion(TC, NC, ND, ZT, DateTime.Now);
+                        imprimirSeleccion(TC, item.NombreCompleto,item.NumeroDocumento, ZT, DateTime.Now);
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                         pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -303,6 +303,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                     QueryEmpleado emm = new QueryEmpleado();
                     consumo.AgregarConsumoCS(item.IdEmpleado, TC, FR, false);
                     emm.IncrementarConsumo(item.IdEmpleado);
+                    imprimirSeleccion(TC, item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo, DateTime.Now);
                     encontrado = true;
                     /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                     pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
