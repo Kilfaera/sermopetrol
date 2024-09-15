@@ -253,8 +253,12 @@ namespace Consumos_Sermopetrol.Capa_Vista
             textBoxCedula.Focus();
             if (e.KeyChar == (char)Keys.Enter && !string.IsNullOrEmpty(textBoxCedula.Text))
             {
-                string documentoEmpleado = textBoxCedula.Text; // Obtener el número de documento
-                string rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado); // Obtener la ruta de la imagen
+                string documentoEmpleado = textBoxCedula.Text;
+                string rutaImagen="";
+                // Obtener el número de documento
+                rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado);
+                // Obtener la ruta de la imagen
+                
 
                 if (System.IO.File.Exists(rutaImagen)) // Verificar si la imagen existe
                 {
