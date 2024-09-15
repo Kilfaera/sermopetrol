@@ -395,9 +395,24 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         }
         public string ObtenerRutaImagen(string numeroDocumento)
         {
-            Configuraciones configuracion = query.ObtenerConfiguracion(); // Obtener la ruta configurada
-            string rutaImagen = configuracion.UbicacionImagenes; // Ruta donde se almacenan las imágenes
-            return $"{rutaImagen}\\{numeroDocumento}.png"; // Devolver la ruta completa de la imagen
+            try
+            {
+                Configuraciones configuracion = query.ObtenerConfiguracion(); // Obtener la ruta configurada
+                string rutaImagen = configuracion.UbicacionImagenes;
+
+                // Ruta donde se almacenan las imágenes
+                if (System.IO.File.Exists($"{rutaImagen}\\{numeroDocumento}.png")) // Verificar si la imagen existe
+                {
+                    return $"{rutaImagen}\\{numeroDocumento}.png"; // Cargar la imagen en el PictureBox
+                }
+
+
+            }
+            catch (Exception ex) {
+                return null;
+            }
+            return null;
+             // Devolver la ruta completa de la imagen
         }
 
         public void actualizarempleado(string ND, string NC, string ZT, Bitmap bitmap)

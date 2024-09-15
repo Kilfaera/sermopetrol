@@ -266,7 +266,6 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró la imagen del empleado.");
                     pictureBoxFoto.Image = Properties.Resources.sin_imagen; // Restablecer a la imagen original
                 }
 
