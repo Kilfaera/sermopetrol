@@ -320,11 +320,11 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             {
                 if (select)
                 {
-                    player = new SoundPlayer("E:/Proyectos/Programación/Sermopetrol/Programa/sermopetrol/Recursos/alert.wav"); //Variable que permite reproducir el audio proporcionado
+                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Recursos/alert.wav"); //Variable que permite reproducir el audio proporcionado
                 }
                 else
                 {
-                    player = new SoundPlayer("E:/Proyectos/Programación/Sermopetrol/Programa/sermopetrol/Recursos/error.wav"); //Variable que permite reproducir el audio proporcionado
+                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Recursos/error.wav"); //Variable que permite reproducir el audio proporcionado
                 }
                 player.Play(); //Reproduce el audio
             }
