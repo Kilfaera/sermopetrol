@@ -60,7 +60,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 foreach (Empleado item in ListaEmpleados)
                 {
 
-                    string Estado = item.Estado == false ? "Activo" : "Inactivo";
+                    string Estado = item.Estado == false ? "Inactivo" : "Activo";
                     dataGridView.Rows.Add(new object[] {
                     Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo,
                     item.NumeroConsumos, item.Estado, item.FechaRegistro });
@@ -103,7 +103,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 {
                     if (item.NumeroDocumento.Contains(textBoxCedula.Text) || item.ZonaDeTrabajo.Contains(textBoxCedula.Text) || item.NombreCompleto.Contains(textBoxCedula.Text) && item.Estado != false)
                     {
-                        string Estado = item.Estado == false ? "Activo" : "Inactivo";
+                        string Estado = item.Estado == false ? "Inactivo" : "Activo";
                         dataGridView.Rows.Add(new object[] {
                     item.IdEmpleado,
                     item.NombreCompleto,
