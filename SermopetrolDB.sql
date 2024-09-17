@@ -124,6 +124,32 @@ BEGIN
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE FiltrarConsumos(
+    IN p_documentoynombre VARCHAR(50),
+    IN p_zona VARCHAR(20),
+    IN p_tipoConsumo VARCHAR(25),
+    IN p_fechaDesde DATETIME,
+    IN p_fechaHasta DATETIME
+)
+BEGIN
+    SELECT c.IdConsumo,
+           e.NombreCompleto AS NombreEmpleado,
+           e.NumeroDocumento AS DocumentoEmpleado,
+           e.ZonaDeTrabajo AS ZonaTrabajoEmpleado,
+           c.TipoConsumo,
+           c.FechaRegistro,
+           c.Registro AS FormaRegistro
+    FROM Consumo c
+    JOIN Empleado e ON c.IdEmpleado = e.IdEmpleado
+    WHERE (p_documentoynombre = '' OR e.NumeroDocumento = p_documentoynombre OR e.NombreCompleto LIKE CONCAT('%', p_documentoynombre, '%'))
+      AND (p_zona = '' OR e.ZonaDeTrabajo = p_zona)
+      AND (p_tipoConsumo = '' OR c.TipoConsumo = p_tipoConsumo)
+      AND (c.FechaRegistro BETWEEN p_fechaDesde AND p_fechaHasta);
+END$$
+DELIMITER ;
+
+
 -- Procedimiento almacenado: ActualizarEmpleado (sin Imagen)
 DELIMITER $$
 CREATE PROCEDURE ActualizarEmpleado(
