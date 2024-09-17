@@ -3,25 +3,22 @@ using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Consumos_Sermopetrol.Capa_Vista
 {
     public partial class FormAjustesCopia : Form
     {
-        QueryConfiguracion query = new QueryConfiguracion();
-        Funciones_frecuentes generalItems = new Funciones_frecuentes();
+        private readonly QueryConfiguracion _queryConfiguracion = new QueryConfiguracion();
+        private readonly Funciones_frecuentes _generalItems = new Funciones_frecuentes();
+
         public FormAjustesCopia()
         {
             InitializeComponent();
         }
+
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
@@ -31,55 +28,15 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             try
             {
-                Configuraciones configuracion = query.ObtenerConfiguracion();
-                if (!Directory.Exists(configuracion.UbicacionCopiasSeguridad))
-                {
-                    Directory.CreateDirectory(configuracion.UbicacionCopiasSeguridad);
-                }
-                SaveFileDialog saveFileDialogEmpleados = new SaveFileDialog
-                {
-                    Filter = "CSV (*.csv)|*.csv",
-                    FileName = configuracion.UbicacionCopiasSeguridad + "registros_empleados_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv"
-                };
-
-                List<Empleado> listaEmpleados = new ListarEmpleado().Listar();
-
-                using (StreamWriter sw = new StreamWriter(saveFileDialogEmpleados.FileName))
-                {
-                    // Escribir cabeceras de empleados
-                    sw.WriteLine("IdEmpleado,NombreCompleto,NumeroDocumento,ZonaDeTrabajo,NumeroConsumos,Imagen,Estado,FechaRegistro");
-                    foreach (var empleado in listaEmpleados)
-                    {
-                        sw.WriteLine($"{empleado.IdEmpleado},{empleado.NumeroDocumento},{empleado.NombreCompleto},{empleado.ZonaDeTrabajo},{empleado.NumeroConsumos},{empleado.Estado},{empleado.FechaRegistro}");
-                    }
-                }
-
-                MessageBox.Show("Registros de empleados exportados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                SaveFileDialog saveFileDialogConsumo = new SaveFileDialog
-                {
-                    Filter = "CSV (*.csv)|*.csv",
-                    FileName = configuracion.UbicacionCopiasSeguridad + "registros_consumo_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv"
-                };
-
-                List<Consumo_CS> listaConsumo = new ListarConsumoCS().Listar();
-
-                using (StreamWriter sw = new StreamWriter(saveFileDialogConsumo.FileName))
-                {
-                    // Escribir cabeceras de consumo
-                    sw.WriteLine("IdConsumo,IdEmpleado,TipoConsumo,FechaRegistro");
-                    foreach (var consumo in listaConsumo)
-                    {
-                        sw.WriteLine($"{consumo.IdConsumo},{consumo.IdEmpleado},{consumo.TipoConsumo},{consumo.FechaRegistro},{consumo.FormaRegistro}");
-                    }
-                }
-                generalItems.sonido(true);
-                MessageBox.Show("Registros de consumo exportados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var configuracion = _queryConfiguracion.ObtenerConfiguracion();
+                ExportarDatos(configuracion.UbicacionCopiasSeguridad);
+                _generalItems.sonido(true);
+                MessageBox.Show("Exportación completada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception a)
+            catch (Exception ex)
             {
-                generalItems.sonido(false);
-                MessageBox.Show($"Error al Exportar las Copias de Seguridad: {a.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _generalItems.sonido(false);
+                MostrarError("Error al exportar las copias de seguridad", ex);
             }
         }
 
@@ -87,153 +44,186 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog
+                (string archivoEmpleado, string archivoConsumo) = SeleccionarArchivos();
+                if (!string.IsNullOrEmpty(archivoEmpleado) && !string.IsNullOrEmpty(archivoConsumo))
                 {
-                    Filter = "CSV files (*.csv)|*.csv",
-                    Multiselect = false
-                };
-                bool isEmpleadoFile = false;
-                bool isConsumoFile = false;
-                string file1 = "";
-                string file2 = "";
-                openFileDialog.FileName = "EMPLEADOS";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    file1 = openFileDialog.FileName;
-                    isEmpleadoFile = file1.Contains("empleados");
+                    ProcesarArchivos(archivoEmpleado, archivoConsumo);
                 }
                 else
                 {
-                    return;
+                    _generalItems.sonido(false);
+                    MessageBox.Show("Por favor seleccione ambos archivos (empleados y consumo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                openFileDialog.FileName = "CONSUMO";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    file2 = openFileDialog.FileName;
-                    isConsumoFile = file2.Contains("consumo");
-
-                    if (isEmpleadoFile && isConsumoFile)
-                    {
-                        ProcesarArchivos(file1, file2);
-                    }
-                    else
-                    {
-                        generalItems.sonido(false);
-                        MessageBox.Show("Por favor seleccione un archivo de empleados y uno de consumo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (Exception a)
-            {
-                generalItems.sonido(false);
-            }
-        }
-        private void ProcesarArchivos(string empleadoFilePath, string consumoFilePath)
-        {
-            try
-            {
-                // Procesar el archivo de empleados
-                using (StreamReader sr = new StreamReader(empleadoFilePath))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        string[] empleadoData = line.Split(',');
-                        try
-                        {
-                            int idEmpleado = int.Parse(empleadoData[0]); // Suponiendo que el primer valor es el ID del empleado
-
-                            // Verificar si el empleado ya existe en la base de datos
-                            List<Empleado> listaEmpleados = new ListarEmpleado().Listar();
-                            Empleado empleadoExistente = listaEmpleados.FirstOrDefault(e => e.IdEmpleado == idEmpleado);
-
-                            if (empleadoExistente == null)
-                            {
-                                // Si el empleado no existe, insertarlo en la base de datos
-                                string numeroDocumento = empleadoData[1];
-                                string nombreCompleto = empleadoData[2];
-                                string zonaDeTrabajo = empleadoData[3];
-                                int consumos = int.Parse(empleadoData[4]);
-                                string imagen = empleadoData[5]; // Suponiendo que la imagen es el sexto valor
-                                bool estado = bool.Parse(empleadoData[6]); // Suponiendo que el estado es el séptimo valor
-                                DateTime fechaRegistro = DateTime.Parse(empleadoData[7]); // Suponiendo que la fecha de registro es el octavo valor
-
-                                new QueryEmpleado().InsertarEmpleado(numeroDocumento, nombreCompleto, zonaDeTrabajo, consumos, estado, fechaRegistro);
-                            }
-                            else
-                            {
-                                // Si el empleado existe, verificar si hay cambios y actualizarlos si es necesario
-                                string numeroDocumento = empleadoData[1];
-                                string nombreCompleto = empleadoData[2];
-                                string zonaDeTrabajo = empleadoData[3];
-                                int numeroconumo = int.Parse(empleadoData[4]);
-                                string imagen = empleadoData[5]; // Suponiendo que la imagen es el sexto valor
-                                bool estado = bool.Parse(empleadoData[7]);// Suponiendo que el estado es el séptimo valor
-                                DateTime fechaRegistro = DateTime.Parse(empleadoData[8]); // Suponiendo que la fecha de registro es el octavo valor
-
-                                if (empleadoExistente.NumeroDocumento != numeroDocumento ||
-                                    empleadoExistente.NombreCompleto != nombreCompleto ||
-                                    empleadoExistente.ZonaDeTrabajo != zonaDeTrabajo ||
-                                    empleadoExistente.Estado != estado ||
-                                    empleadoExistente.FechaRegistro != fechaRegistro)
-                                {
-                                    new QueryEmpleado().ActualizarEmpleadoCS(empleadoExistente.IdEmpleado, numeroDocumento, nombreCompleto, zonaDeTrabajo, numeroconumo, estado, fechaRegistro);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            generalItems.sonido(false);
-                            // Manejo de errores al procesar cada línea de empleado
-                        }
-                    }
-                }
-
-                // Procesar el archivo de consumo
-                using (StreamReader sr = new StreamReader(consumoFilePath))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        string[] consumoData = line.Split(',');
-                        try
-                        {
-                            int idConsumo = int.Parse(consumoData[0]); // Suponiendo que el primer valor es el ID del consumo
-
-                            // Verificar si el consumo ya existe en la base de datos
-                            List<Consumo_CS> listaConsumos = new ListarConsumoCS().Listar();
-                            Consumo_CS consumoExistente = listaConsumos.FirstOrDefault(c => c.IdConsumo == idConsumo);
-
-                            if (consumoExistente == null)
-                            {
-                                // Si el consumo no existe, insertarlo en la base de datos
-                                int idEmpleado = int.Parse(consumoData[1]);
-                                string tipoConsumo = consumoData[2];
-                                DateTime fechaRegistro = DateTime.Parse(consumoData[3]);
-                                bool formaRegistro = Boolean.Parse(consumoData[4]);
-
-                                new QueryConsumo().AgregarConsumoCS(idEmpleado, tipoConsumo, fechaRegistro, formaRegistro);
-                            }
-                        }
-                        catch
-                        {
-                            generalItems.sonido(false);
-                            // Manejo de errores al procesar cada línea de consumo
-                        }
-                    }
-                }
-                generalItems.sonido(true);
-                MessageBox.Show("Archivos procesados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                generalItems.sonido(false);
-                MessageBox.Show($"Error al procesar archivos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _generalItems.sonido(false);
+                MostrarError("Error al importar los archivos", ex);
             }
+        }
+
+        private void ExportarDatos(string ubicacionCopiasSeguridad)
+        {
+            if (!Directory.Exists(ubicacionCopiasSeguridad))
+            {
+                Directory.CreateDirectory(ubicacionCopiasSeguridad);
+            }
+
+            ExportarArchivoCSV(
+                "registros_empleados_",
+                "IdEmpleado,NombreCompleto,NumeroDocumento,ZonaDeTrabajo,NumeroConsumos,Imagen,Estado,FechaRegistro",
+                new ListarEmpleado().Listar().Select(empleado => $"{empleado.IdEmpleado},{empleado.NombreCompleto},{empleado.NumeroDocumento},{empleado.ZonaDeTrabajo},{empleado.NumeroConsumos},{empleado.Estado},{empleado.FechaRegistro}")
+            );
+
+            ExportarArchivoCSV(
+                "registros_consumo_",
+                "IdConsumo,IdEmpleado,TipoConsumo,FechaRegistro,FormaRegistro",
+                new ListarConsumoCS().Listar().Select(consumo => $"{consumo.IdConsumo},{consumo.IdEmpleado},{consumo.TipoConsumo},{consumo.FechaRegistro},{consumo.FormaRegistro}")
+            );
+        }
+
+        private void ExportarArchivoCSV(string nombreArchivoBase, string cabeceras, IEnumerable<string> registros)
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "CSV (*.csv)|*.csv",
+                FileName = $"{_queryConfiguracion.ObtenerConfiguracion().UbicacionCopiasSeguridad}{nombreArchivoBase}{DateTime.Now:yyyyMMdd_HHmmss}.csv"
+            };
+
+            using (var sw = new StreamWriter(saveFileDialog.FileName))
+            {
+                sw.WriteLine(cabeceras);
+                foreach (var registro in registros)
+                {
+                    sw.WriteLine(registro);
+                }
+            }
+        }
+
+        private (string, string) SeleccionarArchivos()
+        {
+            string archivoEmpleados = SeleccionarArchivo("EMPLEADOS");
+            string archivoConsumos = SeleccionarArchivo("CONSUMO");
+
+            return (archivoEmpleados, archivoConsumos);
+        }
+
+        private string SeleccionarArchivo(string nombreInicial)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "CSV files (*.csv)|*.csv",
+                Multiselect = false,
+                FileName = nombreInicial
+            };
+
+            return openFileDialog.ShowDialog() == DialogResult.OK ? openFileDialog.FileName : null;
+        }
+
+        private void ProcesarArchivos(string empleadoFilePath, string consumoFilePath)
+        {
+            ProcesarArchivoEmpleados(empleadoFilePath);
+            ProcesarArchivoConsumos(consumoFilePath);
+        }
+
+        private void ProcesarArchivoEmpleados(string filePath)
+        {
+            using (var sr = new StreamReader(filePath))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string[] empleadoData = sr.ReadLine().Split(',');
+                    ProcesarEmpleado(empleadoData);
+                }
+            }
+        }
+
+        private void ProcesarEmpleado(string[] empleadoData)
+        {
+            int idEmpleado = int.Parse(empleadoData[0]);
+            List<Empleado> listaEmpleados = new ListarEmpleado().Listar();
+            var empleadoExistente = listaEmpleados.FirstOrDefault(e => e.IdEmpleado == idEmpleado);
+
+            if (empleadoExistente == null)
+            {
+                InsertarEmpleado(empleadoData);
+            }
+            else
+            {
+                ActualizarEmpleadoSiNecesario(empleadoExistente, empleadoData);
+            }
+        }
+
+        private void InsertarEmpleado(string[] empleadoData)
+        {
+            var nuevoEmpleado = new Empleado
+            {
+                NumeroDocumento = empleadoData[1],
+                NombreCompleto = empleadoData[2],
+                ZonaDeTrabajo = empleadoData[3],
+                NumeroConsumos = int.Parse(empleadoData[4]),
+                Estado = bool.Parse(empleadoData[6]),
+                FechaRegistro = DateTime.Parse(empleadoData[7])
+            };
+
+            new QueryEmpleado().InsertarEmpleado(nuevoEmpleado.NumeroDocumento,nuevoEmpleado.NombreCompleto,nuevoEmpleado.ZonaDeTrabajo,nuevoEmpleado.NumeroConsumos,nuevoEmpleado.Estado,DateTime.Now);
+        }
+
+        private void ActualizarEmpleadoSiNecesario(Empleado empleadoExistente, string[] empleadoData)
+        {
+            if (empleadoExistente.NombreCompleto != empleadoData[2] ||
+                empleadoExistente.ZonaDeTrabajo != empleadoData[3] ||
+                empleadoExistente.NumeroConsumos != int.Parse(empleadoData[4]) ||
+                empleadoExistente.Estado != bool.Parse(empleadoData[6]) ||
+                empleadoExistente.FechaRegistro != DateTime.Parse(empleadoData[7]))
+            {
+                empleadoExistente.NombreCompleto = empleadoData[2];
+                empleadoExistente.ZonaDeTrabajo = empleadoData[3];
+                empleadoExistente.NumeroConsumos = int.Parse(empleadoData[4]);
+                empleadoExistente.Estado = bool.Parse(empleadoData[6]);
+                empleadoExistente.FechaRegistro = DateTime.Parse(empleadoData[7]);
+
+                new QueryEmpleado().ActualizarEmpleadoCS(empleadoExistente.IdEmpleado,empleadoExistente.NumeroDocumento,empleadoExistente.NombreCompleto,empleadoExistente.ZonaDeTrabajo,empleadoExistente.NumeroConsumos,empleadoExistente.Estado,empleadoExistente.FechaRegistro);
+            }
+        }
+
+        private void ProcesarArchivoConsumos(string filePath)
+        {
+            using (var sr = new StreamReader(filePath))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string[] consumoData = sr.ReadLine().Split(',');
+                    ProcesarConsumo(consumoData);
+                }
+            }
+        }
+
+        private void ProcesarConsumo(string[] consumoData)
+        {
+            int idConsumo = int.Parse(consumoData[0]);
+            List<Consumo_CS> listaConsumos = new ListarConsumoCS().Listar();
+            var consumoExistente = listaConsumos.FirstOrDefault(c => c.IdConsumo == idConsumo);
+
+            if (consumoExistente == null)
+            {
+                AgregarConsumo(consumoData);
+            }
+        }
+
+        private void AgregarConsumo(string[] consumoData)
+        {
+            new QueryConsumo().AgregarConsumoCS(
+                int.Parse(consumoData[1]),
+                consumoData[2],
+                DateTime.Parse(consumoData[3]),
+                bool.Parse(consumoData[4])
+            );
+        }
+
+        private void MostrarError(string mensaje, Exception ex)
+        {
+            MessageBox.Show($"{mensaje}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

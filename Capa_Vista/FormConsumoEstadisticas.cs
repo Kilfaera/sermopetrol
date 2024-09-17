@@ -11,6 +11,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 {
     public partial class FormConsumoEstadisticas : Form
     {
+
         QueryConfiguracion query = new QueryConfiguracion();
         Funciones_frecuentes generalItems = new Funciones_frecuentes();
         private Form1 mainForm;
@@ -20,13 +21,16 @@ namespace Consumos_Sermopetrol.Capa_Vista
             autocompletar();
             ActualizarlistaConsumo();
         }
+
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
+
         System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog();
         private void iconButtonExportar_Click(object sender, EventArgs e)
         {
+
             try
             {
                 Configuraciones configuracion = query.ObtenerConfiguracion();
@@ -62,6 +66,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     MessageBox.Show("SE HA EXPORTADO CORRECTAMENTE.");
                 }
             }
+
             catch (Exception a)
             {
                 generalItems.sonido(false);
@@ -75,6 +80,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         }
         void autocompletar()
         {
+
             try
             {
                 // Crear una colección de cadenas para las coincidencias de autocompletado de nombres/documentos
@@ -113,6 +119,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 textBoxZona.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 textBoxZona.AutoCompleteCustomSource = coincidenciasZona;
             }
+
             catch (Exception ex)
             {
                 generalItems.sonido(false);
@@ -127,14 +134,13 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void Filtrar()
         {
-
             try
             {
                 string documentoynombre = textBoxNombre.Text;
                 string zona = textBoxZona.Text;
                 string tipoConsumo;
                 DateTime desdeDate = dateTimePickerDesde.Value.Date,
-                hastaDate = dateTimePickerHasta.Value.Date;
+                         hastaDate = dateTimePickerHasta.Value.Date;
 
                 if (comboBoxConsumo.SelectedIndex == 0)
                 {
@@ -145,32 +151,23 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     tipoConsumo = comboBoxConsumo.Text;
                 }
 
-
-
-
-                List<Consumo> listaConsumo = new ListarConsumo().Listar();
+                // Llamar al método FiltrarConsumos para obtener la lista filtrada desde la base de datos
+                List<Consumo> listaConsumo = new QueryConsumo().FiltrarConsumos(documentoynombre, zona, tipoConsumo, desdeDate, hastaDate);
 
                 dataGridView.Rows.Clear();
 
                 foreach (Consumo item in listaConsumo)
                 {
-                    if ((documentoynombre == "" || item.DocumentoEmpleado == documentoynombre || item.NombreEmpleado.Contains(documentoynombre)) &&
-                        (zona == "" || item.ZonaTrabajoEmpleado == zona) &&
-                        (tipoConsumo == "" || item.TipoConsumo == tipoConsumo) &&
-                        (item.FechaRegistro.Date >= desdeDate) &&
-                        (item.FechaRegistro.Date <= hastaDate))
-                    {
-                        dataGridView.Rows.Add(new object[] { item.IdConsumo, item.NombreEmpleado, item.DocumentoEmpleado, item.ZonaTrabajoEmpleado, item.TipoConsumo, item.FechaRegistro, item.FormaRegistro });
-                    }
-
+                    dataGridView.Rows.Add(new object[] { item.IdConsumo, item.NombreEmpleado, item.DocumentoEmpleado, item.ZonaTrabajoEmpleado, item.TipoConsumo, item.FechaRegistro, item.FormaRegistro });
                 }
             }
-            catch (Exception a)
+            catch (Exception ex)
             {
                 generalItems.sonido(false);
-                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + a);
+                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + ex.Message);
             }
         }
+
 
         private void textBoxZona_TextChanged(object sender, EventArgs e)
         {
@@ -191,6 +188,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             Filtrar();
         }
+
         public void ActualizarlistaConsumo()
         {
             try

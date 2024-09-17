@@ -167,6 +167,55 @@ namespace AppConsumo.Controlador
                 return false;
             }
         }
+        public List<Consumo> FiltrarConsumos(string documentoynombre, string zona, string tipoConsumo, DateTime desdeDate, DateTime hastaDate)
+        {
+            List<Consumo> lista = new List<Consumo>();
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
+            {
+                try
+                {
+                    oconexion.Open();
+                    MySqlCommand cmd = new MySqlCommand("FiltrarConsumos", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Añadir los parámetros al comando
+                    cmd.Parameters.AddWithValue("@p_documentoynombre", documentoynombre);
+                    cmd.Parameters.AddWithValue("@p_zona", zona);
+                    cmd.Parameters.AddWithValue("@p_tipoConsumo", tipoConsumo);
+                    cmd.Parameters.AddWithValue("@p_fechaDesde", desdeDate);
+                    cmd.Parameters.AddWithValue("@p_fechaHasta", hastaDate);
+
+                    // Ejecutar la consulta y leer los resultados
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Consumo
+                            {
+                                IdConsumo = Convert.ToInt32(reader["IdConsumo"]),
+                                NombreEmpleado = reader["NombreEmpleado"].ToString(),
+                                DocumentoEmpleado = reader["DocumentoEmpleado"].ToString(),
+                                ZonaTrabajoEmpleado = reader["ZonaTrabajoEmpleado"].ToString(),
+                                TipoConsumo = reader["TipoConsumo"].ToString(),
+                                FechaRegistro = Convert.ToDateTime(reader["FechaRegistro"]),
+                                FormaRegistro = Convert.ToBoolean(reader["FormaRegistro"])
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al filtrar los consumos: " + ex.Message);
+                    lista = new List<Consumo>();  // Retornar lista vacía en caso de error
+                }
+                finally
+                {
+                    oconexion.Close();
+                }
+            }
+            return lista;
+        }
+
 
 
     }
