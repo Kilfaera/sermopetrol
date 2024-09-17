@@ -181,11 +181,11 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE CambiarEstadoEmpleado(
     IN p_IdEmpleado INT,
-    IN p_NuevoEstado BOOLEAN
+    IN NuevoEstado BOOLEAN
 )
 BEGIN
     UPDATE Empleado
-    SET Estado = p_NuevoEstado
+    SET Estado = NuevoEstado
     WHERE IdEmpleado = p_IdEmpleado;
 END$$
 DELIMITER ;
