@@ -171,22 +171,21 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void textBoxZona_TextChanged(object sender, EventArgs e)
         {
-            Filtrar();
         }
 
         private void comboBoxConsumo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Filtrar();
+        
         }
 
         private void dateTimePickerDesde_ValueChanged(object sender, EventArgs e)
         {
-            Filtrar();
+        
         }
 
         private void dateTimePickerHasta_ValueChanged(object sender, EventArgs e)
         {
-            Filtrar();
+            
         }
 
         public void ActualizarlistaConsumo()
@@ -231,6 +230,11 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonReiniciar_Click(object sender, EventArgs e)
         {
             ActualizarlistaConsumo();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            Filtrar();
         }
     }
 }
