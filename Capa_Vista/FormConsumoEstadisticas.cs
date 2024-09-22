@@ -129,7 +129,6 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void textBoxNombre_TextChanged(object sender, EventArgs e)
         {
-            Filtrar();
         }
 
         private void Filtrar()

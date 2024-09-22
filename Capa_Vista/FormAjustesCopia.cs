@@ -71,7 +71,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
             ExportarArchivoCSV(
                 "registros_empleados_",
-                "IdEmpleado,NombreCompleto,NumeroDocumento,ZonaDeTrabajo,NumeroConsumos,Imagen,Estado,FechaRegistro",
+                "IdEmpleado,NombreCompleto,NumeroDocumento,ZonaDeTrabajo,NumeroConsumos,Estado,FechaRegistro",
                 new ListarEmpleado().Listar().Select(empleado => $"{empleado.IdEmpleado},{empleado.NombreCompleto},{empleado.NumeroDocumento},{empleado.ZonaDeTrabajo},{empleado.NumeroConsumos},{empleado.Estado},{empleado.FechaRegistro}")
             );
 
