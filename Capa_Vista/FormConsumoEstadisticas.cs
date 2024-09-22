@@ -2,6 +2,7 @@
 using ClosedXML.Excel;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -135,37 +136,66 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             try
             {
-                string documentoynombre = textBoxNombre.Text;
-                string zona = textBoxZona.Text;
+                // Obtener los valores de los controles, asegurando que no sean nulos o vacíos
+                string documentoynombre = string.IsNullOrWhiteSpace(textBoxNombre.Text) ? null : textBoxNombre.Text;
+                string zona = string.IsNullOrWhiteSpace(textBoxZona.Text) ? null : textBoxZona.Text;
                 string tipoConsumo;
-                DateTime desdeDate = dateTimePickerDesde.Value.Date,
-                         hastaDate = dateTimePickerHasta.Value.Date;
 
-                if (comboBoxConsumo.SelectedIndex == 0)
+                DateTime desdeDate = dateTimePickerDesde.Value.Date;
+                DateTime hastaDate = dateTimePickerHasta.Value.Date;
+
+                // Validar que la fecha "Desde" no sea mayor que la fecha "Hasta"
+                if (desdeDate > hastaDate)
                 {
-                    tipoConsumo = "";
+                    MessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'.", "Error de fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar selección de tipo de consumo en el ComboBox
+                tipoConsumo = comboBoxConsumo.SelectedIndex == 0 ? "" : comboBoxConsumo.Text;
+
+                // Obtener la lista filtrada desde la base de datos
+                List<Consumo> listaConsumo = new QueryConsumo().FiltrarConsumos(documentoynombre, zona, tipoConsumo, desdeDate, hastaDate);
+
+                // Limpiar el DataGridView antes de mostrar los resultados
+                dataGridView.Rows.Clear();
+
+                // Verificar que se haya obtenido alguna lista y que no sea nula
+                if (listaConsumo != null && listaConsumo.Count > 0)
+                {
+                    foreach (Consumo item in listaConsumo)
+                    {
+                        dataGridView.Rows.Add(new object[]
+                        {
+                    item.IdConsumo,
+                    item.NombreEmpleado,
+                    item.DocumentoEmpleado,
+                    item.ZonaTrabajoEmpleado,
+                    item.TipoConsumo,
+                    item.FechaRegistro,
+                    item.FormaRegistro ? "Automático" : "Manual"
+                        });
+                    }
                 }
                 else
                 {
-                    tipoConsumo = comboBoxConsumo.Text;
+                    MessageBox.Show("No se encontraron registros que coincidan con los filtros aplicados.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                // Llamar al método FiltrarConsumos para obtener la lista filtrada desde la base de datos
-                List<Consumo> listaConsumo = new QueryConsumo().FiltrarConsumos(documentoynombre, zona, tipoConsumo, desdeDate, hastaDate);
-
-                dataGridView.Rows.Clear();
-
-                foreach (Consumo item in listaConsumo)
-                {
-                    dataGridView.Rows.Add(new object[] { item.IdConsumo, item.NombreEmpleado, item.DocumentoEmpleado, item.ZonaTrabajoEmpleado, item.TipoConsumo, item.FechaRegistro, item.FormaRegistro });
-                }
+            }
+            catch (MySqlException mysqlEx)
+            {
+                // Manejo de excepciones específicas de MySQL
+                generalItems.sonido(false);
+                MessageBox.Show("Error de base de datos: " + mysqlEx.Message, "Error de MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
+                // Manejo de cualquier otro tipo de excepción
                 generalItems.sonido(false);
-                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + ex.Message);
+                MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + ex.Message, "Error general", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void textBoxZona_TextChanged(object sender, EventArgs e)

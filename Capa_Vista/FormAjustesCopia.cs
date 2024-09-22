@@ -45,15 +45,12 @@ namespace Consumos_Sermopetrol.Capa_Vista
             try
             {
                 (string archivoEmpleado, string archivoConsumo) = SeleccionarArchivos();
-                if (!string.IsNullOrEmpty(archivoEmpleado) && !string.IsNullOrEmpty(archivoConsumo))
+                if (string.IsNullOrEmpty(archivoEmpleado) || string.IsNullOrEmpty(archivoConsumo))
                 {
-                    ProcesarArchivos(archivoEmpleado, archivoConsumo);
+                    throw new Exception("Los archivos seleccionados no son válidos.");
                 }
-                else
-                {
-                    _generalItems.sonido(false);
-                    MessageBox.Show("Por favor seleccione ambos archivos (empleados y consumo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+                ProcesarArchivos(archivoEmpleado, archivoConsumo);
             }
             catch (Exception ex)
             {
@@ -84,11 +81,22 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void ExportarArchivoCSV(string nombreArchivoBase, string cabeceras, IEnumerable<string> registros)
         {
+            var configuracion = _queryConfiguracion.ObtenerConfiguracion();
+            var rutaArchivo = $"{configuracion.UbicacionCopiasSeguridad}{nombreArchivoBase}{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+
+            if (string.IsNullOrWhiteSpace(configuracion.UbicacionCopiasSeguridad) || Path.GetInvalidPathChars().Any(c => rutaArchivo.Contains(c)))
+            {
+                MessageBox.Show("La ruta especificada no es válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = "CSV (*.csv)|*.csv",
-                FileName = $"{_queryConfiguracion.ObtenerConfiguracion().UbicacionCopiasSeguridad}{nombreArchivoBase}{DateTime.Now:yyyyMMdd_HHmmss}.csv"
+                FileName = rutaArchivo
             };
+
+            MessageBox.Show($"Ruta de archivo: {saveFileDialog.FileName}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             using (var sw = new StreamWriter(saveFileDialog.FileName))
             {
@@ -166,7 +174,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 FechaRegistro = DateTime.Parse(empleadoData[7])
             };
 
-            new QueryEmpleado().InsertarEmpleado(nuevoEmpleado.NumeroDocumento,nuevoEmpleado.NombreCompleto,nuevoEmpleado.ZonaDeTrabajo,nuevoEmpleado.NumeroConsumos,nuevoEmpleado.Estado,DateTime.Now);
+            new QueryEmpleado().InsertarEmpleado(nuevoEmpleado.NumeroDocumento, nuevoEmpleado.NombreCompleto, nuevoEmpleado.ZonaDeTrabajo, nuevoEmpleado.NumeroConsumos, nuevoEmpleado.Estado, DateTime.Now);
         }
 
         private void ActualizarEmpleadoSiNecesario(Empleado empleadoExistente, string[] empleadoData)
@@ -183,7 +191,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 empleadoExistente.Estado = bool.Parse(empleadoData[6]);
                 empleadoExistente.FechaRegistro = DateTime.Parse(empleadoData[7]);
 
-                new QueryEmpleado().ActualizarEmpleadoCS(empleadoExistente.IdEmpleado,empleadoExistente.NumeroDocumento,empleadoExistente.NombreCompleto,empleadoExistente.ZonaDeTrabajo,empleadoExistente.NumeroConsumos,empleadoExistente.Estado,empleadoExistente.FechaRegistro);
+                new QueryEmpleado().ActualizarEmpleadoCS(empleadoExistente.IdEmpleado, empleadoExistente.NumeroDocumento, empleadoExistente.NombreCompleto, empleadoExistente.ZonaDeTrabajo, empleadoExistente.NumeroConsumos, empleadoExistente.Estado, empleadoExistente.FechaRegistro);
             }
         }
 

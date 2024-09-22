@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.iconButtonReiniciar = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dateTimePickerHasta = new System.Windows.Forms.DateTimePicker();
@@ -57,7 +58,6 @@
             this.consumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FormaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -117,6 +117,24 @@
             this.panel5.Size = new System.Drawing.Size(278, 139);
             this.panel5.TabIndex = 16;
             // 
+            // iconButton1
+            // 
+            this.iconButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.iconButton1.FlatAppearance.BorderSize = 2;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Play;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(0, 69);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(278, 60);
+            this.iconButton1.TabIndex = 8;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
             // iconButtonReiniciar
             // 
             this.iconButtonReiniciar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -161,7 +179,6 @@
             this.dateTimePickerHasta.Name = "dateTimePickerHasta";
             this.dateTimePickerHasta.Size = new System.Drawing.Size(278, 20);
             this.dateTimePickerHasta.TabIndex = 28;
-            this.dateTimePickerHasta.ValueChanged += new System.EventHandler(this.dateTimePickerHasta_ValueChanged);
             // 
             // dateTimePickerDesde
             // 
@@ -170,7 +187,6 @@
             this.dateTimePickerDesde.Name = "dateTimePickerDesde";
             this.dateTimePickerDesde.Size = new System.Drawing.Size(278, 20);
             this.dateTimePickerDesde.TabIndex = 27;
-            this.dateTimePickerDesde.ValueChanged += new System.EventHandler(this.dateTimePickerDesde_ValueChanged);
             // 
             // labelHasta
             // 
@@ -209,7 +225,6 @@
             this.comboBoxConsumo.Name = "comboBoxConsumo";
             this.comboBoxConsumo.Size = new System.Drawing.Size(278, 21);
             this.comboBoxConsumo.TabIndex = 22;
-            this.comboBoxConsumo.SelectedIndexChanged += new System.EventHandler(this.comboBoxConsumo_SelectedIndexChanged);
             // 
             // labelConsumo
             // 
@@ -232,7 +247,6 @@
             this.textBoxZona.Name = "textBoxZona";
             this.textBoxZona.Size = new System.Drawing.Size(278, 20);
             this.textBoxZona.TabIndex = 20;
-            this.textBoxZona.TextChanged += new System.EventHandler(this.textBoxZona_TextChanged);
             // 
             // labelZona
             // 
@@ -255,7 +269,6 @@
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(278, 20);
             this.textBoxNombre.TabIndex = 18;
-            this.textBoxNombre.TextChanged += new System.EventHandler(this.textBoxNombre_TextChanged);
             // 
             // labelNombre
             // 
@@ -321,14 +334,14 @@
             this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -338,14 +351,14 @@
             this.consumo,
             this.fecha,
             this.FormaRegistro});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
@@ -408,24 +421,6 @@
             this.FormaRegistro.Name = "FormaRegistro";
             this.FormaRegistro.ReadOnly = true;
             this.FormaRegistro.Width = 183;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.iconButton1.FlatAppearance.BorderSize = 2;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Play;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.Location = new System.Drawing.Point(0, 69);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(278, 60);
-            this.iconButton1.TabIndex = 8;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // FormConsumoEstadisticas
             // 
