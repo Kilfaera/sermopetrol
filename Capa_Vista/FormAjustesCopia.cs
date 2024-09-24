@@ -136,31 +136,89 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void ProcesarArchivoEmpleados(string filePath)
         {
+            bool primeraFila = true; // Para detectar la primera fila (encabezados)
+
             using (var sr = new StreamReader(filePath))
             {
                 while (!sr.EndOfStream)
                 {
-                    string[] empleadoData = sr.ReadLine().Split(',');
+                    string linea = sr.ReadLine();
+
+                    // Omitir la primera fila si es la de encabezados
+                    if (primeraFila)
+                    {
+                        primeraFila = false;
+                        continue;
+                    }
+
+                    string[] empleadoData = linea.Split(',');
+
+                    // Verificación del número de columnas
+                    if (empleadoData.Length != 7)
+                    {
+                        MessageBox.Show($"La fila '{linea}' no tiene el número correcto de columnas (se esperaban 7).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+
+                    // Procesar el empleado solo si pasa la verificación
                     ProcesarEmpleado(empleadoData);
                 }
             }
         }
 
+
         private void ProcesarEmpleado(string[] empleadoData)
         {
-            int idEmpleado = int.Parse(empleadoData[0]);
-            List<Empleado> listaEmpleados = new ListarEmpleado().Listar();
-            var empleadoExistente = listaEmpleados.FirstOrDefault(e => e.IdEmpleado == idEmpleado);
+            try
+            {
+                if (empleadoData.Length != 7)
+                {
+                    throw new FormatException("La cantidad de columnas en el archivo CSV no es la esperada.");
+                }
 
-            if (empleadoExistente == null)
-            {
-                InsertarEmpleado(empleadoData);
+                if (!int.TryParse(empleadoData[0], out int idEmpleado))
+                {
+                    throw new FormatException($"Error al convertir el IdEmpleado: {empleadoData[0]}");
+                }
+
+                if (!int.TryParse(empleadoData[4], out int numeroConsumos))
+                {
+                    throw new FormatException($"Error al convertir NumeroConsumos: {empleadoData[4]}");
+                }
+
+                if (!bool.TryParse(empleadoData[5].ToLower(), out bool estado))
+                {
+                    throw new FormatException($"Error al convertir Estado: {empleadoData[5]}");
+                }
+
+
+                if (!DateTime.TryParse(empleadoData[6], out DateTime fechaRegistro))
+                {
+                    throw new FormatException($"Error al convertir FechaRegistro: {empleadoData[7]}");
+                }
+
+                List<Empleado> listaEmpleados = new ListarEmpleado().Listar();
+                var empleadoExistente = listaEmpleados.FirstOrDefault(e => e.IdEmpleado == idEmpleado);
+
+                if (empleadoExistente == null)
+                {
+                    InsertarEmpleado(empleadoData);
+                }
+                else
+                {
+                    ActualizarEmpleadoSiNecesario(empleadoExistente, empleadoData);
+                }
             }
-            else
+            catch (FormatException fe)
             {
-                ActualizarEmpleadoSiNecesario(empleadoExistente, empleadoData);
+                MessageBox.Show($"Error de formato en el archivo CSV empleado: {fe.Message}", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado en empleado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void InsertarEmpleado(string[] empleadoData)
         {
@@ -197,11 +255,31 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void ProcesarArchivoConsumos(string filePath)
         {
+            bool primeraFila = true; // Para detectar la primera fila (encabezados)
+
             using (var sr = new StreamReader(filePath))
             {
                 while (!sr.EndOfStream)
                 {
-                    string[] consumoData = sr.ReadLine().Split(',');
+                    string linea = sr.ReadLine();
+
+                    // Omitir la primera fila si es la de encabezados
+                    if (primeraFila)
+                    {
+                        primeraFila = false;
+                        continue;
+                    }
+
+                    string[] consumoData = linea.Split(',');
+
+                    // Verificación del número de columnas
+                    if (consumoData.Length != 5)
+                    {
+                        MessageBox.Show($"La fila '{linea}' no tiene el número correcto de columnas (se esperaban 5).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+
+                    // Procesar el consumo solo si pasa la verificación
                     ProcesarConsumo(consumoData);
                 }
             }
@@ -209,15 +287,52 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void ProcesarConsumo(string[] consumoData)
         {
-            int idConsumo = int.Parse(consumoData[0]);
-            List<Consumo_CS> listaConsumos = new ListarConsumoCS().Listar();
-            var consumoExistente = listaConsumos.FirstOrDefault(c => c.IdConsumo == idConsumo);
-
-            if (consumoExistente == null)
+            try
             {
-                AgregarConsumo(consumoData);
+                if (consumoData.Length != 5)
+                {
+                    throw new FormatException("La cantidad de columnas en el archivo CSV de consumos no es la esperada.");
+                }
+
+                if (!int.TryParse(consumoData[0], out int idConsumo))
+                {
+                    throw new FormatException($"Error al convertir el IdConsumo: {consumoData[0]}");
+                }
+
+                if (!int.TryParse(consumoData[1], out int idEmpleado))
+                {
+                    throw new FormatException($"Error al convertir el IdEmpleado: {consumoData[1]}");
+                }
+
+
+                if (!DateTime.TryParse(consumoData[3], out DateTime fechaRegistro))
+                {
+                    throw new FormatException($"Error al convertir FechaRegistro: {consumoData[3]}");
+                }
+
+                if (!bool.TryParse(consumoData[4].ToLower(), out bool formaRegistro))
+                {
+                    throw new FormatException($"Error al convertir FormaRegistro: {consumoData[4]}");
+                }
+
+                List<Consumo_CS> listaConsumos = new ListarConsumoCS().Listar();
+                var consumoExistente = listaConsumos.FirstOrDefault(c => c.IdConsumo == idConsumo);
+
+                if (consumoExistente == null)
+                {
+                    AgregarConsumo(consumoData);
+                }
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show($"Error de formato en el archivo CSV consumo: {fe.Message}", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado en consumo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void AgregarConsumo(string[] consumoData)
         {
