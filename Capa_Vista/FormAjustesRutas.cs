@@ -211,6 +211,11 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 MessageBox.Show("Contraseña incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            generalItems.Backup();
+        }
     }
 
 }

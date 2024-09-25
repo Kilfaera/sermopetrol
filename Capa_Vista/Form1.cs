@@ -1,13 +1,7 @@
 ﻿using Consumos_Sermopetrol.Capa_Negocio;
 using Consumos_Sermopetrol.Capa_Vista;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Consumos_Sermopetrol
@@ -49,7 +43,7 @@ namespace Consumos_Sermopetrol
         private void removeAllButtonBackColor()
         {
             buttonAgregarConsumo.BackColor = buttonAgregarEmpleados.BackColor = buttonAjustesSideMenu.BackColor = buttonCloseBorderStyle.BackColor =
-                buttonConsumoSideMenu.BackColor = buttonCopiaAjustes.BackColor = buttonEmpleadosSideMenu.BackColor = buttonEstadisticasConsumo.BackColor =
+                 buttonEmpleadosSideMenu.BackColor = buttonEstadisticasConsumo.BackColor =
                 buttonExportarSideMenu.BackColor = buttonListaEmpleados.BackColor =
                 buttonMinimizeBorderStyle.BackColor = buttonModificarEmpleados.BackColor = buttonQrExportar.BackColor = buttonRutasAjustes.BackColor = Color.Transparent;
         }
@@ -116,7 +110,7 @@ namespace Consumos_Sermopetrol
         public void buttonAgregarEmpleados_Click(object sender, EventArgs e)
         {
             openChildForm(new FormEmpleadosAgregar());
-            buttonAgregarEmpleados.BackColor= Color.White;
+            buttonAgregarEmpleados.BackColor = Color.White;
         }
         #endregion
         #region Exportar
@@ -159,7 +153,6 @@ namespace Consumos_Sermopetrol
         private void buttonCopiaAjustes_Click(object sender, EventArgs e)
         {
             openChildForm(new FormAjustesCopia());
-            buttonCopiaAjustes.BackColor = Color.White;
         }
         #endregion
         #region ChildForm

@@ -117,14 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;buttonMinimizeBorderStyle.Name" xml:space="preserve">
+    <value>buttonMinimizeBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;buttonMinimizeBorderStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMinimizeBorderStyle.Parent" xml:space="preserve">
+    <value>panelBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;buttonMinimizeBorderStyle.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonCloseBorderStyle.Name" xml:space="preserve">
+    <value>buttonCloseBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;buttonCloseBorderStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCloseBorderStyle.Parent" xml:space="preserve">
+    <value>panelBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;buttonCloseBorderStyle.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panelBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelBorderStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="panelBorderStyle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1280, 36</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelBorderStyle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.Name" xml:space="preserve">
+    <value>panelBorderStyle</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelBorderStyle.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="buttonMinimizeBorderStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="buttonMinimizeBorderStyle.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonMinimizeBorderStyle.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS Gothic, 20.25pt, style=Bold</value>
   </data>
@@ -137,7 +198,6 @@
   <data name="buttonMinimizeBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 36</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonMinimizeBorderStyle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -231,30 +291,6 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="panelBorderStyle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelBorderStyle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelBorderStyle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1280, 36</value>
-  </data>
-  <data name="panelBorderStyle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.Name" xml:space="preserve">
-    <value>panelBorderStyle</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelBorderStyle.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="panelSideMenu.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -300,48 +336,6 @@
   <data name="&gt;&gt;buttonAjustesSideMenu.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonCopiaAjustes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="buttonCopiaAjustes.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonCopiaAjustes.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
-  </data>
-  <data name="buttonCopiaAjustes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonCopiaAjustes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 40</value>
-  </data>
-  <data name="buttonCopiaAjustes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>40, 0, 0, 0</value>
-  </data>
-  <data name="buttonCopiaAjustes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 40</value>
-  </data>
-  <data name="buttonCopiaAjustes.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="buttonCopiaAjustes.Text" xml:space="preserve">
-    <value>Copia de Seguridad</value>
-  </data>
-  <data name="buttonCopiaAjustes.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;buttonCopiaAjustes.Name" xml:space="preserve">
-    <value>buttonCopiaAjustes</value>
-  </data>
-  <data name="&gt;&gt;buttonCopiaAjustes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCopiaAjustes.Parent" xml:space="preserve">
-    <value>panelSubmenuAjustes</value>
-  </data>
-  <data name="&gt;&gt;buttonCopiaAjustes.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="buttonRutasAjustes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -367,7 +361,7 @@
     <value>0</value>
   </data>
   <data name="buttonRutasAjustes.Text" xml:space="preserve">
-    <value>Rutas de Guardado</value>
+    <value>Rutas y backup</value>
   </data>
   <data name="buttonRutasAjustes.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -382,7 +376,7 @@
     <value>panelSubmenuAjustes</value>
   </data>
   <data name="&gt;&gt;buttonRutasAjustes.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="panelSubmenuAjustes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -410,36 +404,6 @@
   </data>
   <data name="&gt;&gt;panelSubmenuAjustes.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="buttonQrExportar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="buttonQrExportar.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonQrExportar.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
-  </data>
-  <data name="buttonQrExportar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonQrExportar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="buttonQrExportar.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>40, 0, 0, 0</value>
-  </data>
-  <data name="buttonQrExportar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 40</value>
-  </data>
-  <data name="buttonQrExportar.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="buttonQrExportar.Text" xml:space="preserve">
-    <value>QR</value>
-  </data>
-  <data name="buttonQrExportar.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;buttonQrExportar.Name" xml:space="preserve">
     <value>buttonQrExportar</value>
@@ -521,6 +485,306 @@
   </data>
   <data name="&gt;&gt;buttonExportarSideMenu.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarEmpleados.Name" xml:space="preserve">
+    <value>buttonAgregarEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarEmpleados.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarEmpleados.Parent" xml:space="preserve">
+    <value>panelSubmenuEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarEmpleados.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.Name" xml:space="preserve">
+    <value>buttonModificarEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.Parent" xml:space="preserve">
+    <value>panelSubmenuEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonModificarEmpleados.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonListaEmpleados.Name" xml:space="preserve">
+    <value>buttonListaEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonListaEmpleados.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonListaEmpleados.Parent" xml:space="preserve">
+    <value>panelSubmenuEmpleados</value>
+  </data>
+  <data name="&gt;&gt;buttonListaEmpleados.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panelSubmenuEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelSubmenuEmpleados.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 390</value>
+  </data>
+  <data name="panelSubmenuEmpleados.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 130</value>
+  </data>
+  <data name="panelSubmenuEmpleados.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="panelSubmenuEmpleados.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuEmpleados.Name" xml:space="preserve">
+    <value>panelSubmenuEmpleados</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuEmpleados.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuEmpleados.Parent" xml:space="preserve">
+    <value>panelSideMenu</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuEmpleados.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 340</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 0, 0, 0</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 50</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.Text" xml:space="preserve">
+    <value>EMPLEADOS</value>
+  </data>
+  <data name="buttonEmpleadosSideMenu.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;buttonEmpleadosSideMenu.Name" xml:space="preserve">
+    <value>buttonEmpleadosSideMenu</value>
+  </data>
+  <data name="&gt;&gt;buttonEmpleadosSideMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonEmpleadosSideMenu.Parent" xml:space="preserve">
+    <value>panelSideMenu</value>
+  </data>
+  <data name="&gt;&gt;buttonEmpleadosSideMenu.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;buttonEstadisticasConsumo.Name" xml:space="preserve">
+    <value>buttonEstadisticasConsumo</value>
+  </data>
+  <data name="&gt;&gt;buttonEstadisticasConsumo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonEstadisticasConsumo.Parent" xml:space="preserve">
+    <value>panelSubmenuConsumo</value>
+  </data>
+  <data name="&gt;&gt;buttonEstadisticasConsumo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarConsumo.Name" xml:space="preserve">
+    <value>buttonAgregarConsumo</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarConsumo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarConsumo.Parent" xml:space="preserve">
+    <value>panelSubmenuConsumo</value>
+  </data>
+  <data name="&gt;&gt;buttonAgregarConsumo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panelSubmenuConsumo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelSubmenuConsumo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 250</value>
+  </data>
+  <data name="panelSubmenuConsumo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 90</value>
+  </data>
+  <data name="panelSubmenuConsumo.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="panelSubmenuConsumo.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuConsumo.Name" xml:space="preserve">
+    <value>panelSubmenuConsumo</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuConsumo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuConsumo.Parent" xml:space="preserve">
+    <value>panelSideMenu</value>
+  </data>
+  <data name="&gt;&gt;panelSubmenuConsumo.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="buttonConsumoSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonConsumoSideMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonConsumoSideMenu.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
+  </data>
+  <data name="buttonConsumoSideMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonConsumoSideMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 200</value>
+  </data>
+  <data name="buttonConsumoSideMenu.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 0, 0, 0</value>
+  </data>
+  <data name="buttonConsumoSideMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 50</value>
+  </data>
+  <data name="buttonConsumoSideMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonConsumoSideMenu.Text" xml:space="preserve">
+    <value>CONSUMO</value>
+  </data>
+  <data name="buttonConsumoSideMenu.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;buttonConsumoSideMenu.Name" xml:space="preserve">
+    <value>buttonConsumoSideMenu</value>
+  </data>
+  <data name="&gt;&gt;buttonConsumoSideMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonConsumoSideMenu.Parent" xml:space="preserve">
+    <value>panelSideMenu</value>
+  </data>
+  <data name="&gt;&gt;buttonConsumoSideMenu.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxLogoSideMenu.Name" xml:space="preserve">
+    <value>pictureBoxLogoSideMenu</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxLogoSideMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxLogoSideMenu.Parent" xml:space="preserve">
+    <value>panelLogoSideMenu</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxLogoSideMenu.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelLogoSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelLogoSideMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelLogoSideMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 200</value>
+  </data>
+  <data name="panelLogoSideMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelLogoSideMenu.Name" xml:space="preserve">
+    <value>panelLogoSideMenu</value>
+  </data>
+  <data name="&gt;&gt;panelLogoSideMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelLogoSideMenu.Parent" xml:space="preserve">
+    <value>panelSideMenu</value>
+  </data>
+  <data name="&gt;&gt;panelLogoSideMenu.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="panelSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="panelSideMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 36</value>
+  </data>
+  <data name="panelSideMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 752</value>
+  </data>
+  <data name="panelSideMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panelSideMenu.Name" xml:space="preserve">
+    <value>panelSideMenu</value>
+  </data>
+  <data name="&gt;&gt;panelSideMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelSideMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelSideMenu.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonQrExportar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonQrExportar.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonQrExportar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="buttonQrExportar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonQrExportar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="buttonQrExportar.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>40, 0, 0, 0</value>
+  </data>
+  <data name="buttonQrExportar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 40</value>
+  </data>
+  <data name="buttonQrExportar.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonQrExportar.Text" xml:space="preserve">
+    <value>QR</value>
+  </data>
+  <data name="buttonQrExportar.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;buttonQrExportar.Name" xml:space="preserve">
+    <value>buttonQrExportar</value>
+  </data>
+  <data name="&gt;&gt;buttonQrExportar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonQrExportar.Parent" xml:space="preserve">
+    <value>panelSubmenuExportar</value>
+  </data>
+  <data name="&gt;&gt;buttonQrExportar.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="buttonAgregarEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -648,75 +912,6 @@
   <data name="&gt;&gt;buttonListaEmpleados.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="panelSubmenuEmpleados.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelSubmenuEmpleados.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 390</value>
-  </data>
-  <data name="panelSubmenuEmpleados.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 130</value>
-  </data>
-  <data name="panelSubmenuEmpleados.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="panelSubmenuEmpleados.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuEmpleados.Name" xml:space="preserve">
-    <value>panelSubmenuEmpleados</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuEmpleados.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuEmpleados.Parent" xml:space="preserve">
-    <value>panelSideMenu</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuEmpleados.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 340</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 0, 0, 0</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 50</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.Text" xml:space="preserve">
-    <value>EMPLEADOS</value>
-  </data>
-  <data name="buttonEmpleadosSideMenu.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;buttonEmpleadosSideMenu.Name" xml:space="preserve">
-    <value>buttonEmpleadosSideMenu</value>
-  </data>
-  <data name="&gt;&gt;buttonEmpleadosSideMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonEmpleadosSideMenu.Parent" xml:space="preserve">
-    <value>panelSideMenu</value>
-  </data>
-  <data name="&gt;&gt;buttonEmpleadosSideMenu.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="buttonEstadisticasConsumo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -801,75 +996,6 @@
   <data name="&gt;&gt;buttonAgregarConsumo.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="panelSubmenuConsumo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelSubmenuConsumo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 250</value>
-  </data>
-  <data name="panelSubmenuConsumo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 90</value>
-  </data>
-  <data name="panelSubmenuConsumo.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="panelSubmenuConsumo.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuConsumo.Name" xml:space="preserve">
-    <value>panelSubmenuConsumo</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuConsumo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuConsumo.Parent" xml:space="preserve">
-    <value>panelSideMenu</value>
-  </data>
-  <data name="&gt;&gt;panelSubmenuConsumo.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="buttonConsumoSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="buttonConsumoSideMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonConsumoSideMenu.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
-  </data>
-  <data name="buttonConsumoSideMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonConsumoSideMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 200</value>
-  </data>
-  <data name="buttonConsumoSideMenu.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 0, 0, 0</value>
-  </data>
-  <data name="buttonConsumoSideMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 50</value>
-  </data>
-  <data name="buttonConsumoSideMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="buttonConsumoSideMenu.Text" xml:space="preserve">
-    <value>CONSUMO</value>
-  </data>
-  <data name="buttonConsumoSideMenu.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;buttonConsumoSideMenu.Name" xml:space="preserve">
-    <value>buttonConsumoSideMenu</value>
-  </data>
-  <data name="&gt;&gt;buttonConsumoSideMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonConsumoSideMenu.Parent" xml:space="preserve">
-    <value>panelSideMenu</value>
-  </data>
-  <data name="&gt;&gt;buttonConsumoSideMenu.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="pictureBoxLogoSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -900,65 +1026,8 @@
   <data name="&gt;&gt;pictureBoxLogoSideMenu.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="panelLogoSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelLogoSideMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelLogoSideMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 200</value>
-  </data>
-  <data name="panelLogoSideMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelLogoSideMenu.Name" xml:space="preserve">
-    <value>panelLogoSideMenu</value>
-  </data>
-  <data name="&gt;&gt;panelLogoSideMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelLogoSideMenu.Parent" xml:space="preserve">
-    <value>panelSideMenu</value>
-  </data>
-  <data name="&gt;&gt;panelLogoSideMenu.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="panelSideMenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="panelSideMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 36</value>
-  </data>
-  <data name="panelSideMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 752</value>
-  </data>
-  <data name="panelSideMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;panelSideMenu.Name" xml:space="preserve">
-    <value>panelSideMenu</value>
-  </data>
-  <data name="&gt;&gt;panelSideMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelSideMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelSideMenu.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="panelChildForm.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="iconPictureBoxMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="iconPictureBoxMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 32</value>
-  </data>
-  <data name="iconPictureBoxMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;iconPictureBoxMenu.Name" xml:space="preserve">
     <value>iconPictureBoxMenu</value>
@@ -994,6 +1063,27 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelChildForm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="iconPictureBoxMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="iconPictureBoxMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="iconPictureBoxMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBoxMenu.Name" xml:space="preserve">
+    <value>iconPictureBoxMenu</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBoxMenu.Type" xml:space="preserve">
+    <value>FontAwesome.Sharp.IconPictureBox, FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBoxMenu.Parent" xml:space="preserve">
+    <value>panelChildForm</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBoxMenu.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

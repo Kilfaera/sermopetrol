@@ -91,5 +91,20 @@ namespace AppConsumo.Controlador
                 oconexion.Close();
             }
         }
+        public void Backup(String Ubicacionfinal)
+        {
+            using (MySqlConnection oconexion = new MySqlConnection(CL_Conexion.cadena))
+            {
+                try
+                {
+                    
+                }
+                catch (Exception ex)
+                {
+                    // Manejo del error
+                    Console.WriteLine("Error al actualizar la configuración: " + ex.Message);
+                }
+                oconexion.Close();
+            }
     }
     }

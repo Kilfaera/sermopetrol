@@ -542,6 +542,11 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 }
             }
         }
+
+        internal void Backup()
+        {
+            
+        }
         #endregion
     }
 }
