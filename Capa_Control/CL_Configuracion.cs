@@ -97,7 +97,7 @@ namespace AppConsumo.Controlador
             {
                 try
                 {
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -106,5 +106,6 @@ namespace AppConsumo.Controlador
                 }
                 oconexion.Close();
             }
+        }
     }
-    }
+}
