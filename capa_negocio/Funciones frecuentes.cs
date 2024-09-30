@@ -2,10 +2,12 @@
 using Accord.Video.DirectShow;
 using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Windows.Forms;
@@ -543,9 +545,49 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
         }
 
-        internal void Backup()
-        {
-            
+        public void Backup(string textBoxRutaCsv)
+        { 
+            try
+            {
+                // Obtener la ruta de la copia de seguridad desde el TextBox
+                string rutaBackup = textBoxRutaCsv;
+
+                // Verificar que la ruta no esté vacía
+                if (string.IsNullOrEmpty(rutaBackup))
+                {
+                    MessageBox.Show("Por favor, selecciona una ruta válida para guardar la copia de seguridad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Nombre del archivo de respaldo
+                string fileName = $"backup_{DateTime.Now:yyyyMMdd_HHmmss}.sql";
+                string filePath = Path.Combine(rutaBackup, fileName);
+
+                // Comando para exportar la base de datos
+                using (MySqlConnection conn = new MySqlConnection("server=127.0.0.1;database=consumoempleado;uid=root;password=123456789;"
+))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+
+                            // Exportar la base de datos a un archivo SQL
+                            mb.ExportToFile(filePath);
+                            MessageBox.Show("Copia de seguridad completada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al realizar la copia de seguridad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
     }

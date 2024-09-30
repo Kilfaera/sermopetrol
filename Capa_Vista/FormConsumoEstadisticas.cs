@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using static ClosedXML.Excel.XLPredefinedFormat;
+using DateTime = System.DateTime;
 
 namespace Consumos_Sermopetrol.Capa_Vista
 {
@@ -22,6 +24,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             autocompletar();
             ActualizarlistaConsumo();
         }
+        List<Consumo> exportar = new List<Consumo>();
 
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -35,22 +38,22 @@ namespace Consumos_Sermopetrol.Capa_Vista
             try
             {
                 Configuraciones configuracion = query.ObtenerConfiguracion();
-                if (dataGridView.Columns.Count != 0 && dataGridView.Rows.Count > 0) //Si hay contenido en el datagridview
+                if (dataGridView1.Columns.Count != 0 && dataGridView1.Rows.Count > 0) //Si hay contenido en el datagridview
                 {
                     saveFileDialog.Filter = "XLSX (*.xlsx)|*.xlsx";
                     saveFileDialog.FileName = "consumos" + DateTime.Now.ToString("-HH_mm_ss-") + " " + DateTime.Now.ToString("-yyyy_MM_dd-") + ".xlsx";
                     saveFileDialog.AddExtension = true;
                     var workbook = new XLWorkbook(); //Variable que simula el archivo excel
                     var worksheet = workbook.AddWorksheet("Consumos"); //Variable que crea hojas dentro del archivo excel
-                    for (int i = 1; i <= dataGridView.Columns.Count; i++) //Recorre las columnas
+                    for (int i = 1; i <= dataGridView1.Columns.Count; i++) //Recorre las columnas
                     {
-                        worksheet.Cell(1, i).Value = dataGridView.Columns[i - 1].HeaderText; //Agrega el contenido
+                        worksheet.Cell(1, i).Value = dataGridView1.Columns[i - 1].HeaderText; //Agrega el contenido
                     }
-                    for (int i = 0; i < dataGridView.Rows.Count; i++) //Recorre las filas
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++) //Recorre las filas
                     {
-                        for (int j = 0; j < dataGridView.Columns.Count; j++) //Recorre las columnas de la fila actual
+                        for (int j = 0; j < dataGridView1.Columns.Count; j++) //Recorre las columnas de la fila actual
                         {
-                            worksheet.Cell(i + 2, j + 1).Value = dataGridView.Rows[i].Cells[j].Value?.ToString(); //Agrega el contenido
+                            worksheet.Cell(i + 2, j + 1).Value = dataGridView1.Rows[i].Cells[j].Value?.ToString(); //Agrega el contenido
                         }
                     }
                     saveFileDialog.FileName = configuracion.UbicacionExcel + saveFileDialog.FileName + ".xlsx";
@@ -136,45 +139,53 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             try
             {
-                // Obtener los valores de los controles, asegurando que no sean nulos o vacíos
                 string documentoynombre = string.IsNullOrWhiteSpace(textBoxNombre.Text) ? null : textBoxNombre.Text;
                 string zona = string.IsNullOrWhiteSpace(textBoxZona.Text) ? null : textBoxZona.Text;
-                string tipoConsumo;
+                string tipoConsumo = comboBoxConsumo.SelectedIndex == 0 ? "" : comboBoxConsumo.Text;
 
                 DateTime desdeDate = dateTimePickerDesde.Value.Date;
                 DateTime hastaDate = dateTimePickerHasta.Value.Date;
 
-                // Validar que la fecha "Desde" no sea mayor que la fecha "Hasta"
                 if (desdeDate > hastaDate)
                 {
                     MessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'.", "Error de fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validar selección de tipo de consumo en el ComboBox
-                tipoConsumo = comboBoxConsumo.SelectedIndex == 0 ? "" : comboBoxConsumo.Text;
+                List<Consumo> listaConsumo = new ListarConsumo().Listar();
+                dataGridView1.Rows.Clear();
 
-                // Obtener la lista filtrada desde la base de datos
-                List<Consumo> listaConsumo = new QueryConsumo().FiltrarConsumos(documentoynombre, zona, tipoConsumo, desdeDate, hastaDate);
-
-                // Limpiar el DataGridView antes de mostrar los resultados
-                dataGridView.Rows.Clear();
-
-                // Verificar que se haya obtenido alguna lista y que no sea nula
                 if (listaConsumo != null && listaConsumo.Count > 0)
                 {
                     foreach (Consumo item in listaConsumo)
                     {
-                        dataGridView.Rows.Add(new object[]
+                        if ((string.IsNullOrEmpty(documentoynombre) || item.NombreEmpleado.Contains(documentoynombre) || item.DocumentoEmpleado.Contains(documentoynombre)) &&
+                            (string.IsNullOrEmpty(zona) || item.ZonaTrabajoEmpleado == zona) &&
+                            (string.IsNullOrEmpty(tipoConsumo) || item.TipoConsumo == tipoConsumo) &&
+                            (item.FechaRegistro.Date >= desdeDate) && (item.FechaRegistro.Date <= hastaDate))
                         {
-                    item.IdConsumo,
-                    item.NombreEmpleado,
-                    item.DocumentoEmpleado,
-                    item.ZonaTrabajoEmpleado,
-                    item.TipoConsumo,
-                    item.FechaRegistro,
-                    item.FormaRegistro ? "Automático" : "Manual"
-                        });
+                            dataGridView1.Rows.Add(new object[]
+                            {
+                        item.IdConsumo,
+                        item.NombreEmpleado,
+                        item.DocumentoEmpleado,
+                        item.ZonaTrabajoEmpleado,
+                        item.TipoConsumo,
+                        item.FechaRegistro,
+                        item.FormaRegistro ? "Automático" : "Manual"
+                            });
+
+                            exportar.Add(new Consumo
+                            {
+                                IdConsumo = item.IdConsumo,
+                                NombreEmpleado = item.NombreEmpleado,
+                                DocumentoEmpleado = item.DocumentoEmpleado,
+                                ZonaTrabajoEmpleado = item.ZonaTrabajoEmpleado,
+                                TipoConsumo = item.TipoConsumo,
+                                FechaRegistro = item.FechaRegistro,
+                                FormaRegistro = item.FormaRegistro
+                            });
+                        }
                     }
                 }
                 else
@@ -184,69 +195,80 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             catch (MySqlException mysqlEx)
             {
-                // Manejo de excepciones específicas de MySQL
                 generalItems.sonido(false);
                 MessageBox.Show("Error de base de datos: " + mysqlEx.Message, "Error de MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                // Manejo de cualquier otro tipo de excepción
                 generalItems.sonido(false);
                 MessageBox.Show("ERROR AL APLICAR LOS FILTROS: " + ex.Message, "Error general", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+    
 
 
-        private void textBoxZona_TextChanged(object sender, EventArgs e)
+
+    private void textBoxZona_TextChanged(object sender, EventArgs e)
         {
         }
 
         private void comboBoxConsumo_SelectedIndexChanged(object sender, EventArgs e)
         {
-        
+
         }
 
         private void dateTimePickerDesde_ValueChanged(object sender, EventArgs e)
         {
-        
+
         }
 
         private void dateTimePickerHasta_ValueChanged(object sender, EventArgs e)
         {
+
             
+
         }
 
         public void ActualizarlistaConsumo()
         {
             try
             {
-
+                // Establecer el comboBoxConsumo al primer valor
                 comboBoxConsumo.Text = comboBoxConsumo.Items[0].ToString();
-                dataGridView.Rows.Clear();
+
+                // Limpiar el DataGridView antes de agregar nuevos registros
+                dataGridView1.Rows.Clear();
+
+                // Definir el primer día del mes actual y la fecha actual
+                DateTime primerDiaMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime fechaActual = DateTime.Now.Date;
+
+                // Obtener la lista de consumos desde la base de datos
                 List<Consumo> listaConsumo = new ListarConsumo().Listar();
+
+                // Recorrer la lista de consumos
                 foreach (Consumo item in listaConsumo)
                 {
-                    if (item.FechaRegistro.Date == DateTime.Now.Date)
-                    {// Verificar si FormaRegistro es 0 o 1 para mostrar el texto adecuado
+                    // Filtrar los consumos que ocurren entre el primer día del mes y el día actual
+                    if (item.FechaRegistro.Date >= primerDiaMes && item.FechaRegistro.Date <= fechaActual)
+                    {
+                        // Verificar si FormaRegistro es 0 o 1 para mostrar el texto adecuado
                         string formaRegistro = item.FormaRegistro == false ? "Manual" : "Automático";
 
-
                         // Agregar la fila al DataGridView
-                        dataGridView.Rows.Add(new object[]
+                        dataGridView1.Rows.Add(new object[]
                         {
-                        item.IdConsumo,
-                        item.NombreEmpleado,
-                        item.DocumentoEmpleado,
-                        item.ZonaTrabajoEmpleado,
-                        item.TipoConsumo,
-                        item.FechaRegistro,
-                        formaRegistro
+                    item.IdConsumo,
+                    item.NombreEmpleado,
+                    item.DocumentoEmpleado,
+                    item.ZonaTrabajoEmpleado,
+                    item.TipoConsumo,
+                    item.FechaRegistro,
+                    formaRegistro
                         });
                     }
-
                 }
-
 
             }
             catch (Exception e)
@@ -255,6 +277,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 MessageBox.Show("ERROR AL ACTUALIZAR EL CONSUMO: " + e.Message);
             }
         }
+
 
         private void iconButtonReiniciar_Click(object sender, EventArgs e)
         {
