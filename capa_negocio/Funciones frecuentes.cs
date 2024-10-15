@@ -270,7 +270,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         QueryEmpleado emm = new QueryEmpleado();
                         consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
-                        imprimirSeleccion(TC, item.NombreCompleto,item.NumeroDocumento, ZT, DateTime.Now);
+                        imprimirSeleccion(TC, item.NombreCompleto,item.NumeroDocumento, item.ZonaDeTrabajo, DateTime.Now);
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                         pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
