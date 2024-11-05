@@ -47,7 +47,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             {
 
                 comboBoxConsumo.Text = comboBoxConsumo.Items[0].ToString();
-                dataGridView.Rows.Clear();
+                dataGridView1.Rows.Clear();
                 List<Consumo> listaConsumo = new ListarConsumo().Listar();
                 foreach (Consumo item in listaConsumo)
                 {
@@ -98,7 +98,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         chartConsumos.Series.Add(serie);
 
                         // Agregar la fila al DataGridView
-                        dataGridView.Rows.Add(new object[]
+                        dataGridView1.Rows.Add(new object[]
                         {
                             item.IdConsumo,
                     item.NombreEmpleado,
@@ -133,15 +133,15 @@ namespace Consumos_Sermopetrol.Capa_Vista
             if (e.RowIndex >= 0)
             {
                 // Capturar el valor de la primera celda (que representa el ID del consumo)
-                string valorPrimeraCelda = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                string valorPrimeraCelda = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 int idConsumo = int.Parse(valorPrimeraCelda); // Convertir el valor a entero
 
-                string Nombre = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string Documento = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
-                string Zona = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
-                string Tipo = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
-                DateTime Fecha = (DateTime)dataGridView.Rows[e.RowIndex].Cells[5].Value;
-                string Registro = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
+                string Nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string Documento = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string Zona = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                string Tipo = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                DateTime Fecha = (DateTime)dataGridView1.Rows[e.RowIndex].Cells[5].Value;
+                string Registro = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
 
                 // Mostrar el CustomMessageBox con tres opciones: Imprimir, Eliminar, Cancelar
                 CustomMessageBox customMessageBox = new CustomMessageBox("Selecciona lo que deseas hacer con el registro #"
@@ -172,7 +172,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
                                 {
                                     MessageBox.Show("El consumo ha sido eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     // Lógica para refrescar la tabla si es necesario
-                                    dataGridView.Rows.RemoveAt(e.RowIndex);
+                                    dataGridView1.Rows.RemoveAt(e.RowIndex);
                                 }
                                 else
                                 {
