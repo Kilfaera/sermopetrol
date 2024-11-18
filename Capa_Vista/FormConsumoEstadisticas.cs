@@ -288,5 +288,10 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             Filtrar();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
