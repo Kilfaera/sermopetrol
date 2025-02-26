@@ -336,8 +336,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Recursos\alert.wav" />
-    <Content Include="Recursos\error.wav" />
+    <Content Include="Recursos\alert.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recursos\error.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Recursos\logo1_sf.png" />
     <Content Include="Recursos\logo2-1.jpg" />
     <None Include="Consumos Sermopetrol_TemporaryKey.pfx" />

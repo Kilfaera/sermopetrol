@@ -336,14 +336,10 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         {
             try
             {
-                if (select)
-                {
-                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Recursos/alert.wav"); //Variable que permite reproducir el audio proporcionado
-                }
-                else
-                {
-                    player = new SoundPlayer("C:/Program Files/STL AppConsumo/Recursos/error.wav"); //Variable que permite reproducir el audio proporcionado
-                }
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                string soundPath = select ? Path.Combine(basePath, "Recursos", "alert.wav") : Path.Combine(basePath, "Recursos", "error.wav");
+
+                player = new SoundPlayer(soundPath); //Variable que permite reproducir el audio proporcionado
                 player.Play(); //Reproduce el audio
             }
             catch (Exception e)
