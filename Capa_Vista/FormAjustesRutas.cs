@@ -2,6 +2,7 @@
 using Consumos_Sermopetrol.Capa_Control.Entidades;
 using Consumos_Sermopetrol.Capa_Negocio;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Consumos_Sermopetrol.Capa_Vista
@@ -214,7 +215,24 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            generalItems.Backup(textBoxRutaCsv.Text);
+        
+           
+
+            
+               
+                generalItems.Backup(textBoxRutaCsv.Text);
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos de copia de seguridad (*.sql)|*.sql";
+            openFileDialog.Title = "Seleccione el archivo de copia de seguridad";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+               generalItems.RestaurarBackup(openFileDialog.FileName);
+            }
         }
     }
 

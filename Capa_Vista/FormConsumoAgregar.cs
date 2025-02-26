@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static Consumos_Sermopetrol.Capa_Negocio.Funciones_frecuentes;
 
 namespace Consumos_Sermopetrol.Capa_Vista
 {
@@ -23,6 +24,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
             comboBoxConsumo.SelectedIndex = 0;
             this.KeyPreview = true;
             this.KeyPress += new KeyPressEventHandler(FormConsumoAgregar_KeyPress);
+            
         }
         private void buttonClose_Click_1(object sender, EventArgs e)
         {
@@ -156,7 +158,16 @@ namespace Consumos_Sermopetrol.Capa_Vista
                         case CustomMessageBox.Result.Imprimir:
                             // Lógica para imprimir
                             MessageBox.Show("Imprimiendo el consumo #" + valorPrimeraCelda);
-                            generalItems.imprimirSeleccion(Tipo, Nombre, Documento, Zona, Fecha);
+
+                            var datos = new DatosImpresion
+                            {
+                                TC = Tipo,
+                                NC = Nombre,
+                                ND = Documento,
+                                ZT = Zona,
+                                FR = Fecha
+                            };
+                            generalItems.imprimirSeleccion(datos);
                             break;
 
                         case CustomMessageBox.Result.Eliminar:
@@ -221,30 +232,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
         
         private void iconButtonAprobar_Click(object sender, EventArgs e)
         {
-            string documentoEmpleado = textBoxCedula.Text; // Obtener el número de documento
-            string rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado); // Obtener la ruta de la imagen
-
-            if (System.IO.File.Exists(rutaImagen)) // Verificar si la imagen existe
-            {
-                pictureBoxFoto.Image = Image.FromFile(rutaImagen); // Cargar la imagen en el PictureBox
-            }
-            else
-            {
-                pictureBoxFoto.Image = Properties.Resources.sin_imagen; // Restablecer a la imagen original
-            }
-
-            // Código existente para el proceso de consumo
-            if (comboBoxConsumo.SelectedIndex == 0)
-            {
-                generalItems.Confirmacion(textBoxCedula.Text);
-                ActualizarlistaConsumo();
-            }
-            else
-            {
-                generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value);
-                ActualizarlistaConsumo();
-            }
-            textBoxCedula.Text = "";
+          ProcesarConsumo();
         }
 
         private void FormConsumoAgregar_KeyPress(object sender, KeyPressEventArgs e)
@@ -253,36 +241,33 @@ namespace Consumos_Sermopetrol.Capa_Vista
             textBoxCedula.Focus();
             if (e.KeyChar == (char)Keys.Enter && !string.IsNullOrEmpty(textBoxCedula.Text))
             {
-                string documentoEmpleado = textBoxCedula.Text;
-                string rutaImagen="";
-                // Obtener el número de documento
-                rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado);
-                // Obtener la ruta de la imagen
-                
-
-                if (System.IO.File.Exists(rutaImagen)) // Verificar si la imagen existe
-                {
-                    pictureBoxFoto.Image = Image.FromFile(rutaImagen); // Cargar la imagen en el PictureBox
-                }
-                else
-                {
-                    pictureBoxFoto.Image = Properties.Resources.sin_imagen; // Restablecer a la imagen original
-                }
-
-                ProcesarConsumo(); // Llamar al método de procesamiento de consumo
+                ProcesarConsumo();
             }
+
         }
         private void ProcesarConsumo()
         {
             try
             {
-                if (comboBoxConsumo.SelectedIndex == 0)
+                string documentoEmpleado = textBoxCedula.Text;
+                string rutaImagen = generalItems.ObtenerRutaImagen(documentoEmpleado);
+
+                if (System.IO.File.Exists(rutaImagen))
                 {
-                    generalItems.Confirmacion(textBoxCedula.Text);
+                    pictureBoxFoto.Image = Image.FromFile(rutaImagen);
                 }
                 else
                 {
-                    generalItems.insertarempleadoconfirmadoM(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value);
+                    pictureBoxFoto.Image = Properties.Resources.sin_imagen;
+                }
+
+                if (comboBoxConsumo.SelectedIndex == 0)
+                {
+                    generalItems.Confirmacion(textBoxCedula.Text, checkBox2.Checked);
+                }
+                else
+                {
+                    generalItems.insertarConsumoConfirmadoManual(textBoxCedula.Text, comboBoxConsumo.Text, dateTimePicker1.Value, checkBox2.Checked);
                 }
 
                 ActualizarlistaConsumo();
@@ -295,6 +280,23 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 MessageBox.Show("ERROR AL INGRESAR EL CONSUMO DIGITADO: " + ex.Message);
                 generalItems.sonido(false);
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked)
+            {
+                generalItems.closeCam();
+                pictureBoxCamara.Image = Properties.Resources.sin_imagen;
+            }
+            else {
+                generalItems.inicialziar(comboBoxSelectCamara.SelectedIndex, pictureBoxCamara);
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

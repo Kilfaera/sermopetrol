@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Consumos Sermopetrol")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Pplicativo para el registro de consumos")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("STL Unexpect")]
 [assembly: AssemblyProduct("Consumos Sermopetrol")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]

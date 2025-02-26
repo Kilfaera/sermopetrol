@@ -36,6 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -78,6 +80,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.buttonClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -86,8 +90,39 @@
             this.panel1.Size = new System.Drawing.Size(1132, 29);
             this.panel1.TabIndex = 0;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox2.Location = new System.Drawing.Point(877, 6);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(72, 17);
+            this.checkBox2.TabIndex = 7;
+            this.checkBox2.Text = "Imprecion";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBox1.Location = new System.Drawing.Point(809, 6);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(62, 17);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Camara";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Location = new System.Drawing.Point(469, 0);
@@ -265,6 +300,7 @@
             // 
             // chartConsumos
             // 
+            this.chartConsumos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chartConsumos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(15)))), ((int)(((byte)(34)))));
             this.chartConsumos.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
@@ -454,6 +490,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormConsumoAgregar_KeyPress);
             this.Leave += new System.EventHandler(this.FormConsumoAgregar_Leave);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -499,5 +536,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoConsumo;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn FormaRegistro;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

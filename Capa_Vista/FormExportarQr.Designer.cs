@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BusquedaDocumento = new System.Windows.Forms.TextBox();
+            this.iconButtonReiniciar = new FontAwesome.Sharp.IconButton();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.iconButtonExportar = new FontAwesome.Sharp.IconButton();
@@ -49,8 +51,6 @@
             this.zona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iconButtonReiniciar = new FontAwesome.Sharp.IconButton();
-            this.BusquedaDocumento = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -71,6 +71,35 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1077, 29);
             this.panel1.TabIndex = 1;
+            // 
+            // BusquedaDocumento
+            // 
+            this.BusquedaDocumento.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BusquedaDocumento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.BusquedaDocumento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.BusquedaDocumento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BusquedaDocumento.Location = new System.Drawing.Point(374, 8);
+            this.BusquedaDocumento.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.BusquedaDocumento.Name = "BusquedaDocumento";
+            this.BusquedaDocumento.Size = new System.Drawing.Size(248, 13);
+            this.BusquedaDocumento.TabIndex = 11;
+            this.BusquedaDocumento.TextChanged += new System.EventHandler(this.BusquedaDocumento_TextChanged);
+            // 
+            // iconButtonReiniciar
+            // 
+            this.iconButtonReiniciar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.iconButtonReiniciar.FlatAppearance.BorderSize = 0;
+            this.iconButtonReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButtonReiniciar.IconChar = FontAwesome.Sharp.IconChar.RotateForward;
+            this.iconButtonReiniciar.IconColor = System.Drawing.Color.White;
+            this.iconButtonReiniciar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButtonReiniciar.IconSize = 20;
+            this.iconButtonReiniciar.Location = new System.Drawing.Point(625, 3);
+            this.iconButtonReiniciar.Name = "iconButtonReiniciar";
+            this.iconButtonReiniciar.Size = new System.Drawing.Size(23, 23);
+            this.iconButtonReiniciar.TabIndex = 6;
+            this.iconButtonReiniciar.UseVisualStyleBackColor = true;
+            this.iconButtonReiniciar.Click += new System.EventHandler(this.iconButtonReiniciar_Click);
             // 
             // buttonClose
             // 
@@ -140,26 +169,26 @@
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
             this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
@@ -215,14 +244,14 @@
             this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -230,14 +259,14 @@
             this.documento,
             this.zona,
             this.fecha});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
@@ -298,33 +327,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(787, 684);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // iconButtonReiniciar
-            // 
-            this.iconButtonReiniciar.FlatAppearance.BorderSize = 0;
-            this.iconButtonReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonReiniciar.IconChar = FontAwesome.Sharp.IconChar.RotateForward;
-            this.iconButtonReiniciar.IconColor = System.Drawing.Color.White;
-            this.iconButtonReiniciar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButtonReiniciar.IconSize = 20;
-            this.iconButtonReiniciar.Location = new System.Drawing.Point(625, 3);
-            this.iconButtonReiniciar.Name = "iconButtonReiniciar";
-            this.iconButtonReiniciar.Size = new System.Drawing.Size(23, 23);
-            this.iconButtonReiniciar.TabIndex = 6;
-            this.iconButtonReiniciar.UseVisualStyleBackColor = true;
-            this.iconButtonReiniciar.Click += new System.EventHandler(this.iconButtonReiniciar_Click);
-            // 
-            // BusquedaDocumento
-            // 
-            this.BusquedaDocumento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.BusquedaDocumento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.BusquedaDocumento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.BusquedaDocumento.Location = new System.Drawing.Point(374, 8);
-            this.BusquedaDocumento.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.BusquedaDocumento.Name = "BusquedaDocumento";
-            this.BusquedaDocumento.Size = new System.Drawing.Size(248, 13);
-            this.BusquedaDocumento.TabIndex = 11;
-            this.BusquedaDocumento.TextChanged += new System.EventHandler(this.BusquedaDocumento_TextChanged);
             // 
             // FormExportarQr
             // 

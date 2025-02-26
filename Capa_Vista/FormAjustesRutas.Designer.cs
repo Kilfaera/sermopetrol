@@ -31,6 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonEliminacion = new System.Windows.Forms.Button();
             this.Cambiarperminso = new System.Windows.Forms.Label();
             this.labelPdf = new System.Windows.Forms.Label();
@@ -53,8 +55,7 @@
             this.textBoxRutaPlantilla = new System.Windows.Forms.TextBox();
             this.textBoxRutaPng = new System.Windows.Forms.TextBox();
             this.textBoxRutaXlsx = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +91,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(93)))), ((int)(((byte)(118)))));
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.buttonEliminacion);
@@ -120,9 +122,38 @@
             this.panel2.Size = new System.Drawing.Size(1030, 759);
             this.panel2.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(873, 73);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 29);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Exportar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(734, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(266, 31);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Copia de seguridad";
+            // 
             // buttonEliminacion
             // 
-            this.buttonEliminacion.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonEliminacion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonEliminacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonEliminacion.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonEliminacion.FlatAppearance.BorderSize = 2;
@@ -139,7 +170,7 @@
             // 
             // Cambiarperminso
             // 
-            this.Cambiarperminso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Cambiarperminso.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Cambiarperminso.AutoSize = true;
             this.Cambiarperminso.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cambiarperminso.ForeColor = System.Drawing.Color.White;
@@ -151,7 +182,7 @@
             // 
             // labelPdf
             // 
-            this.labelPdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPdf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelPdf.AutoSize = true;
             this.labelPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPdf.ForeColor = System.Drawing.Color.White;
@@ -163,7 +194,7 @@
             // 
             // labelCsv
             // 
-            this.labelCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCsv.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCsv.AutoSize = true;
             this.labelCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCsv.ForeColor = System.Drawing.Color.White;
@@ -175,7 +206,7 @@
             // 
             // labelPlantilla
             // 
-            this.labelPlantilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPlantilla.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelPlantilla.AutoSize = true;
             this.labelPlantilla.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPlantilla.ForeColor = System.Drawing.Color.White;
@@ -187,7 +218,7 @@
             // 
             // labelPng
             // 
-            this.labelPng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPng.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelPng.AutoSize = true;
             this.labelPng.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPng.ForeColor = System.Drawing.Color.White;
@@ -199,7 +230,7 @@
             // 
             // labelXlsx
             // 
-            this.labelXlsx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelXlsx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelXlsx.AutoSize = true;
             this.labelXlsx.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXlsx.ForeColor = System.Drawing.Color.White;
@@ -211,7 +242,7 @@
             // 
             // buttonPdf
             // 
-            this.buttonPdf.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonPdf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonPdf.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonPdf.FlatAppearance.BorderSize = 2;
@@ -229,7 +260,7 @@
             // 
             // buttonCsv
             // 
-            this.buttonCsv.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonCsv.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonCsv.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonCsv.FlatAppearance.BorderSize = 2;
@@ -247,7 +278,7 @@
             // 
             // buttonPlantilla
             // 
-            this.buttonPlantilla.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonPlantilla.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonPlantilla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonPlantilla.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonPlantilla.FlatAppearance.BorderSize = 2;
@@ -265,7 +296,7 @@
             // 
             // buttonModificarPdf
             // 
-            this.buttonModificarPdf.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonModificarPdf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonModificarPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonModificarPdf.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonModificarPdf.FlatAppearance.BorderSize = 2;
@@ -282,7 +313,7 @@
             // 
             // buttonModificarCsv
             // 
-            this.buttonModificarCsv.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonModificarCsv.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonModificarCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonModificarCsv.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonModificarCsv.FlatAppearance.BorderSize = 2;
@@ -299,7 +330,7 @@
             // 
             // buttonModificarXlsx
             // 
-            this.buttonModificarXlsx.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonModificarXlsx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonModificarXlsx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonModificarXlsx.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonModificarXlsx.FlatAppearance.BorderSize = 2;
@@ -316,7 +347,7 @@
             // 
             // buttonModificarPlantilla
             // 
-            this.buttonModificarPlantilla.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonModificarPlantilla.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonModificarPlantilla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonModificarPlantilla.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonModificarPlantilla.FlatAppearance.BorderSize = 2;
@@ -333,7 +364,7 @@
             // 
             // buttonModificarPng
             // 
-            this.buttonModificarPng.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonModificarPng.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonModificarPng.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonModificarPng.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonModificarPng.FlatAppearance.BorderSize = 2;
@@ -350,7 +381,7 @@
             // 
             // buttonPng
             // 
-            this.buttonPng.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonPng.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonPng.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonPng.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonPng.FlatAppearance.BorderSize = 2;
@@ -368,7 +399,7 @@
             // 
             // buttonXlsx
             // 
-            this.buttonXlsx.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonXlsx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonXlsx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.buttonXlsx.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonXlsx.FlatAppearance.BorderSize = 2;
@@ -386,7 +417,7 @@
             // 
             // textBoxRutaPdf
             // 
-            this.textBoxRutaPdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRutaPdf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRutaPdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxRutaPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRutaPdf.ForeColor = System.Drawing.Color.White;
@@ -399,7 +430,7 @@
             // 
             // textBoxRutaCsv
             // 
-            this.textBoxRutaCsv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRutaCsv.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRutaCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxRutaCsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRutaCsv.ForeColor = System.Drawing.Color.White;
@@ -412,7 +443,7 @@
             // 
             // textBoxRutaPlantilla
             // 
-            this.textBoxRutaPlantilla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRutaPlantilla.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRutaPlantilla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxRutaPlantilla.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRutaPlantilla.ForeColor = System.Drawing.Color.White;
@@ -425,7 +456,7 @@
             // 
             // textBoxRutaPng
             // 
-            this.textBoxRutaPng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRutaPng.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRutaPng.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxRutaPng.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRutaPng.ForeColor = System.Drawing.Color.White;
@@ -438,7 +469,7 @@
             // 
             // textBoxRutaXlsx
             // 
-            this.textBoxRutaXlsx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRutaXlsx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRutaXlsx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.textBoxRutaXlsx.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRutaXlsx.ForeColor = System.Drawing.Color.White;
@@ -449,34 +480,22 @@
             this.textBoxRutaXlsx.TabIndex = 0;
             this.textBoxRutaXlsx.TextChanged += new System.EventHandler(this.textBoxRutaXlsx_TextChanged);
             // 
-            // button1
+            // button2
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(882, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 29);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Exportar";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(734, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(266, 31);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Copia de seguridad";
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(740, 73);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(118, 29);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Importar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormAjustesRutas
             // 
@@ -526,5 +545,6 @@
         private System.Windows.Forms.Button buttonEliminacion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button2;
     }
 }

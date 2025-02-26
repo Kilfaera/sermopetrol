@@ -2,6 +2,7 @@
 using Accord.Video.DirectShow;
 using AppConsumo.Controlador;
 using Consumos_Sermopetrol.Capa_Control.Entidades;
+using Microsoft.Win32;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Media;
 using System.Windows.Forms;
 using ZXing;
 using ZXing.Common;
+using static Consumos_Sermopetrol.Capa_Negocio.Funciones_frecuentes;
 
 
 namespace Consumos_Sermopetrol.Capa_Negocio
@@ -20,7 +22,6 @@ namespace Consumos_Sermopetrol.Capa_Negocio
     internal class Funciones_frecuentes
     {
         QueryConfiguracion query = new QueryConfiguracion();
-        string TC, NC, ND, ZT;
         public DateTime FR;
         SoundPlayer player;
         #region ImpresoraTermica
@@ -28,69 +29,67 @@ namespace Consumos_Sermopetrol.Capa_Negocio
         Result result;
         public PrintDocument doc = new PrintDocument();
         private PrintPreviewDialog preview = new PrintPreviewDialog();
+        private readonly Font cal8 = new Font("Calibri", 8, FontStyle.Bold);
+        private readonly Font cal10 = new Font("Calibri", 10, FontStyle.Bold);
+        private readonly StringFormat right = new StringFormat { Alignment = StringAlignment.Far };
+        private readonly StringFormat center = new StringFormat { Alignment = StringAlignment.Center };
+        private readonly Image logo = Properties.Resources.logo_ico;
+        private Bitmap bitmap = null;
+        private DatosImpresion datosImpresion;
+        public class DatosImpresion
+        {
+            public string TC { get; set; }
+            public string NC { get; set; }
+            public string ND { get; set; }
+            public string ZT { get; set; }
+            public DateTime FR { get; set; }
+        }
+      
         public void iniciarImpresion(object sender, PrintEventArgs e)
         {
-            PageSettings pageSettings = new PageSettings();
-            pageSettings.PaperSize = new PaperSize("Custom", 250, 410);
+            PageSettings pageSettings = new PageSettings
+            {
+                PaperSize = new PaperSize("Custom", 250, 410)
+            };
             doc.DefaultPageSettings = pageSettings;
         }
-        Bitmap bitmap = null;
+
         public void imprimir(object sender, PrintPageEventArgs e)
         {
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
-            Font cal8 = new Font("Calibri", 8, FontStyle.Bold);
-            Font cal10 = new Font("Calibri", 10, FontStyle.Bold);
 
-            int leftmargin = doc.DefaultPageSettings.Margins.Left;
             int centermargin = doc.DefaultPageSettings.PaperSize.Width / 2;
-            int rightmargin = doc.DefaultPageSettings.PaperSize.Width;
 
-            StringFormat right = new StringFormat();
-            StringFormat center = new StringFormat();
-            right.Alignment = StringAlignment.Far;
-            center.Alignment = StringAlignment.Center;
-
-            string line = "***************************************************************************************";
-
-            System.Drawing.Image logo = Properties.Resources.logo_ico;
             e.Graphics.DrawImage(logo, (e.PageBounds.Width - 50) / 3 + 8, 5, 150, 150);
+            e.Graphics.DrawString("TICKET DE " + datosImpresion.TC, cal10, Brushes.Black, centermargin + 20, 155, center);
+            e.Graphics.DrawString(datosImpresion.FR.ToString("yyyy/MMMM/dddd-dd"), cal10, Brushes.Black, centermargin + 20, 170, center);
+            e.Graphics.DrawString(datosImpresion.FR.ToString("hh:mm:ss tt"), cal10, Brushes.Black, centermargin + 20, 185, center);
+            e.Graphics.DrawString(datosImpresion.NC, cal8, Brushes.Black, centermargin + 20, 210, center);
+            e.Graphics.DrawString(datosImpresion.ND, cal8, Brushes.Black, centermargin + 20, 225, center);
+            e.Graphics.DrawString(datosImpresion.ZT, cal8, Brushes.Black, centermargin + 20, 240, center);
 
-            e.Graphics.DrawString("TICKET DE " + TC, cal10, Brushes.Black, centermargin + 20, 155, center);
-            e.Graphics.DrawString(FR.ToString("yyyy/MMMM/dddd-dd"), cal10, Brushes.Black, centermargin + 20, 170, center);
-            e.Graphics.DrawString(FR.ToString("hh:mm:ss tt"), cal10, Brushes.Black, centermargin + 20, 185, center);
-
-            e.Graphics.DrawString(NC, cal8, Brushes.Black, centermargin + 20, 210, center);
-            e.Graphics.DrawString(ND, cal8, Brushes.Black, centermargin + 20, 225, center);
-            e.Graphics.DrawString(ZT, cal8, Brushes.Black, centermargin + 20, 240, center);
-
-            var writer = new BarcodeWriter() //Variable que permite generar y confgurar el codigo QR
+            var writer = new BarcodeWriter
             {
-                Format = BarcodeFormat.QR_CODE, //Formato QR
-                Options = new EncodingOptions() //Personalización del codigo
+                Format = BarcodeFormat.QR_CODE,
+                Options = new EncodingOptions
                 {
                     Height = 150,
                     Width = 150,
                     Margin = 1,
                 }
             };
-            bitmap = writer.Write("Ticket de " + TC + " canjeado en " + FR.ToString("yyyy/MMMM/dddd-dd") +
-                " a las " + FR.ToString("hh:mm:ss-tt") + " para el empleado " + NC + " C.C." + ND);
+            bitmap = writer.Write("Ticket de " + datosImpresion.TC + " canjeado en " + datosImpresion.FR.ToString("yyyy/MMMM/dddd-dd") +
+            " a las " + datosImpresion.FR.ToString("hh:mm:ss-tt") + " para el empleado " + datosImpresion.NC + " C.C." + datosImpresion.ND);
             e.Graphics.DrawImage(bitmap, (e.PageBounds.Width - 50) / 3 + 8, 255, 150, 150);
-            ///////////////////
-
         }
-        public void imprimirSeleccion(string TC, string NC, string ND, string ZT, DateTime FR)
+
+        public void imprimirSeleccion(DatosImpresion datos)
         {
-            this.TC = TC;
-            this.NC = NC;
-            this.ND = ND;
-            this.ZT = ZT;
-            this.FR = FR;
-            doc.BeginPrint += new PrintEventHandler(iniciarImpresion);
-            doc.PrintPage += new PrintPageEventHandler(imprimir);
+            this.datosImpresion = datos;
             sonido(true);
             doc.Print();
         }
+       
         #endregion
 
         #region Camara
@@ -224,7 +223,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
 
         #region Consumos
 
-        public void Confirmacion(string ND)
+        public void Confirmacion(string ND,bool impri)
         {
             List<Consumo> listaConsumo = new ListarConsumo().Listar();
             string _tipoConsumo;
@@ -248,21 +247,19 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             // Si no se encontró un consumo repetido, agregar el nuevo consumo
             if (!consumoRepetido)
             {
-                insertarempleadoconfirmado(_tipoConsumo, ND, true); // Inserta el consumo si no está repetido
+                insertarConsumoConfirmadoAutomatico(_tipoConsumo, ND, true,impri); // Inserta el consumo si no está repetido
             }
         }
         bool encontrado = false;
-        public void insertarempleadoconfirmado(string TC, string ND, bool FR)
+        public void insertarConsumoConfirmadoAutomatico(string TC, string ND, bool FR,bool impri)
         {
-            this.TC = TC;
-            this.ND = ND;
             
             try
             {
                 encontrado = false;
                 QueryConsumo consumo = new QueryConsumo();
                 List<Empleado> ListaEmpleados = new ListarEmpleado().Listar();
-
+                 
                 foreach (Empleado item in ListaEmpleados)
                 {
                     if (item.NumeroDocumento == ND && item.Estado)
@@ -270,7 +267,16 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         QueryEmpleado emm = new QueryEmpleado();
                         consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
-                        imprimirSeleccion(TC, item.NombreCompleto,item.NumeroDocumento, item.ZonaDeTrabajo, DateTime.Now);
+                        if(impri) {var datos = new DatosImpresion
+                        {
+                            TC = TC,
+                            NC = item.NombreCompleto,
+                            ND = item.NumeroDocumento,
+                            ZT = item.ZonaDeTrabajo,
+                            FR = DateTime.Now
+                        };
+                            imprimirSeleccion(datos);
+                        }
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                         pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -287,7 +293,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 MessageBox.Show("ERROR AL INGRESAR EL CONSUMO: " + e);
             }
         }
-        public void insertarempleadoconfirmadoM(string ND, string TC, DateTime FR)
+        public void insertarConsumoConfirmadoManual(string ND, string TC, DateTime FR, bool impri)
         {
 
             int Hora;
@@ -305,7 +311,16 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                     QueryEmpleado emm = new QueryEmpleado();
                     consumo.AgregarConsumoCS(item.IdEmpleado, TC, FR, false);
                     emm.IncrementarConsumo(item.IdEmpleado);
-                    imprimirSeleccion(TC, item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo, DateTime.Now);
+                   if(impri) {var datos = new DatosImpresion
+                        {
+                            TC = TC,
+                            NC = item.NombreCompleto,
+                            ND = item.NumeroDocumento,
+                            ZT = item.ZonaDeTrabajo,
+                            FR = DateTime.Now
+                        };
+                            imprimirSeleccion(datos);
+                        }
                     encontrado = true;
                     /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                     pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -545,12 +560,11 @@ namespace Consumos_Sermopetrol.Capa_Negocio
             }
         }
 
-        public void Backup(string textBoxRutaCsv)
-        { 
+        public void Backup(string rutaBackup)
+        {
             try
             {
-                // Obtener la ruta de la copia de seguridad desde el TextBox
-                string rutaBackup = textBoxRutaCsv;
+
 
                 // Verificar que la ruta no esté vacía
                 if (string.IsNullOrEmpty(rutaBackup))
@@ -560,11 +574,11 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 }
 
                 // Nombre del archivo de respaldo
-                string fileName = $"backup_{DateTime.Now:yyyyMMdd_HHmmss}.sql";
+                string fileName = $"Copia de seguridad {DateTime.Now:dd 'de' MMMM 'del' yyyy}.sql";
                 string filePath = Path.Combine(rutaBackup, fileName);
 
                 // Comando para exportar la base de datos
-                using (MySqlConnection conn = new MySqlConnection("server=127.0.0.1;database=consumoempleado;uid=root;password=123456789;"
+                using (MySqlConnection conn = new MySqlConnection("server=127.0.0.1;database=consumoempleado;uid=root;password=12345678;"
 ))
                 {
                     conn.Open();
@@ -576,6 +590,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                             cmd.Connection = conn;
 
                             // Exportar la base de datos a un archivo SQL
+                            mb.ExportInfo.AddCreateDatabase = true;
                             mb.ExportToFile(filePath);
                             MessageBox.Show("Copia de seguridad completada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -589,6 +604,43 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                 MessageBox.Show("Error al realizar la copia de seguridad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+            public void RestaurarBackup(string rutaBackup)
+        {
+            try
+            {
+                // Verificar que la ruta no esté vacía
+                if (string.IsNullOrEmpty(rutaBackup))
+                {
+                    MessageBox.Show("Por favor, selecciona una ruta válida para restaurar la copia de seguridad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Comando para restaurar la base de datos
+                using (MySqlConnection conn = new MySqlConnection("server=127.0.0.1;uid=root;password=12345678;"))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+
+                            // Restaurar la base de datos desde un archivo SQL
+                            mb.ImportFromFile(rutaBackup);
+                            MessageBox.Show("Restauración de la copia de seguridad completada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al restaurar la copia de seguridad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+    }
         #endregion
     }
 }
