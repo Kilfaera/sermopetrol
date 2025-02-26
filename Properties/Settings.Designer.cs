@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Casino_Sermopetrol.Properties {
+namespace Consumos_Sermopetrol.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
