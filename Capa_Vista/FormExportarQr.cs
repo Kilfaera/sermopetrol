@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using ZXing.Common;
 using ZXing;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Consumos_Sermopetrol.Capa_Vista
 {
@@ -29,7 +31,13 @@ namespace Consumos_Sermopetrol.Capa_Vista
                 {
                     if (item.Estado)
                     {
-                        dataGridView.Rows.Add(new object[] { Text = item.IdEmpleado.ToString(), item.NombreCompleto, item.NumeroDocumento, item.ZonaDeTrabajo, item.NumeroConsumos, item.Estado, item.FechaRegistro });
+                        dataGridView.Rows.Add(new object[] {
+                    item.IdEmpleado,
+                    item.NombreCompleto,
+                    item.NumeroDocumento,
+                    item.ZonaDeTrabajo,
+                    item.FechaRegistro
+                    });
 
                     }
                 }
@@ -51,6 +59,31 @@ namespace Consumos_Sermopetrol.Capa_Vista
         {
             try
             {
+                bitmaps.Clear();
+                textoQR.Clear();
+                var writer = new BarcodeWriter()
+                {
+                    Format = BarcodeFormat.QR_CODE,
+                    Options = new EncodingOptions()
+                    {
+                        Height = 200,
+                        Width = 200,
+                        Margin = 0,
+                    }
+                };
+
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    string nombre = row.Cells[0].Value.ToString();
+                    string documento = row.Cells[1].Value.ToString();
+                    string zona = row.Cells[2].Value.ToString();
+
+                    Bitmap bitmap = writer.Write(documento);
+                    pictureBox1.Image = bitmap;
+                    bitmaps.Add(bitmap);
+                    textoQR.Add(nombre + " - " + documento + " - " + zona);
+                }
+
                 ExportarPDFs pdf = new ExportarPDFs(bitmaps, textoQR);
                 pdf.Show();
                 pdf.Close();
@@ -64,9 +97,7 @@ namespace Consumos_Sermopetrol.Capa_Vista
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            bitmaps.Clear();
-            textoQR.Clear();
-            dataGridView2.Rows.Clear();
+            
             if (dataGridView.SelectedCells == null)
             {
                 iconButtonExportar.Visible = false;
@@ -77,28 +108,14 @@ namespace Consumos_Sermopetrol.Capa_Vista
             }
             try
             {
-                object cellValue;
-                var writer = new BarcodeWriter() //Variable que permite generar y confgurar el codigo QR
-                {
-                    Format = BarcodeFormat.QR_CODE, //Formato QR
-                    Options = new EncodingOptions() //Personalización del codigo
-                    {
-                        Height = 200,
-                        Width = 200,
-                        Margin = 0,
-                    }
-                };
+                
+                
                 foreach (DataGridViewCell cell in dataGridView.SelectedCells)
                 {
-                    cellValue = dataGridView.Rows[cell.RowIndex].Cells[2].Value;
-                    if (cellValue != null)
-                    {
-                        dataGridView2.Rows.Add(dataGridView.Rows[cell.RowIndex].Cells[1].Value, dataGridView.Rows[cell.RowIndex].Cells[2].Value);
-                        bitmap = writer.Write(cellValue.ToString()); //Genera el codigo QR y lo guarda en la variable bitmap
-                        pictureBox1.Image = bitmap; //Muestra el codigo generado en el picturebox
-                        bitmaps.Add(bitmap);
-                        textoQR.Add(dataGridView.Rows[cell.RowIndex].Cells[1].Value.ToString() + " - " + cellValue.ToString() + " - " + dataGridView.Rows[cell.RowIndex].Cells[3].Value.ToString());
-                    }
+                    
+                    
+                        dataGridView2.Rows.Add(dataGridView.Rows[cell.RowIndex].Cells[1].Value, dataGridView.Rows[cell.RowIndex].Cells[2].Value, dataGridView.Rows[cell.RowIndex].Cells[3].Value);
+                     
                 }
             }
             catch (Exception)
@@ -131,8 +148,6 @@ namespace Consumos_Sermopetrol.Capa_Vista
                     item.NombreCompleto,
                     item.NumeroDocumento,
                     item.ZonaDeTrabajo,
-                    item.NumeroConsumos,
-                    item.Estado,
                     item.FechaRegistro
                     });
                     }
@@ -149,6 +164,14 @@ namespace Consumos_Sermopetrol.Capa_Vista
         private void iconButtonReiniciar_Click(object sender, EventArgs e)
         {
             ActualizarDataWriteView();
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView2.Rows.Count)
+            {
+                dataGridView2.Rows.RemoveAt(e.RowIndex);
+            }
         }
     }
 }
