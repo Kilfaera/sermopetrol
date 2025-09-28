@@ -267,16 +267,17 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                         QueryEmpleado emm = new QueryEmpleado();
                         consumo.InsertarConsumo(item.IdEmpleado, TC, FR);
                         emm.IncrementarConsumo(item.IdEmpleado);
-                        if(impri) {var datos = new DatosImpresion
-                        {
-                            TC = TC,
-                            NC = item.NombreCompleto,
-                            ND = item.NumeroDocumento,
-                            ZT = item.ZonaDeTrabajo,
-                            FR = DateTime.Now
-                        };
+                        
+                            var datos = new DatosImpresion
+                                {
+                                    TC = TC,
+                                    NC = item.NombreCompleto,
+                                    ND = item.NumeroDocumento,
+                                    ZT = item.ZonaDeTrabajo,
+                                    FR = DateTime.Now
+                                };
                             imprimirSeleccion(datos);
-                        }
+                        
                         encontrado = true;
                         /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                         pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -311,7 +312,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                     QueryEmpleado emm = new QueryEmpleado();
                     consumo.AgregarConsumoCS(item.IdEmpleado, TC, FR, false);
                     emm.IncrementarConsumo(item.IdEmpleado);
-                   if(impri) {var datos = new DatosImpresion
+                   var datos = new DatosImpresion
                         {
                             TC = TC,
                             NC = item.NombreCompleto,
@@ -320,7 +321,7 @@ namespace Consumos_Sermopetrol.Capa_Negocio
                             FR = DateTime.Now
                         };
                             imprimirSeleccion(datos);
-                        }
+                       
                     encontrado = true;
                     /*pictureBox2.Image = Image.FromFile(item.Imagen.ToString());
                     pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
